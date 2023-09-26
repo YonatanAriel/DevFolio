@@ -24,7 +24,7 @@ export default function ProjectCard({
   return (
     <div
       className=" max-w-sm text-white shadow-lg rounded-lg overflow-hidden backdrop-blur-lg
-     h-[100vh] relative   "
+     h-[100vh] relative shadow-lg shadow-gray-500 "
     >
       <div
         style={{ zIndex: -1 }}
