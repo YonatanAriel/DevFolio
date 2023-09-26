@@ -3,7 +3,7 @@ import data from "../data/fakeProjects.json";
 
 export const metaData = {
   title: "DevFolio",
-  description: "A place for Developers to show their Protfolios & Projects",
+  description: "A place for Developers to show their Portfolios & Projects",
 };
 
 export default async function Home() {
