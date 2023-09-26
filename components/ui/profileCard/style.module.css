@@ -1,0 +1,122 @@
+.loginContainer {
+  height: 400px;
+  width: min(350px, 95vw);
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 30px 20px;
+}
+.imgContainer {
+  height: 400px;
+  width: min(350px, 95vw);
+  border-radius: 5px;
+  position: relative;
+}
+
+.profileImg {
+  height: 100px;
+  width: 100px;
+  background: url("/GettyImages-1092658864_hero-1024x575.webp");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.loginContainer h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.social {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+}
+
+.social a {
+  text-align: center;
+  border: solid 2px black;
+  width: 75px;
+  padding: 5px 0;
+  border-radius: 5px;
+}
+
+.social a:hover {
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+.loginContainer button {
+  width: 80%;
+  height: 80px;
+  font-size: 2rem;
+  margin: 30px 10% 0 10%;
+  color: white;
+  font-weight: 2em;
+  border: none;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  background: linear-gradient(
+    45deg,
+    #ff4e00,
+    #ff4e00,
+    var(--otherAccent),
+    var(--otherAccent)
+  );
+  background-size: 300% 300%;
+  outline: none;
+  transition: all 200ms ease-in-out;
+}
+
+.loginContainer button:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(2px);
+  cursor: pointer;
+}
+
+.loginContainer button:active {
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+  transform: translateY(4px);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+  padding: 0 20px;
+  margin-left: -20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.foot .likes {
+  display: flex;
+}
+
+/* .likes p:first-child {
+  margin-right: 10px;
+  border-right: 4px solid white;
+  padding-right: 10px;
+} */
+@media screen and (max-width: 450px) {
+  .profileImg {
+    left: -5px;
+    top: -30px;
+  }
+}

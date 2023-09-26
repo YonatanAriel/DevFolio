@@ -1,0 +1,72 @@
+[
+    {
+      "id": 1,
+      "projectName": "E-commerce Website",
+      "technologiesUsed": ["React.js", "Node.js", "MongoDB"],
+      "developerName": "John Doe",
+      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae libero corporis tenetur possimus sequi optio ipsa quidem quo natus rerum inventore animi eius recusandae in quisquam velit praesentium omnis repellendus, dolore repellat. Beatae, sed placeat mollitia cum veniam ad quod ea saepe numquam cumque! Possimus quasi quisquam porro similique delectus? Animi deleniti non ducimus natus unde quam doloribus perspiciatis est dolorum, sint repudiandae rerum, doloremque commodi culpa provident! Similique ipsa facere provident et, dolorem facilis laudantium ratione voluptas in aperiam rem numquam, eos nesciunt obcaecati laboriosam, repellendus error vel impedit adipisci ducimus laborum cum consequatur corrupti quod? Est, eligendi",
+      "img": "/forest-simon-1k3g_rALKRc-unsplash (1).jpg",
+      "websiteLink": "https://example.com/ecommerce_project",
+            "githubLink": "mik",
+      "developerTitle": "Full Stack Developer",
+      "projectLikes": 350,
+      "isPortfolio": false
+    },
+    {
+      "id": 2,
+      "projectName": "Portfolio Website",
+      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae libero corporis tenetur possimus sequi optio ipsa quidem quo natus rerum inventore animi eius recusandae in quisquam velit praesentium omnis repellendus, dolore repellat. Beatae, sed placeat mollitia cum veniam ad quod ea saepe numquam cumque! Possimus quasi quisquam porro similique delectus? Animi deleniti non ducimus natus unde quam doloribus perspiciatis est dolorum, sint repudiandae rerum, doloremque commodi culpa provident! Similique ipsa facere provident et, dolorem facilis laudantium ratione voluptas in aperiam rem numquam, eos nesciunt obcaecati laboriosam, repellendus error vel impedit adipisci ducimus laborum cum consequatur corrupti quod? Est, eligendi",
+
+      "technologiesUsed": ["React.js", "Node.js", "Express.js"],
+      "developerName": "Jane Smith",
+      "img": "/forest-simon-1k3g_rALKRc-unsplash (1).jpg",
+      "websiteLink":"m",
+      "githubLink":",ol,",
+      "developerTitle": "Frontend Developer",
+      "projectLikes": 250,
+      "isPortfolio": true
+    },
+    {
+      "id": 3,
+      "projectName": "Blog Website",     
+       "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae libero corporis tenetur possimus sequi optio ipsa quidem quo natus rerum inventore animi eius recusandae in quisquam velit praesentium omnis repellendus, dolore repellat. Beatae, sed placeat mollitia cum veniam ad quod ea saepe numquam cumque! Possimus quasi quisquam porro similique delectus? Animi deleniti non ducimus natus unde quam doloribus perspiciatis est dolorum, sint repudiandae rerum, doloremque commodi culpa provident! Similique ipsa facere provident et, dolorem facilis laudantium ratione voluptas in aperiam rem numquam, eos nesciunt obcaecati laboriosam, repellendus error vel impedit adipisci ducimus laborum cum consequatur corrupti quod? Est, eligendi",
+
+      "technologiesUsed": ["HTML", "CSS", "JavaScript"],
+      "img": "/forest-simon-1k3g_rALKRc-unsplash (1).jpg",
+      "websiteLink": "l,mk",
+      "githubLink":"ml",
+      "developerTitle": "Web Developer",
+      "developerLikes": 80,
+      "projectLikes": 200,
+      "isPortfolio": true
+    },
+    {
+      "id": 4,
+      "projectName": "Mobile App",
+      "technologiesUsed": ["React Native", "Node.js", "Firebase"],
+      "developerName": "Maria Rodriguez",
+      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae libero corporis tenetur possimus sequi optio ipsa quidem quo natus rerum inventore animi eius recusandae in quisquam velit praesentium omnis repellendus, dolore repellat. Beatae, sed placeat mollitia cum veniam ad quod ea saepe numquam cumque! Possimus quasi quisquam porro similique delectus? Animi deleniti non ducimus natus unde quam doloribus perspiciatis est dolorum, sint repudiandae rerum, doloremque commodi culpa provident! Similique ipsa facere provident et, dolorem facilis laudantium ratione voluptas in aperiam rem numquam, eos nesciunt obcaecati laboriosam, repellendus error vel impedit adipisci ducimus laborum cum consequatur corrupti quod? Est, eligendi",
+
+      "img": "/forest-simon-1k3g_rALKRc-unsplash (1).jpg",
+      "websiteLink": ",o",
+      "githubLink": "lL",
+      "developerTitle": "Mobile App Developer",
+      "projectLikes": 280,
+      "isPortfolio": false
+    },
+    {
+      "id": 5,
+      "projectName": "Personal Website",
+      "technologiesUsed": ["HTML", "CSS", "JavaScript"],
+      "developerName": "David Lee",
+      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt molestiae libero corporis tenetur possimus sequi optio ipsa quidem quo natus rerum inventore animi eius recusandae in quisquam velit praesentium omnis repellendus, dolore repellat. Beatae, sed placeat mollitia cum veniam ad quod ea saepe numquam cumque! Possimus quasi quisquam porro similique delectus? Animi deleniti non ducimus natus unde quam doloribus perspiciatis est dolorum, sint repudiandae rerum, doloremque commodi culpa provident! Similique ipsa facere provident et, dolorem facilis laudantium ratione voluptas in aperiam rem numquam, eos nesciunt obcaecati laboriosam, repellendus error vel impedit adipisci ducimus laborum cum consequatur corrupti quod? Est, eligendi",
+
+      "img": "/forest-simon-1k3g_rALKRc-unsplash (1).jpg",
+      "websiteLink": ",k",
+      "githubLink": "m,l",
+      "developerTitle": "Web Developer",
+      "projectLikes": 220,
+      "isPortfolio": true
+    }
+  ]
+
