@@ -5,11 +5,10 @@ import { GrHomeRounded } from "react-icons/gr";
 export default function HeaderNav() {
   return (
     <nav
-      //  bg-black
+      // bg-white opacity-40
       className="
       flex sticky left-0 right-0 top-0 z-10 
-       
-    items-center  gap-3 py-3 px-4 md:px-8 backdrop-blur-lg "
+  items-center  gap-3 py-3 px-4 md:px-8 backdrop-blur-lg "
     >
       <h3>
         {/* text-white */}

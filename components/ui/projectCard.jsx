@@ -17,7 +17,7 @@ export default function ProjectCard({
   developerTitle,
   projectLikes,
   isPortfolio,
-  about,
+  description,
   id,
   comments,
 }) {
@@ -88,7 +88,7 @@ export default function ProjectCard({
           <h1 className={`text-2xl font-semibold tracking-wide `}>
             {isPortfolio ? "Protfolio" : projectName}
           </h1>
-          <p className="py-2 text-lg ">{`${about?.slice(0, 60)}...`}</p>
+          <p className="py-2 text-lg ">{`${description?.slice(0, 60)}...`}</p>
           <div className="flex mt-1">
             {technologiesUsed?.map((tech) => (
               <div className="flex items-center  ">

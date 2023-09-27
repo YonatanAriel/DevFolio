@@ -11,16 +11,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${assistant.className}`}>
         <HeaderNav />
-        {/* <img
-          src="/fire-1680605.jpg"
-          alt=""
-          className="fixed top-0 right-0 left-0 bottom-0 object-cover object-center h-screen w-screen blur-lg"
-        /> */}
-        <main
-        //  className="bg-black bg-opacity-90 "
-        >
-          {children}
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );
