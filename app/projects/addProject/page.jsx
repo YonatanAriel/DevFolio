@@ -3,29 +3,41 @@ import GenericInput from "../../../components/ui/GenericInput";
 import { useEffect, useState } from "react";
 
 function AddProject() {
-  const [isPortfolio, setIsPortfolio] = useState(false);
-  const handleSubmit = () => {
+  const [newTechnology, setNewTechnology] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    gitHubLink: "",
+    websiteLink: "",
+    photo: "",
+    technologies: [],
+    isPortfolio: false,
+  });
+
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      formData.name.trim().length < 3 ||
+      formData.description.trim().length < 3
+    ) {
+      alert("Project name and description must contain at least 3 letters");
+      return;
+    }
   };
 
-  const [technologies, setTechnologies] = useState([]);
-  const [newTechnology, setNewTechnology] = useState("");
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  useEffect(() => console.log(selectedPhoto), [selectedPhoto]);
   const addTechnology = () => {
-    if (!(newTechnology && technologies.length < 3)) return;
-    setTechnologies([...technologies, newTechnology]);
+    if (!newTechnology.trim() || !(formData.technologies.length < 3)) return;
+    setFormData((prev) => ({
+      ...prev,
+      technologies: [...prev.technologies, newTechnology],
+    }));
     setNewTechnology("");
   };
 
   const removeTechnology = (index) => {
-    const updatedTechnologies = [...technologies];
+    const updatedTechnologies = formData.technologies;
     updatedTechnologies.splice(index, 1);
-    setTechnologies(updatedTechnologies);
-  };
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
-    setSelectedPhoto(file);
+    setFormData((prev) => ({ ...prev, technologies: updatedTechnologies }));
   };
   return (
     <>
@@ -33,27 +45,39 @@ function AddProject() {
         <h1 className="font-bold text-3xl mb-6">Add new project</h1>
         <GenericInput
           name={"Project name"}
-          required={true}
+          isRequired={true}
           type={"text"}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, name: e.target.value }))
+          }
           placeholder={"What is the project name?"}
         />
         <GenericInput
           type={"text"}
           name={"Description"}
-          required={true}
+          isRequired={true}
           placeholder={"Describe the project"}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, description: e.target.value }))
+          }
         />
         <GenericInput
           name={"GitHub link"}
-          required={false}
+          isRequired={false}
           type={"text"}
           placeholder={"What is the GitHub link?"}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, gitHubLink: e.target.value }))
+          }
         />
         <GenericInput
           name={"Website link"}
-          required={false}
+          isRequired={false}
           type={"text"}
           placeholder={"What is the website link?"}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, websiteLink: e.target.value }))
+          }
         />
         <GenericInput
           type={"text"}
@@ -70,7 +94,7 @@ function AddProject() {
           Add Technology
         </button>
         <ul className="mb-4">
-          {technologies.map((tech, i) => (
+          {formData?.technologies?.map((tech, i) => (
             <li key={i}>
               {tech}
               <button
@@ -87,8 +111,10 @@ function AddProject() {
           type={"file"}
           name={"Upload a photo of the project (Recommended!)"}
           accept={"image/*"}
-          onChange={handlePhotoChange}
-          required={false}
+          onChange={(e) =>
+            setFormData((prev) => ({ ...prev, photo: e.target.files[0] }))
+          }
+          isRequired={false}
           fullLabelStyle={
             "block mb-2 text-sm font-medium text-gray-900 dark:text-white "
           }
@@ -100,8 +126,10 @@ function AddProject() {
         <div className="flex gap-5">
           <GenericInput
             name={"No"}
-            checked={!isPortfolio}
-            onChange={() => setIsPortfolio(false)}
+            checked={!formData.isPortfolio}
+            onChange={() =>
+              setFormData((prev) => ({ ...prev, isPortfolio: false }))
+            }
             type={"radio"}
             containerStyle={"flex items-center mb-4"}
             fullInputStyle={
@@ -114,8 +142,10 @@ function AddProject() {
           />
           <GenericInput
             name={"Yes"}
-            checked={isPortfolio}
-            onChange={() => setIsPortfolio(true)}
+            checked={formData.isPortfolio}
+            onChange={() =>
+              setFormData((prev) => ({ ...prev, isPortfolio: true }))
+            }
             type={"radio"}
             containerStyle={"flex items-center mb-4"}
             fullInputStyle={
