@@ -12,6 +12,7 @@ export default function GenericInput({
   value,
   containerStyle,
   labelLocation,
+  accept,
 }) {
   return (
     <>
@@ -30,7 +31,9 @@ export default function GenericInput({
         )}
         <input
           onChange={onChange}
-          checked={checked}
+          {...(type === "radio" || type === "checkbox"
+            ? { checked: checked }
+            : "")}
           type={type}
           id={name}
           value={value}
@@ -41,6 +44,7 @@ export default function GenericInput({
           }
           placeholder={placeholder}
           required={isRequired}
+          accept={accept}
         />
         {labelLocation === "last" && (
           <label
