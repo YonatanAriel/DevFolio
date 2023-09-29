@@ -1,56 +1,84 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GenericInput from "../../components/ui/GenericInput";
 export const metaData = {
   title: "Sign Up",
 };
-export default function signUp() {
+export default function SignUp() {
+  const [newLink, setNewLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    occupation: "",
+    about: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    portfolioLink: "",
+    links: [],
+    photo: "",
+  });
+  const nameRef = useRef();
+  useEffect(() => nameRef.current.focus(), []);
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+  useEffect(() => console.log(formData.links), [formData]);
 
   const addLink = () => {
-    // if (!newTechnology.trim() || !(formData.technologies.length < 3)) return;
-    // setFormData((prev) => ({
-    //   ...prev,
-    //   technologies: [...prev.technologies, newTechnology],
-    // }));
-    // setNewTechnology("");
+    if (!newLink.trim() || !(formData.links.length < 3)) return;
+    setFormData((prev) => ({
+      ...prev,
+      links: [...prev.links, newLink],
+    }));
+    setNewLink("");
   };
 
   const removeLink = (index) => {
-    // const updatedTechnologies = formData.technologies;
-    // updatedTechnologies.splice(index, 1);
-    // setFormData((prev) => ({ ...prev, technologies: updatedTechnologies }));
+    const updatedLinks = formData.links;
+    updatedLinks.splice(index, 1);
+    setFormData((prev) => ({ ...prev, links: updatedLinks }));
   };
 
   return (
     <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
       <h1 className="font-bold text-3xl mb-6">Sign Up</h1>{" "}
       <GenericInput
+        ref={nameRef}
         name={"What is your name?"}
         type={"text"}
         isRequired={true}
         placeholder={"name"}
-      />{" "}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, name: e.target.value }))
+        }
+      />
       <GenericInput
         name={"What is your occupation?"}
-        type={"password"}
+        type={"text"}
         isRequired={true}
         placeholder={"Occupation"}
-      />{" "}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, occupation: e.target.value }))
+        }
+      />
       <GenericInput
         name={"Tell us about yourself"}
         type={"text"}
         isRequired={true}
         placeholder={"About me"}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, about: e.target.value }))
+        }
       />
       <GenericInput
         name={"What is your Email?"}
         type={"email"}
         isRequired={true}
         placeholder={"Email"}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, email: e.target.value }))
+        }
       />
       {errorMessage && <p>{errorMessage}</p>}
       <GenericInput
@@ -58,18 +86,33 @@ export default function signUp() {
         type={"password"}
         isRequired={true}
         placeholder={"Password"}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, password: e.target.value }))
+        }
+      />
+      <GenericInput
+        name={"Confirm password"}
+        type={"password"}
+        isRequired={true}
+        placeholder={"Password"}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, confirmPassword: e.target.value }))
+        }
       />
       <GenericInput
         name={"Add a link to your portfolio website"}
         type={"text"}
         isRequired={true}
         placeholder={"Portfolio link"}
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, portfolioLink: e.target.value }))
+        }
       />
       <GenericInput
         type={"text"}
         name={"Add links (GitHub, LinkedIn, FaceBook, etc.)"}
-        // value={newTechnology}
-        // onChange={(e) => setNewTechnology(e.target.value)}
+        value={newLink}
+        onChange={(e) => setNewLink(e.target.value)}
         placeholder="Link"
       />
       <button
@@ -79,10 +122,10 @@ export default function signUp() {
       >
         Add link
       </button>
-      {/* <ul className="mb-4">
-        {formData?.technologies?.map((tech, i) => (
+      <ul className="mb-4">
+        {formData?.links?.map((link, i) => (
           <li key={i}>
-            {tech}
+            {link}
             <button
               type="button"
               onClick={() => removeLink(i)}
@@ -92,14 +135,14 @@ export default function signUp() {
             </button>
           </li>
         ))}
-      </ul> */}
+      </ul>
       <GenericInput
         type={"file"}
         name={"Upload a profile photo (Recommended!)"}
         accept={"image/*"}
-        //   onChange={(e) =>
-        //     setFormData((prev) => ({ ...prev, photo: e.target.files[0] }))
-        //   }
+        onChange={(e) =>
+          setFormData((prev) => ({ ...prev, photo: e.target.files[0] }))
+        }
         isRequired={false}
         fullLabelStyle={
           "block mb-2 text-sm font-medium text-gray-900 dark:text-white "

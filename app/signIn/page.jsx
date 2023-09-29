@@ -4,13 +4,16 @@ import GenericInput from "../../components/ui/GenericInput";
 export const metaData = {
   title: "Sign In",
 };
-export default function signUp() {
+export default function SignUp() {
   const [errorMessage, setErrorMessage] = useState("");
   const emailRef = useRef();
+  const passwordRef = useRef();
+  useEffect(() => emailRef.current.focus(), []);
   const handleSubmit = (e) => {
     e.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
   };
-  useEffect(() => emailRef.current.focus(), []);
   return (
     <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
       <h1 className="font-bold text-3xl mb-6">Sign In</h1>
@@ -23,6 +26,7 @@ export default function signUp() {
       />
       {errorMessage && <p>{errorMessage}</p>}
       <GenericInput
+        ref={passwordRef}
         name={"Password"}
         type={"password"}
         isRequired={true}
