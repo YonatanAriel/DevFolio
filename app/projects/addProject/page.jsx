@@ -1,6 +1,6 @@
 "use client";
 import GenericInput from "../../../components/ui/GenericInput";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function AddProject() {
   const [newTechnology, setNewTechnology] = useState("");
@@ -13,7 +13,8 @@ function AddProject() {
     technologies: [],
     isPortfolio: false,
   });
-
+  const nameRef = useRef();
+  useEffect(() => nameRef.current.focus(), []);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -44,6 +45,7 @@ function AddProject() {
       <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
         <h1 className="font-bold text-3xl mb-6">Add new project</h1>
         <GenericInput
+          ref={nameRef}
           name={"Project name"}
           isRequired={true}
           type={"text"}
