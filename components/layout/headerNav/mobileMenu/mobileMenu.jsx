@@ -19,7 +19,7 @@ export default function MobileMenu() {
         className={`text-[#FF4E00]  flex-col lg:flex 
       font-semibold text-lg tracking-wide ${
         showMenu
-          ? "absolute lg:static top-14 bg-black text-center flex flex-col gap-8 left-0 right-0 pt-5 lg:pt-0 pb-8 lg:pb-0"
+          ? " absolute lg:static top-14  backdrop-blur-lg lg:border-none border-b-2 border-black bg-white text-center flex flex-col gap-8 left-0 right-0 pt-5 lg:pt-0 pb-8 lg:pb-0"
           : ""
       } `}
       >
