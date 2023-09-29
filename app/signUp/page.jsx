@@ -1,9 +1,12 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import GenericInput from "../../components/ui/GenericInput";
+
 export const metaData = {
   title: "Sign Up",
 };
+
 export default function SignUp() {
   const [newLink, setNewLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -22,12 +25,28 @@ export default function SignUp() {
 
   useEffect(() => nameRef.current.focus(), []);
 
+  const sendData = (data) => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}users/signUp`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   useEffect(() => {
     if (errorMessage) alert(errorMessage);
   }, [errorMessage]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (formData.password.trim().length < 6) {
       setErrorMessage("Password must contain at least 6 characters.");
       return;
@@ -52,6 +71,7 @@ export default function SignUp() {
         return;
       }
     }
+    sendData(formData);
   };
 
   const addLink = () => {
