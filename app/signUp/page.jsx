@@ -31,7 +31,7 @@ export default function SignUp() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ data }),
+      body: data,
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
@@ -71,7 +71,7 @@ export default function SignUp() {
         return;
       }
     }
-    sendData(formData);
+    sendData(JSON.stringify(formData));
   };
 
   const addLink = () => {

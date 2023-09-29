@@ -1,4 +1,7 @@
 import jwt from "jsonwebtoken";
+import connectToDB from "../../../../DL/connectToDB";
+import { User } from "../../../../DL/models/User.model";
+
 const nodemailer = require("nodemailer");
 
 let transporter = nodemailer.createTransport({
@@ -8,11 +11,33 @@ let transporter = nodemailer.createTransport({
     pass: "your-password",
   },
 });
-// ... other imports
-export async function POST(req) {
-  console.log(req.body);
-  // Validate user input and create new user in DB
-  // ...
+
+export async function POST(request) {
+  await connectToDB();
+  const body = await request.json();
+  console.log(body);
+
+  const isUserAlreadyExist = await User.findOne({
+    email: body.email,
+  });
+  if (isUserAlreadyExist) throw new Error("User already exist");
+  const SALT_ROUNDS = Number(process.env.SALT_ROUNDS);
+  const hashedPassword = bcrypt.hashSync(body.password, SALT_ROUNDS);
+  const user = {
+    name: body.name,
+    email: body.email,
+    occupation: body.occupation,
+    about: body.about,
+    password: hashedPassword,
+    img: body.img,
+    portfolioLink: body.portfolioLink,
+    links: body.links,
+    isVerified: false,
+  };
+  const newUser = await User.create(user);
+  //     const token = createToken({userName: newUser.userName})
+  //     return token
+  // }
 
   // Create a verification token
   // const token = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {
@@ -50,5 +75,5 @@ export async function POST(req) {
   //   console.log(nodemailer.getTestMessageUrl(info));
   // });
 
-  return new Response(JSON.stringify(req.body), { status: 200 });
+  return new Response(JSON.stringify(body), { status: 200 });
 }
