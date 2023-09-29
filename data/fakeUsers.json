@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "occupation": "Full Stack Developer",
+    "about": "Passionate about web development and creating innovative solutions.",
+    "img": "/GettyImages-1092658864_hero-1024x575.webp",
+    "portfolioLink": "https://example.com/johndoe-portfolio",
+    "links": [
+      {
+        "name": "GitHub",
+        "href": "https://github.com/johndoe"
+      },
+      {
+        "name": "GitHub",
+        "href": "https://github.com/johndoe"
+      },
+      {
+        "name": "LinkedIn",
+        "href": "https://linkedin.com/in/johndoe"
+      }
+    ],
+    "totalLikes": 350
+  },
+  {
+    "id": 2,
+    "name": "Alice Smith",
+    "occupation": "Front-End Developer",
+    "about": "Creating beautiful and user-friendly web interfaces.",
+    "img": "https://images.unsplash.com/photo-1557296387-5358ad7997bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZmFjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+    "portfolioLink": "https://example.com/alicesmith-portfolio",
+    "links": [
+      {
+        "name": "GitHub",
+        "href": "https://github.com/alicesmith"
+      },
+      {
+        "name": "Portfolio",
+        "href": "https://alicesmithportfolio.com"
+      }
+    ],
+    "totalLikes": 230
+  },
+  {
+    "id": 3,
+    "name": "David Brown",
+    "occupation": "Mobile App Developer",
+    "about": "Passionate about creating mobile apps that make life easier.",
+    "img": "https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZmFjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+    "portfolioLink": "https://example.com/davidbrown-portfolio",
+    "links": [
+      {
+        "name": "GitHub",
+        "href": "https://github.com/davidbrown"
+      },
+      {
+        "name": "Website",
+        "href": "https://davidbrownapps.com"
+      }
+    ],
+    "githubLink": "https://github.com/davidbrown",
+    "totalLikes": 120
+  },
+  {
+    "id": 4,
+    "name": "Emily White",
+    "occupation": "Back-End Developer",
+    "about": "Experienced in building robust and scalable server-side applications. Experienced in building robust and scalable server-side applications. Experienced in building robust and scalable server-side applications. Experienced in building robust and scalable server-side applications. Experienced in building robust and scalable server-side applications.",
+    "img": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGZhY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+    "portfolioLink": "https://example.com/emilywhite-portfolio",
+    "links": [
+      {
+        "name": "GitHub",
+        "href": "https://github.com/emilywhite"
+      },
+      {
+        "name": "Portfolio",
+        "href": "https://emilywhiteportfolio.com"
+      }
+    ],
+    "totalLikes": 280
+  },
+  {
+    "id": 5,
+    "name": "Michael Johnson",
+    "occupation": "AI Developer",
+    "about": "Building intelligent systems and chatbots.",
+    "img": "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZmFjZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+    "links": [
+      {
+        "name": "GitHub",
+        "href": "https://github.com/michaeljohnson"
+      },
+      {
+        "name": "AI Projects",
+        "href": "https://michaeljohnsonai.com"
+      }
+    ],
+    "totalLikes": 410
+  }
+]

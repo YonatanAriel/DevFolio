@@ -10,7 +10,7 @@ export default function ProjectCard({
   technologiesUsed,
   developerName,
   img,
-  // developerImg,
+  developerImg,
   // developerId,
   websiteLink,
   githubLink,
@@ -23,32 +23,34 @@ export default function ProjectCard({
 }) {
   return (
     <div
-      className=" max-w-sm text-white shadow-lg rounded-lg overflow-hidden backdrop-blur-lg
+      className=" max-w-sm text-black font-semibold shadow-lg rounded-lg overflow-hidden backdrop-blur-lg
      h-[100vh] relative shadow-lg shadow-gray-500 "
     >
       <div
         style={{ zIndex: -1 }}
-        className="w-full h-[100vh] absolute top-0 left-0 "
+        className="w-full h-[100vh] absolute top-0 left-0  "
       >
         <Image
-          src={img}
+          src={"/fire-1680605.jpg"}
           alt="ojni"
           fill
           className="object-cover object-center "
         />
       </div>
       <div className="w-full h-[42.5vh] absolute top-0 left-0 ">
-        <Image
-          src={img}
-          alt="ojni"
-          quality={100}
-          fill
-          className="object-cover object-center "
-        />
+        {img && (
+          <Image
+            src={img}
+            alt="ojni"
+            quality={100}
+            fill
+            className="object-cover object-center "
+          />
+        )}
       </div>
       <div
         style={{ marginTop: "42.5vh", height: "57.5vh" }}
-        className=" backdrop-blur-lg z-10 "
+        className=" backdrop-blur-lg z-10 bg-white bg-opacity-30"
       >
         <div
           className={`flex items-center px-6 py-2 ${
@@ -56,7 +58,7 @@ export default function ProjectCard({
           }`}
         >
           <img
-            src="/GettyImages-1092658864_hero-1024x575.webp"
+            src={developerImg}
             alt=""
             style={{
               width: "9vh",
@@ -85,8 +87,8 @@ export default function ProjectCard({
         </div>
 
         <div className="py-4 px-6  ">
-          <h1 className={`text-2xl font-semibold tracking-wide `}>
-            {isPortfolio ? "Protfolio" : projectName}
+          <h1 className={`text-2xl font-bold  tracking-wide `}>
+            {isPortfolio ? "Portfolio" : projectName}
           </h1>
           <p className="py-2 text-lg ">{`${description?.slice(0, 60)}...`}</p>
           <div className="flex mt-1">
@@ -96,7 +98,7 @@ export default function ProjectCard({
               </div>
             ))}
           </div>
-          <div className="flex gap-3 text-black items-center mt-5">
+          <div className="flex gap-3 text-white items-center mt-5">
             {githubLink && (
               <a href={githubLink}>
                 <BsGithub size={33} />

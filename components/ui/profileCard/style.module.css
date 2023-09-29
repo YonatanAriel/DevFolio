@@ -16,9 +16,6 @@
 .profileImg {
   height: 100px;
   width: 100px;
-  background: url("/GettyImages-1092658864_hero-1024x575.webp");
-  background-size: cover;
-  background-position: center;
   position: absolute;
   top: -25px;
   left: -25px;
@@ -47,8 +44,7 @@
 .social a {
   text-align: center;
   border: solid 2px black;
-  width: 75px;
-  padding: 5px 0;
+  padding: 0.3em 0.4em;
   border-radius: 5px;
 }
 
@@ -57,12 +53,15 @@
   color: white;
   cursor: pointer;
 }
-
-.loginContainer button {
+.projectsLink {
+  display: block;
+  margin: 30px 10% 0 10%;
   width: 80%;
+}
+.loginContainer button {
+  width: 100%;
   height: 80px;
   font-size: 2rem;
-  margin: 30px 10% 0 10%;
   color: white;
   font-weight: 2em;
   border: none;
@@ -109,11 +108,6 @@
   display: flex;
 }
 
-/* .likes p:first-child {
-  margin-right: 10px;
-  border-right: 4px solid white;
-  padding-right: 10px;
-} */
 @media screen and (max-width: 450px) {
   .profileImg {
     left: -5px;
