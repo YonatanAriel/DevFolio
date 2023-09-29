@@ -19,11 +19,40 @@ export default function SignUp() {
     photo: "",
   });
   const nameRef = useRef();
+
   useEffect(() => nameRef.current.focus(), []);
+
+  useEffect(() => {
+    if (errorMessage) alert(errorMessage);
+  }, [errorMessage]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.password.trim().length < 6) {
+      setErrorMessage("Password must contain at least 6 characters.");
+      return;
+    }
+    if (!(formData.password === formData.confirmPassword)) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+    const inputFields = [
+      "name",
+      "occupation",
+      "about",
+      "email",
+      "confirmPassword",
+      "portfolioLink",
+    ];
+    for (const fieldName of inputFields) {
+      if (formData[fieldName].length < 3) {
+        setErrorMessage(
+          `${fieldName} field must contain at least 3 characters.`
+        );
+        return;
+      }
+    }
   };
-  useEffect(() => console.log(formData.links), [formData]);
 
   const addLink = () => {
     if (!newLink.trim() || !(formData.links.length < 3)) return;
@@ -39,7 +68,6 @@ export default function SignUp() {
     updatedLinks.splice(index, 1);
     setFormData((prev) => ({ ...prev, links: updatedLinks }));
   };
-
   return (
     <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
       <h1 className="font-bold text-3xl mb-6">Sign Up</h1>{" "}

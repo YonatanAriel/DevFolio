@@ -17,6 +17,7 @@ const GenericInput = forwardRef(
       containerStyle,
       labelLocation,
       accept,
+      pattern,
     },
     ref
   ) => {
@@ -52,6 +53,7 @@ const GenericInput = forwardRef(
             placeholder={placeholder}
             required={isRequired}
             accept={accept}
+            pattern={pattern}
           />
           {labelLocation === "last" && (
             <label
