@@ -1,40 +1,77 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import { NextResponse } from "next/server";
+import { v2 as cloudinary } from "cloudinary";
 import connectToDB from "../../../../DL/connectToDB";
 import { User } from "../../../../DL/models/User.model";
 
-const nodemailer = require("nodemailer");
+import fs from "fs";
+import os from "os";
+import path from "path";
 
-let transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "your-email@gmail.com",
-    pass: "your-password",
-  },
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-export async function POST(request) {
-  await connectToDB();
-  const body = await request.json();
-  console.log(body);
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
-  const isUserAlreadyExist = await User.findOne({
-    email: body.email,
-  });
-  if (isUserAlreadyExist) throw new Error("User already exist");
-  const SALT_ROUNDS = Number(process.env.SALT_ROUNDS);
-  const hashedPassword = bcrypt.hashSync(body.password, SALT_ROUNDS);
-  const user = {
-    name: body.name,
-    email: body.email,
-    occupation: body.occupation,
-    about: body.about,
-    password: hashedPassword,
-    img: body.img,
-    portfolioLink: body.portfolioLink,
-    links: body.links,
-    isVerified: false,
-  };
-  const newUser = await User.create(user);
+export async function POST(req) {
+  try {
+    const formData = await req.formData();
+    const file = await formData.get("photo");
+    let photoUrl = "";
+    if (file) {
+      const tmpFilePath = path.join(os.tmpdir(), file.name);
+      const arrayBuffer = await file.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
+      await fs.promises.writeFile(tmpFilePath, buffer);
+      const result = await cloudinary.uploader.upload(tmpFilePath);
+      photoUrl = result.secure_url;
+      await fs.promises.unlink(tmpFilePath);
+      console.log(photoUrl);
+    }
+
+    await connectToDB();
+    const isUserAlreadyExist = await User.findOne({
+      email: formData.get("email"),
+    });
+    if (isUserAlreadyExist) throw new Error("User already exist");
+    const SALT_ROUNDS = Number(process.env.SALT_ROUNDS);
+    const hashedPassword = bcrypt.hashSync(
+      formData.get("password"),
+      SALT_ROUNDS
+    );
+    const user = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      occupation: formData.get("occupation"),
+      about: formData.get("about"),
+      password: hashedPassword,
+      photo: photoUrl,
+      portfolioLink: formData.get("portfolioLink"),
+      links: formData.getAll("links"),
+      isVerified: false,
+    };
+    const newUser = await User.create(user);
+    console.log(newUser);
+  } catch (err) {
+    console.log(err);
+  }
+  // const nodemailer = require("nodemailer");
+
+  // let transporter = nodemailer.createTransport({
+  //   service: "gmail",
+  //   auth: {
+  //     user: "your-email@gmail.com",
+  //     pass: "your-password",
+  //   },
+  // });
   //     const token = createToken({userName: newUser.userName})
   //     return token
   // }
@@ -75,5 +112,6 @@ export async function POST(request) {
   //   console.log(nodemailer.getTestMessageUrl(info));
   // });
 
-  return new Response(JSON.stringify(body), { status: 200 });
+  // return new Response(JSON.stringify(body), { status: 200 });
+  return new NextResponse(1, { status: 200 });
 }

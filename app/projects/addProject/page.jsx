@@ -14,7 +14,9 @@ function AddProject() {
     isPortfolio: false,
   });
   const nameRef = useRef();
+
   useEffect(() => nameRef.current.focus(), []);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (

@@ -10,7 +10,7 @@ export const metaData = {
 export default function SignUp() {
   const [newLink, setNewLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [formData, setFormData] = useState({
+  const [userData, setUserData] = useState({
     name: "",
     occupation: "",
     about: "",
@@ -22,16 +22,24 @@ export default function SignUp() {
     photo: "",
   });
   const nameRef = useRef();
-
   useEffect(() => nameRef.current.focus(), []);
 
   const sendData = (data) => {
+    const formData = new FormData();
+    for (const name in data) {
+      if (!data.hasOwnProperty(name)) return;
+      if (Array.isArray(data[name])) {
+        for (const item of data[name]) {
+          formData.append(name, item);
+        }
+      } else {
+        formData.append(name, data[name]);
+      }
+    }
+    console.log(formData);
     fetch(`${process.env.NEXT_PUBLIC_BASE_URL}users/signUp`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: data,
+      body: formData,
     })
       .then((res) => res.json())
       .then((data) => console.log(data))
@@ -47,11 +55,11 @@ export default function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.password.trim().length < 6) {
+    if (userData.password.trim().length < 6) {
       setErrorMessage("Password must contain at least 6 characters.");
       return;
     }
-    if (!(formData.password === formData.confirmPassword)) {
+    if (!(userData.password === userData.confirmPassword)) {
       setErrorMessage("Passwords do not match");
       return;
     }
@@ -64,19 +72,20 @@ export default function SignUp() {
       "portfolioLink",
     ];
     for (const fieldName of inputFields) {
-      if (formData[fieldName].length < 3) {
+      if (userData[fieldName].length < 3) {
         setErrorMessage(
           `${fieldName} field must contain at least 3 characters.`
         );
         return;
       }
     }
-    sendData(JSON.stringify(formData));
+    // sendData(JSON.stringify(userData));
+    sendData(userData);
   };
 
   const addLink = () => {
-    if (!newLink.trim() || !(formData.links.length < 3)) return;
-    setFormData((prev) => ({
+    if (!newLink.trim() || !(userData.links.length < 3)) return;
+    setUserData((prev) => ({
       ...prev,
       links: [...prev.links, newLink],
     }));
@@ -84,9 +93,9 @@ export default function SignUp() {
   };
 
   const removeLink = (index) => {
-    const updatedLinks = formData.links;
+    const updatedLinks = userData.links;
     updatedLinks.splice(index, 1);
-    setFormData((prev) => ({ ...prev, links: updatedLinks }));
+    setUserData((prev) => ({ ...prev, links: updatedLinks }));
   };
   return (
     <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
@@ -98,7 +107,7 @@ export default function SignUp() {
         isRequired={true}
         placeholder={"name"}
         onChange={(e) =>
-          setFormData((prev) => ({ ...prev, name: e.target.value }))
+          setUserData((prev) => ({ ...prev, name: e.target.value }))
         }
       />
       <GenericInput
@@ -107,7 +116,7 @@ export default function SignUp() {
         isRequired={true}
         placeholder={"Occupation"}
         onChange={(e) =>
-          setFormData((prev) => ({ ...prev, occupation: e.target.value }))
+          setUserData((prev) => ({ ...prev, occupation: e.target.value }))
         }
       />
       <GenericInput
@@ -116,7 +125,7 @@ export default function SignUp() {
         isRequired={true}
         placeholder={"About me"}
         onChange={(e) =>
-          setFormData((prev) => ({ ...prev, about: e.target.value }))
+          setUserData((prev) => ({ ...prev, about: e.target.value }))
         }
       />
       <GenericInput
@@ -125,7 +134,7 @@ export default function SignUp() {
         isRequired={true}
         placeholder={"Email"}
         onChange={(e) =>
-          setFormData((prev) => ({ ...prev, email: e.target.value }))
+          setUserData((prev) => ({ ...prev, email: e.target.value }))
         }
       />
       {errorMessage && <p>{errorMessage}</p>}
@@ -135,7 +144,7 @@ export default function SignUp() {
         isRequired={true}
         placeholder={"Password"}
         onChange={(e) =>
-          setFormData((prev) => ({ ...prev, password: e.target.value }))
+          setUserData((prev) => ({ ...prev, password: e.target.value }))
         }
       />
       <GenericInput
@@ -144,7 +153,7 @@ export default function SignUp() {
         isRequired={true}
         placeholder={"Password"}
         onChange={(e) =>
-          setFormData((prev) => ({ ...prev, confirmPassword: e.target.value }))
+          setUserData((prev) => ({ ...prev, confirmPassword: e.target.value }))
         }
       />
       <GenericInput
@@ -153,7 +162,7 @@ export default function SignUp() {
         isRequired={true}
         placeholder={"Portfolio link"}
         onChange={(e) =>
-          setFormData((prev) => ({ ...prev, portfolioLink: e.target.value }))
+          setUserData((prev) => ({ ...prev, portfolioLink: e.target.value }))
         }
       />
       <GenericInput
@@ -171,7 +180,7 @@ export default function SignUp() {
         Add link
       </button>
       <ul className="mb-4">
-        {formData?.links?.map((link, i) => (
+        {userData?.links?.map((link, i) => (
           <li key={i}>
             {link}
             <button
@@ -189,7 +198,7 @@ export default function SignUp() {
         name={"Upload a profile photo (Recommended!)"}
         accept={"image/*"}
         onChange={(e) =>
-          setFormData((prev) => ({ ...prev, photo: e.target.files[0] }))
+          setUserData((prev) => ({ ...prev, photo: e.target.files[0] }))
         }
         isRequired={false}
         fullLabelStyle={
