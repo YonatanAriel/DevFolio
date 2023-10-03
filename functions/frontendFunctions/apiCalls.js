@@ -10,7 +10,7 @@ export const sendSignUpData = (data) => {
       formData.append(name, data[name]);
     }
   }
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}users/signUp`, {
+  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
     method: "POST",
     body: formData,
   })
