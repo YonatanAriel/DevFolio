@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import GenericInput from "../../components/ui/GenericInput";
+import { sendSignUpData } from "../../functions/frontendFunctions/apiCalls";
 
 export const metaData = {
   title: "Sign Up",
@@ -23,30 +24,6 @@ export default function SignUp() {
   });
   const nameRef = useRef();
   useEffect(() => nameRef.current.focus(), []);
-
-  const sendData = (data) => {
-    const formData = new FormData();
-    for (const name in data) {
-      if (!data.hasOwnProperty(name)) return;
-      if (Array.isArray(data[name])) {
-        for (const item of data[name]) {
-          formData.append(name, item);
-        }
-      } else {
-        formData.append(name, data[name]);
-      }
-    }
-    console.log(formData);
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}users/signUp`, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  };
 
   useEffect(() => {
     if (errorMessage) alert(errorMessage);
@@ -79,8 +56,7 @@ export default function SignUp() {
         return;
       }
     }
-    // sendData(JSON.stringify(userData));
-    sendData(userData);
+    sendSignUpData(userData);
   };
 
   const addLink = () => {
