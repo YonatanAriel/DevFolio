@@ -6,7 +6,7 @@ export default function HeaderNav() {
   return (
     <nav
       className="
-      flex sticky left-0 right-0 top-0 z-10 
+      flex sticky left-0 right-0 top-0 z-20 
   items-center   py-3  md:px-8 backdrop-blur-lg px-4"
     >
       <Link href="/">
