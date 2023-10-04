@@ -11,6 +11,7 @@ export const metaData = {
 export default function SignUp() {
   const [newLink, setNewLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [signUpError, setSignUpError] = useState("");
   const [userData, setUserData] = useState({
     name: "",
     occupation: "",
@@ -29,7 +30,7 @@ export default function SignUp() {
     if (errorMessage) alert(errorMessage);
   }, [errorMessage]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (userData.password.trim().length < 6) {
@@ -55,7 +56,10 @@ export default function SignUp() {
         return;
       }
     }
-    sendSignUpData(userData);
+    const response = await sendSignUpData(userData);
+    if (response == "User already exist") {
+      setSignUpError("email already exist in the system");
+    } else setErrorMessage("");
   };
 
   const addLink = () => {
@@ -184,6 +188,7 @@ export default function SignUp() {
           "block w-full  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
         }
       />
+      {signUpError && <p className="text-red-500 my-5">{signUpError}</p>}
       <button
         type="submit"
         className="text-white bg-[#FF4E00] hover:opacity-70 focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

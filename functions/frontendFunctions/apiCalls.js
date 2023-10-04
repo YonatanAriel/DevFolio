@@ -1,4 +1,4 @@
-export const sendSignUpData = (data) => {
+export const sendSignUpData = async (data) => {
   const formData = new FormData();
   for (const name in data) {
     if (!data.hasOwnProperty(name)) return;
@@ -10,13 +10,18 @@ export const sendSignUpData = (data) => {
       formData.append(name, data[name]);
     }
   }
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
+  let response = "";
+  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
     method: "POST",
     body: formData,
   })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      response = data;
+    })
     .catch((error) => {
+      response = data;
       console.error("Error:", error);
     });
+  return response;
 };
