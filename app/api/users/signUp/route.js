@@ -53,6 +53,7 @@ export async function POST(req) {
     }
 
     const newUser = await storeUserInMongoDB(formData, photoUrl);
+
     verifyEmail(newUser);
 
     return new NextResponse(JSON.stringify(newUser), { status: 200 });
@@ -92,7 +93,7 @@ const storeUserInMongoDB = async (formData, photoUrl) => {
 
 const verifyEmail = (user) => {
   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-    expiresIn: "1s",
+    expiresIn: "3h",
   });
 
   let mailOptions = {

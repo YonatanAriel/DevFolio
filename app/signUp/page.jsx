@@ -46,7 +46,6 @@ export default function SignUp() {
       "about",
       "email",
       "confirmPassword",
-      "portfolioLink",
     ];
     for (const fieldName of inputFields) {
       if (userData[fieldName].length < 3) {
@@ -135,7 +134,7 @@ export default function SignUp() {
       <GenericInput
         name={"Add a link to your portfolio website"}
         type={"text"}
-        isRequired={true}
+        isRequired={false}
         placeholder={"Portfolio link"}
         onChange={(e) =>
           setUserData((prev) => ({ ...prev, portfolioLink: e.target.value }))
@@ -147,6 +146,7 @@ export default function SignUp() {
         value={newLink}
         onChange={(e) => setNewLink(e.target.value)}
         placeholder="Link"
+        isRequired={false}
       />
       <button
         type="button"

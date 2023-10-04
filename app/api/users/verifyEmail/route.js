@@ -11,7 +11,9 @@ export async function GET(request) {
       return new Response("Invalid token", { status: 400 });
     }
     await User.updateOne({ _id: userId }, { isVerified: true });
-    return new Response("Email verified", { status: 200 });
+    return Response.redirect(
+      `${process.env.NEXT_PUBLIC_BASE_URL}signUp/verificationSuccess`
+    );
   } catch (err) {
     console.log(err);
     if (err instanceof jwt.TokenExpiredError) {
@@ -22,8 +24,11 @@ export async function GET(request) {
         { status: 400, headers: { "Content-Type": "text/html" } }
       );
     }
-    return new Response("Verification error - try to sign up again", {
-      status: 400,
-    });
+    return new Response(
+      `<div style="display:flex; align-items:center; justify-content:center; font-family:Helvetica,Arial,sans-serif; color:black; height:100%; width:100%; ">
+      <h1>Verification error. Please try to <a style="color:#FF4E00;" href="${process.env.NEXT_PUBLIC_BASE_URL} signUp">Sign Up</a> again.</h1>
+      </div>`,
+      { status: 400, headers: { "Content-Type": "text/html" } }
+    );
   }
 }
