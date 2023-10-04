@@ -1,18 +1,36 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import GenericInput from "../../components/ui/GenericInput";
+import { sendSignInData } from "../../functions/frontendFunctions/apiCalls";
+import { validateSignInData } from "../../functions/frontendFunctions/validation";
+
 export const metaData = {
   title: "Sign In",
 };
-export default function SignUp() {
+
+export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
   const emailRef = useRef();
   const passwordRef = useRef();
   useEffect(() => emailRef.current.focus(), []);
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    if (!validateSignInData({ email, password }, setErrorMessage)) return;
+
+    try {
+      const response = await sendSignInData({ email, password });
+      if (response === "User not exist" || response === "password mismatch") {
+        setErrorMessage("Wrong email or password");
+        return;
+      }
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
@@ -20,16 +38,18 @@ export default function SignUp() {
       <GenericInput
         ref={emailRef}
         name={"Email"}
+        onChange={() => setErrorMessage("")}
         type={"text"}
         isRequired={true}
         placeholder={"Email"}
       />
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && <p className="text-red-500 mb-3">{errorMessage}</p>}
       <GenericInput
         ref={passwordRef}
         name={"Password"}
         type={"password"}
         isRequired={true}
+        onChange={() => setErrorMessage("")}
         placeholder={"Password"}
       />
       <button

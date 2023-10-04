@@ -26,3 +26,26 @@ export const sendSignUpData = async (data) => {
     });
   return response;
 };
+
+export const sendSignInData = async (data) => {
+  return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signIn`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return Promise.reject(res);
+      }
+      return res.json();
+    })
+    .then((data) => {
+      return data;
+    });
+  // .catch((error) => {
+  //   response = data;
+  //   console.error("Error:", error);
+  // });
+};

@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import GenericInput from "../../components/ui/GenericInput";
 import { sendSignUpData } from "../../functions/frontendFunctions/apiCalls";
 import PopUp from "../../components/ui/popUp";
+import LoadingSpinner from "../../components/ui/loadingSpinner";
+import { validateSignUpData } from "../../functions/frontendFunctions/validation";
 
 export const metaData = {
   title: "Sign Up",
@@ -13,7 +15,8 @@ export default function SignUp() {
   const [newLink, setNewLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [signUpError, setSignUpError] = useState("");
-  const [emailSent, setEmailSent] = useState(false);
+  const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
+  const [isEmailSent, setIsEmailSent] = useState(false);
   const [userData, setUserData] = useState({
     name: "",
     occupation: "",
@@ -37,32 +40,14 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSignUpError("");
-    if (userData.password.trim().length < 6) {
-      setErrorMessage("Password must contain at least 6 characters.");
-      return;
-    }
-    if (!(userData.password === userData.confirmPassword)) {
-      setErrorMessage("Passwords do not match");
-      return;
-    }
-    const inputFields = [
-      "name",
-      "occupation",
-      "about",
-      "email",
-      "confirmPassword",
-    ];
-    for (const fieldName of inputFields) {
-      if (userData[fieldName].length < 3) {
-        setErrorMessage(
-          `${fieldName} field must contain at least 3 characters.`
-        );
-        return;
-      }
-    }
+    if (!validateSignUpData(userData, setErrorMessage)) return;
+    setShowLoadingSpinner(true);
+
     const response = await sendSignUpData(userData);
-    if (response === "Email sent") setEmailSent(true);
-    else if (response == "User already exist") {
+    if (response) setShowLoadingSpinner(false);
+    if (response == "Email sent") {
+      setIsEmailSent(true);
+    } else if (response == "User already exist") {
       setSignUpError("email already exist in the system");
     } else if (response == "Unexpected error") {
       setSignUpError("An unexpected error occurred. Please try again");
@@ -85,7 +70,8 @@ export default function SignUp() {
   };
   return (
     <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
-      {emailSent && <PopUp text={popUpTxt} />}
+      {showLoadingSpinner && <LoadingSpinner />}
+      {isEmailSent && <PopUp key={popUpTxt} text={popUpTxt} />}
       <h1 className="font-bold text-3xl mb-6">Sign Up</h1>{" "}
       <GenericInput
         ref={nameRef}
@@ -110,7 +96,7 @@ export default function SignUp() {
         name={"Tell us about yourself"}
         type={"text"}
         isRequired={true}
-        placeholder={"About me"}
+        placeholder={"About"}
         onChange={(e) =>
           setUserData((prev) => ({ ...prev, about: e.target.value }))
         }
