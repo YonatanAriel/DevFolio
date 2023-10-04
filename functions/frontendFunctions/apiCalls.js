@@ -18,6 +18,7 @@ export const sendSignUpData = async (data) => {
     .then((res) => res.json())
     .then((data) => {
       response = data;
+      console.error(data);
     })
     .catch((error) => {
       response = data;

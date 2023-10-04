@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import GenericInput from "../../components/ui/GenericInput";
 import { sendSignUpData } from "../../functions/frontendFunctions/apiCalls";
+import PopUp from "../../components/ui/popUp";
 
 export const metaData = {
   title: "Sign Up",
@@ -12,6 +13,7 @@ export default function SignUp() {
   const [newLink, setNewLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [signUpError, setSignUpError] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
   const [userData, setUserData] = useState({
     name: "",
     occupation: "",
@@ -23,6 +25,8 @@ export default function SignUp() {
     links: [],
     photo: "",
   });
+  const popUpTxt =
+    "Great! A verification email has been sent to your email address. Please check your inbox and click on the link in the email to complete the registration process";
   const nameRef = useRef();
   useEffect(() => nameRef.current.focus(), []);
 
@@ -32,7 +36,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setSignUpError("");
     if (userData.password.trim().length < 6) {
       setErrorMessage("Password must contain at least 6 characters.");
       return;
@@ -57,8 +61,11 @@ export default function SignUp() {
       }
     }
     const response = await sendSignUpData(userData);
-    if (response == "User already exist") {
+    if (response === "Email sent") setEmailSent(true);
+    else if (response == "User already exist") {
       setSignUpError("email already exist in the system");
+    } else if (response == "Unexpected error") {
+      setSignUpError("An unexpected error occurred. Please try again");
     } else setErrorMessage("");
   };
 
@@ -78,6 +85,7 @@ export default function SignUp() {
   };
   return (
     <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
+      {emailSent && <PopUp text={popUpTxt} />}
       <h1 className="font-bold text-3xl mb-6">Sign Up</h1>{" "}
       <GenericInput
         ref={nameRef}

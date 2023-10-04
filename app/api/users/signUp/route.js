@@ -53,12 +53,14 @@ export async function POST(req) {
     }
 
     const newUser = await storeUserInMongoDB(formData, photoUrl);
+    await verifyEmail(newUser);
 
-    verifyEmail(newUser);
-
-    return new NextResponse(JSON.stringify(newUser), { status: 200 });
+    return new NextResponse(JSON.stringify("Email sent"), { status: 200 });
   } catch (err) {
     console.log(err);
+    return new NextResponse(JSON.stringify("Unexpected error"), {
+      status: 400,
+    });
   }
 }
 
@@ -91,7 +93,7 @@ const storeUserInMongoDB = async (formData, photoUrl) => {
   return newUser;
 };
 
-const verifyEmail = (user) => {
+const verifyEmail = async (user) => {
   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
     expiresIn: "3h",
   });
@@ -116,12 +118,15 @@ const verifyEmail = (user) => {
           </div>
         </div>`,
   };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log("Email sent: " + info.response);
+        resolve("Email sent");
+      }
+    });
   });
 };
