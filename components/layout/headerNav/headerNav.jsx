@@ -1,7 +1,6 @@
 import Link from "next/link";
 import MobileMenu from "./mobileMenu/mobileMenu";
 import Search from "./search/search";
-import { GrHomeRounded } from "react-icons/gr";
 export default function HeaderNav() {
   return (
     <nav

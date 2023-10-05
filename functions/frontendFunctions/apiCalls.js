@@ -44,8 +44,4 @@ export const sendSignInData = async (data) => {
     .then((data) => {
       return data;
     });
-  // .catch((error) => {
-  //   response = data;
-  //   console.error("Error:", error);
-  // });
 };

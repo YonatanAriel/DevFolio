@@ -16,6 +16,7 @@ let transporter = nodemailer.createTransport({
     pass: process.env.BREVIO_SMTP_PASSWORD,
   },
 });
+
 export const verifyEmail = async (user) => {
   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
     expiresIn: "3h",

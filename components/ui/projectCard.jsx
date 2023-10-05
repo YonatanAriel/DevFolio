@@ -33,8 +33,9 @@ export default function ProjectCard({
       >
         <Image
           src={"/fire-1680605.jpg"}
-          alt="ojni"
+          alt=""
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 920px) 50vw, 50vw"
           className="object-cover object-center "
         />
       </div>
@@ -45,6 +46,7 @@ export default function ProjectCard({
             alt="ojni"
             quality={100}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 920px) 50vw, 50vw"
             className="object-cover object-center "
           />
         )}

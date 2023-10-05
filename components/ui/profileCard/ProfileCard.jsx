@@ -15,8 +15,10 @@ export default function ProfileCard() {
               className="w-full absolute top-0 left-0 bottom-0 right-0 border-r-4  "
             >
               <Image
+                alt=""
                 src={"/fire-1680605.jpg"}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 920px) 50vw, 50vw"
                 className="object-cover object-center "
               />
             </div>
