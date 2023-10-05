@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import GenericInput from "../../components/ui/GenericInput";
 import { sendSignUpData } from "../../functions/frontendFunctions/apiCalls";
-import PopUp from "../../components/ui/popUp";
 import LoadingSpinner from "../../components/ui/loadingSpinner";
 import { validateSignUpData } from "../../functions/frontendFunctions/validation";
+import Popup from "../../components/ui/popup";
 
 export const metaData = {
   title: "Sign Up",
@@ -28,7 +28,7 @@ export default function SignUp() {
     links: [],
     photo: "",
   });
-  const popUpTxt =
+  const popupText =
     "Great! A verification email has been sent to your email address. Please check your inbox and click on the link in the email to complete the registration process";
   const nameRef = useRef();
   useEffect(() => nameRef.current.focus(), []);
@@ -71,7 +71,7 @@ export default function SignUp() {
   return (
     <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
       {showLoadingSpinner && <LoadingSpinner />}
-      {isEmailSent && <PopUp key={popUpTxt} text={popUpTxt} />}
+      {isEmailSent && <Popup key={popupText} text={popupText} />}
       <h1 className="font-bold text-3xl mb-6">Sign Up</h1>{" "}
       <GenericInput
         ref={nameRef}
