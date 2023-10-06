@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import GenericInput from "../../components/ui/GenericInput";
+import GenericInput from "../../components/ui/genericInput";
 import { sendSignUpData } from "../../functions/frontendFunctions/apiCalls";
 import LoadingSpinner from "../../components/ui/loadingSpinner";
 import { validateSignUpData } from "../../functions/frontendFunctions/validation";

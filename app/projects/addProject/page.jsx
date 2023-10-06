@@ -1,5 +1,5 @@
 "use client";
-import GenericInput from "../../../components/ui/GenericInput";
+import GenericInput from "../../../components/ui/genericInput";
 import { useEffect, useRef, useState } from "react";
 
 function AddProject() {

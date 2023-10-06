@@ -57,6 +57,7 @@ const storeUserInMongoDB = async (formData, photoUrl) => {
     portfolioLink: formData.get("portfolioLink"),
     links: formData.getAll("links"),
     isVerified: false,
+    totalLikes: 0,
   };
   const newUser = await User.create(user);
   return newUser;

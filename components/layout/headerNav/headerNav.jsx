@@ -5,8 +5,9 @@ export default function HeaderNav() {
   return (
     <nav
       className="
+      bg-white bg-opacity-80
       flex sticky left-0 right-0 top-0 z-20 
-  items-center   py-3  md:px-8 backdrop-blur-lg px-4"
+      items-center   py-3  md:px-8 backdrop-blur-lg px-4"
     >
       <Link href="/">
         <h3>
