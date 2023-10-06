@@ -12,7 +12,7 @@ export const metaData = {
 };
 
 export default function SignUp() {
-  const [newLink, setNewLink] = useState("");
+  const [newLink, setNewLink] = useState({ text: "", href: "" });
   const [errorMessage, setErrorMessage] = useState("");
   const [signUpError, setSignUpError] = useState("");
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
@@ -28,6 +28,7 @@ export default function SignUp() {
     links: [],
     photo: "",
   });
+  useEffect(() => console.log(userData.links), [userData.links]);
   const popupText =
     "Great! A verification email has been sent to your email address. Please check your inbox and click on the link in the email to complete the registration process";
   const nameRef = useRef();
@@ -55,12 +56,17 @@ export default function SignUp() {
   };
 
   const addLink = () => {
-    if (!newLink.trim() || !(userData.links.length < 3)) return;
+    if (
+      !newLink?.text.trim() ||
+      !newLink?.href.trim() ||
+      !(userData.links.length < 3)
+    )
+      return;
     setUserData((prev) => ({
       ...prev,
       links: [...prev.links, newLink],
     }));
-    setNewLink("");
+    setNewLink({ text: "", href: "" });
   };
 
   const removeLink = (index) => {
@@ -138,25 +144,45 @@ export default function SignUp() {
           setUserData((prev) => ({ ...prev, portfolioLink: e.target.value }))
         }
       />
+      <span className="mb-4 text-sm font-medium text-gray-900 dark:text-white">
+        Add links (GitHub, LinkedIn, FaceBook, etc.)
+      </span>
       <GenericInput
         type={"text"}
-        name={"Add links (GitHub, LinkedIn, FaceBook, etc.)"}
-        value={newLink}
-        onChange={(e) => setNewLink(e.target.value)}
+        name={"link text"}
+        value={newLink.text}
+        onChange={(e) =>
+          setNewLink((prev) => ({ ...prev, text: e.target.value }))
+        }
+        placeholder="text"
+        isRequired={false}
+        containerStyle={"w-5/12  inline-block "}
+        labelStyle={"text-primary-color"}
+      />
+      <GenericInput
+        type={"link"}
+        name={"link address"}
+        labelStyle={"text-primary-color"}
+        value={newLink.href}
+        onChange={(e) => {
+          setNewLink((prev) => ({ ...prev, href: e.target.value }));
+        }}
         placeholder="Link"
         isRequired={false}
+        containerStyle={"w-5/12 inline-block float-right  "}
       />
       <button
         type="button"
         onClick={addLink}
-        className="text-[#FF4E00] h-10 mt-[-10px] mb-2 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+        className="text-[#FF4E00]   h-10 mt-[-10px]  mb-2 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
       >
         Add link
       </button>
       <ul className="mb-4">
         {userData?.links?.map((link, i) => (
           <li key={i}>
-            {link}
+            <span>text : {link.text}</span>
+            <span> | link : {link.href}</span>
             <button
               type="button"
               onClick={() => removeLink(i)}

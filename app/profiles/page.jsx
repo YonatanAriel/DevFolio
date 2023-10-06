@@ -10,7 +10,7 @@ export default async function Profiles() {
   const profiles = await getAllUsers();
 
   return (
-    <div className="flex flex-wrap lg:justify-start justify-evenly gap-10 py-20 px-10 lg:p-20">
+    <div className="flex  flex-wrap lg:justify-start justify-evenly gap-10 py-20 px-10 lg:p-20">
       {profiles.map((p) => (
         <ProfileCard
           key={p.id}
