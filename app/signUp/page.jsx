@@ -28,7 +28,6 @@ export default function SignUp() {
     links: [],
     photo: "",
   });
-  useEffect(() => console.log(userData.links), [userData.links]);
   const popupText =
     "Great! A verification email has been sent to your email address. Please check your inbox and click on the link in the email to complete the registration process";
   const nameRef = useRef();

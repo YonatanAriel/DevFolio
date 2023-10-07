@@ -1,11 +1,11 @@
+import { notFound } from "next/navigation";
+
 export const sendSignUpData = async (data) => {
   const formData = new FormData();
   for (const name in data) {
     if (!data.hasOwnProperty(name)) return;
     if (Array.isArray(data[name])) {
-      for (const item of data[name]) {
-        formData.append(name, item);
-      }
+      formData.append(name, JSON.stringify(data[name]));
     } else {
       formData.append(name, data[name]);
     }
@@ -48,7 +48,18 @@ export const sendSignInData = async (data) => {
 
 export const getAllUsers = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users`, {
-    next: { revalidate: 100 },
+    next: { revalidate: 20 },
   });
-  return res.json();
+  return await res.json();
+};
+
+export const getUser = async (id) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/?id=${id}`,
+    {
+      next: { revalidate: 20 },
+    }
+  );
+  if (!res.ok) notFound();
+  return await res.json();
 };

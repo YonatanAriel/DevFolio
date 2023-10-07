@@ -55,10 +55,11 @@ const storeUserInMongoDB = async (formData, photoUrl) => {
     password: hashedPassword,
     photo: photoUrl,
     portfolioLink: formData.get("portfolioLink"),
-    links: formData.getAll("links"),
+    links: JSON.parse(formData.get("links")),
     isVerified: false,
     totalLikes: 0,
   };
+  console.log(user);
   const newUser = await User.create(user);
   return newUser;
 };

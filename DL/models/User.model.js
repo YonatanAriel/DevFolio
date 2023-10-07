@@ -8,7 +8,7 @@ const userSchema = new Schema({
   occupation: { type: String, required: true },
   about: { type: String, required: true },
   photo: { type: String, required: false },
-  links: [{ href: { type: String }, name: { type: String } }],
+  links: [{ href: { type: String }, text: { type: String } }],
   portfolioLink: { type: String },
   isVerified: { type: Boolean, default: false },
   totalLikes: { type: String, default: 0 },

@@ -14,7 +14,7 @@ export default function ProfileCard({
   occupation,
 }) {
   return (
-    <>
+    <Link href={`/${id}`}>
       <div className="flex items-center justify-center py-10 ">
         <div className={`${styles.imgContainer} `}>
           <div
@@ -58,7 +58,9 @@ export default function ProfileCard({
             <div className={styles.social}>
               <div className="flex justify-evenly w-full font-semibold">
                 {links.map((l) => (
-                  <a href={l.href}>{l.name}</a>
+                  <a key={l.href} href={l.href}>
+                    {l.text}
+                  </a>
                 ))}
               </div>
             </div>
@@ -81,6 +83,6 @@ export default function ProfileCard({
           </div>
         </div>
       </div>
-    </>
+    </Link>
   );
 }
