@@ -15,7 +15,7 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const { setToken, token } = useContext(MainContext);
+  const { setToken } = useContext(MainContext);
   const popupText =
     "A verification email has been sent to your email address. Please check your inbox, click on the link in the email to verify, and sign in again";
   const emailRef = useRef();
@@ -48,7 +48,6 @@ export default function SignIn() {
       const token = response;
       localStorage.setItem("devFolioToken", token);
       setToken(token);
-      console.log(token);
       router.push("/");
     } catch (err) {
       setShowLoadingSpinner(false);

@@ -1,18 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { LuMenu } from "react-icons/lu";
-import { isTokenStored } from "../../../../functions/frontendFunctions/token";
+import { MainContext } from "../../../../context/mainContext";
 
 export default function MobileMenu() {
   const [showMenu, setShowMenu] = useState(false);
-  const [isSignIn, setIsSignIn] = useState(isTokenStored());
+  const { token, setToken } = useContext(MainContext);
   const userId = 1;
   const handleLogout = () => {
-    localStorage.setItem("devFolioToken", null);
-    setIsSignIn(false);
+    localStorage.removeItem("devFolioToken");
+    setToken(null);
   };
+  const closeMenu = () => setShowMenu(false);
   return (
     <>
       <div
@@ -34,23 +35,39 @@ export default function MobileMenu() {
             showMenu ? "flex" : "hidden"
           } flex-none flex-col gap-8  `}
         >
-          <Link href={"/"}>Home</Link>
-          <Link href={"/profiles"}>Profiles</Link>
-          <Link href={`/profiles/${userId}`}>Your Profile</Link>
+          <Link href={"/"} onClick={closeMenu}>
+            Home
+          </Link>
+          <Link href={"/profiles"} onClick={closeMenu}>
+            Profiles
+          </Link>
+          <Link href={`/profiles/${userId}`} onClick={closeMenu}>
+            Your Profile
+          </Link>
         </div>
         <div
           className={`${
             showMenu ? "flex" : "hidden"
           }  flex-col lg:flex lg:flex-row lg:gap-5 gap-8 `}
         >
-          {isSignIn ? (
-            <Link href={"/"} onClick={handleLogout}>
+          {token ? (
+            <Link
+              href={"/"}
+              onClick={() => {
+                handleLogout();
+                closeMenu();
+              }}
+            >
               Sign Out
             </Link>
           ) : (
             <>
-              <Link href={"/signUp"}>Sign Up</Link>
-              <Link href={"/signIn"}>Sign In</Link>
+              <Link href={"/signUp"} onClick={closeMenu}>
+                Sign Up
+              </Link>
+              <Link href={"/signIn"} onClick={closeMenu}>
+                Sign In
+              </Link>
             </>
           )}
         </div>

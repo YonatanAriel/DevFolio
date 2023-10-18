@@ -34,11 +34,9 @@ export default function HeaderNav() {
           <Link className="hover:text-[#FF400]" href={"/profiles"}>
             Profiles
           </Link>
-          {/* if logged in  */}
           <Link className="hover:text-[#FF400]" href={"/profiles"}>
             Your Profile
           </Link>
-          {/* if didnt logged in  */}
         </div>
       </div>
 
