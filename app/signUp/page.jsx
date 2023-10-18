@@ -74,7 +74,10 @@ export default function SignUp() {
     setUserData((prev) => ({ ...prev, links: updatedLinks }));
   };
   return (
-    <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
+    <form
+      onSubmit={handleSubmit}
+      className="w-5/6 lg:w-96 mx-auto py-20 overflow-hidden"
+    >
       {showLoadingSpinner && <LoadingSpinner />}
       {isEmailSent && <Popup key={popupText} text={popupText} />}
       <h1 className="font-bold text-3xl mb-6">Sign Up</h1>{" "}

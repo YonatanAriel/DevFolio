@@ -3,10 +3,16 @@
 import Link from "next/link";
 import { useState } from "react";
 import { LuMenu } from "react-icons/lu";
+import { isTokenStored } from "../../../../functions/frontendFunctions/token";
 
 export default function MobileMenu() {
   const [showMenu, setShowMenu] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(isTokenStored());
   const userId = 1;
+  const handleLogout = () => {
+    localStorage.setItem("devFolioToken", null);
+    setIsSignIn(false);
+  };
   return (
     <>
       <div
@@ -37,8 +43,16 @@ export default function MobileMenu() {
             showMenu ? "flex" : "hidden"
           }  flex-col lg:flex lg:flex-row lg:gap-5 gap-8 `}
         >
-          <Link href={"/signUp"}>Sign Up</Link>
-          <Link href={"/signIn"}>Sign In</Link>
+          {isSignIn ? (
+            <Link href={"/"} onClick={handleLogout}>
+              Sign Out
+            </Link>
+          ) : (
+            <>
+              <Link href={"/signUp"}>Sign Up</Link>
+              <Link href={"/signIn"}>Sign In</Link>
+            </>
+          )}
         </div>
       </div>
     </>

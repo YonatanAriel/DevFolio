@@ -1,11 +1,12 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import GenericInput from "../../components/ui/genericInput";
 import { sendSignInData } from "../../functions/frontendFunctions/apiCalls";
 import { validateSignInData } from "../../functions/frontendFunctions/validation";
 import LoadingSpinner from "../../components/ui/loadingSpinner";
 import { useRouter } from "next/navigation";
 import Popup from "../../components/ui/popup";
+import { MainContext } from "../../context/mainContext";
 export const metaData = {
   title: "Sign In",
 };
@@ -14,6 +15,7 @@ export default function SignIn() {
   const [errorMessage, setErrorMessage] = useState("");
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const { setToken, token } = useContext(MainContext);
   const popupText =
     "A verification email has been sent to your email address. Please check your inbox, click on the link in the email to verify, and sign in again";
   const emailRef = useRef();
@@ -44,6 +46,8 @@ export default function SignIn() {
       }
 
       const token = response;
+      localStorage.setItem("devFolioToken", token);
+      setToken(token);
       console.log(token);
       router.push("/");
     } catch (err) {
