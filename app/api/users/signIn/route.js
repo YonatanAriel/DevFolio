@@ -9,7 +9,6 @@ import {
 
 export async function POST(req) {
   const body = await req.json();
-  console.log(444);
   if (!body.email || !body.password) {
     return new NextResponse(JSON.stringify("Missing data"), { status: 400 });
   }
@@ -35,7 +34,8 @@ export async function POST(req) {
     });
   }
 
-  const token = createToken({ email: user.email }, "25d");
+  // const token = createToken({ email: user.email }, "25d");
+  const token = createToken({ id: user._id }, "25d");
 
   return new NextResponse(JSON.stringify(token), { status: 200 });
 }

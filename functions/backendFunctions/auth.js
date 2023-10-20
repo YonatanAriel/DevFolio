@@ -54,3 +54,9 @@ export const verifyEmail = async (user) => {
     });
   });
 };
+
+export const verify = (token) => {
+  const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+  if (!decodedToken) throw new Error("Invalid token");
+  return decodedToken;
+};

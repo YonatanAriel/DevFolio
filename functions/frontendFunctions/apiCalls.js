@@ -63,3 +63,30 @@ export const getUser = async (id) => {
   if (!res.ok) notFound();
   return await res.json();
 };
+
+export const addProject = async (projectData, token) => {
+  const formData = new FormData();
+  for (const name in projectData) {
+    if (!projectData.hasOwnProperty(name)) return;
+    if (Array.isArray(projectData[name])) {
+      formData.append(name, JSON.stringify(projectData[name]));
+    } else {
+      formData.append(name, projectData[name]);
+    }
+  }
+
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/addProject`,
+    {
+      method: "POST",
+      headers,
+      body: JSON.stringify(projectData),
+    }
+  );
+
+  return res;
+};

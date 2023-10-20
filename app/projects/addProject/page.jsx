@@ -1,6 +1,8 @@
 "use client";
 import GenericInput from "../../../components/ui/genericInput";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { addProject } from "../../../functions/frontendFunctions/apiCalls";
+import { MainContext } from "../../../context/mainContext";
 
 function AddProject() {
   const [newTechnology, setNewTechnology] = useState("");
@@ -14,10 +16,12 @@ function AddProject() {
     isPortfolio: false,
   });
   const nameRef = useRef();
+  const { token } = useContext(MainContext);
 
   useEffect(() => nameRef.current.focus(), []);
 
   const handleSubmit = (e) => {
+    if (!token) return;
     e.preventDefault();
     if (
       formData.name.trim().length < 3 ||
@@ -26,6 +30,7 @@ function AddProject() {
       alert("Project name and description must contain at least 3 letters");
       return;
     }
+    addProject(formData, token);
   };
 
   const addTechnology = () => {
