@@ -23,16 +23,16 @@ export async function POST(req) {
 
     await connectToDB();
 
-    const isUserAlreadyExist = await User.findOne({
+    const isUserExist = await User.findOne({
       email: formData.get("email"),
     });
-    if (isUserAlreadyExist) {
+    if (isUserExist) {
       return new NextResponse(JSON.stringify("User already exist"), {
         status: 400,
       });
     }
 
-    const newUser = await storeUserInMongoDB(formData, photoUrl);
+    const newUser = await storeUserInDB(formData, photoUrl);
     await verifyEmail(newUser);
 
     return new NextResponse(JSON.stringify("Email sent"), { status: 200 });
@@ -44,7 +44,7 @@ export async function POST(req) {
   }
 }
 
-const storeUserInMongoDB = async (formData, photoUrl) => {
+const storeUserInDB = async (formData, photoUrl) => {
   const SALT_ROUNDS = Number(process.env.SALT_ROUNDS);
   const hashedPassword = bcrypt.hashSync(formData.get("password"), SALT_ROUNDS);
   const user = {

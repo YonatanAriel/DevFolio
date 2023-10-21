@@ -21,8 +21,8 @@ function AddProject() {
   useEffect(() => nameRef.current.focus(), []);
 
   const handleSubmit = (e) => {
-    if (!token) return;
     e.preventDefault();
+    if (!token) return;
     if (
       formData.name.trim().length < 3 ||
       formData.description.trim().length < 3

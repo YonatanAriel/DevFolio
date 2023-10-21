@@ -1,15 +1,17 @@
 import { notFound } from "next/navigation";
+import { createFormData } from "./formData";
 
 export const sendSignUpData = async (data) => {
-  const formData = new FormData();
-  for (const name in data) {
-    if (!data.hasOwnProperty(name)) return;
-    if (Array.isArray(data[name])) {
-      formData.append(name, JSON.stringify(data[name]));
-    } else {
-      formData.append(name, data[name]);
-    }
-  }
+  // const formData = new FormData();
+  // for (const name in data) {
+  //   if (!data.hasOwnProperty(name)) return;
+  //   if (Array.isArray(data[name])) {
+  //     formData.append(name, JSON.stringify(data[name]));
+  //   } else {
+  //     formData.append(name, data[name]);
+  //   }
+  // }
+  const formData = createFormData(data);
   let response = "";
   await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
     method: "POST",
@@ -65,18 +67,8 @@ export const getUser = async (id) => {
 };
 
 export const addProject = async (projectData, token) => {
-  const formData = new FormData();
-  for (const name in projectData) {
-    if (!projectData.hasOwnProperty(name)) return;
-    if (Array.isArray(projectData[name])) {
-      formData.append(name, JSON.stringify(projectData[name]));
-    } else {
-      formData.append(name, projectData[name]);
-    }
-  }
-
+  const formData = createFormData(projectData);
   const headers = {
-    "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };
   const res = await fetch(
@@ -84,7 +76,7 @@ export const addProject = async (projectData, token) => {
     {
       method: "POST",
       headers,
-      body: JSON.stringify(projectData),
+      body: formData,
     }
   );
 
