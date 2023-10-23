@@ -7,14 +7,14 @@ import Comment from "./comment";
 
 export default function ProjectCard({
   projectName,
-  technologiesUsed,
+  technologies,
   developerName,
   img,
   developerImg,
   // developerId,
 
   websiteLink,
-  githubLink,
+  gitHubLink,
   developerTitle,
   projectLikes,
   isPortfolio,
@@ -95,15 +95,15 @@ export default function ProjectCard({
           </h1>
           <p className="py-2 text-lg ">{`${description?.slice(0, 60)}...`}</p>
           <div className="flex mt-1">
-            {technologiesUsed?.map((tech) => (
+            {technologies?.map((tech) => (
               <div className="flex items-center  ">
                 <h1 className="pr-2 text-sm">{tech}</h1>
               </div>
             ))}
           </div>
           <div className="flex gap-3 text-white items-center mt-5">
-            {githubLink && (
-              <a href={githubLink}>
+            {gitHubLink && (
+              <a href={gitHubLink}>
                 <BsGithub size={33} />
               </a>
             )}

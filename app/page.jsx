@@ -1,5 +1,6 @@
 import ProjectCard from "../components/ui/projectCard";
-import data from "../data/fakeProjects.json";
+import { getAllProjects } from "../functions/frontendFunctions/apiCalls";
+// import data from "../data/fakeProjects.json";
 
 export const metaData = {
   title: "DevFolio",
@@ -7,10 +8,18 @@ export const metaData = {
 };
 
 export default async function Home() {
+  const projects = await getAllProjects();
+  console.log(projects);
+
   return (
     <main className=" flex gap-4 lg:justify-start justify-evenly  flex-wrap py-20 p-1 lg:p-20">
-      {data?.map((project) => (
-        <ProjectCard key={project.id} {...project} />
+      {projects.map((project) => (
+        <ProjectCard
+          key={project.id}
+          projectName={project.name}
+          img={project.photo}
+          {...project}
+        />
       ))}
     </main>
   );
