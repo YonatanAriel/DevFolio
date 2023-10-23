@@ -12,7 +12,7 @@ const userSchema = new Schema({
   portfolioLink: { type: String },
   isVerified: { type: Boolean, default: false },
   totalLikes: { type: String, default: 0 },
-  projects: [{ type: String }],
+  projects: [{ type: mongoose.Schema.Types.ObjectId }],
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

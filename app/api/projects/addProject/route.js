@@ -17,8 +17,8 @@ export async function POST(req) {
     if (!token) throw new Error("invalid token");
 
     await connectToDB();
-    const projectId = await storeInDB(formData, photoUrl);
     const userId = await verify(token).id;
+    const projectId = await storeInDB(formData, userId, photoUrl);
     await User.updateOne({ _id: userId }, { $push: { projects: projectId } });
 
     return new NextResponse(JSON.stringify("success"), { status: 200 });
@@ -28,8 +28,9 @@ export async function POST(req) {
   }
 }
 
-async function storeInDB(formData, photoUrl) {
+async function storeInDB(formData, userId, photoUrl) {
   const project = {
+    userId,
     name: formData.get("name"),
     description: formData.get("description"),
     gitHubLink: formData.get("gitHubLink"),
