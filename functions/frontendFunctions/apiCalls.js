@@ -73,11 +73,9 @@ export const getUserByToken = async (token) => {
 };
 
 export const getAllProjects = async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/projects`,
-    { cache: "no-store" }
-    // next: { revalidate: 0 },
-  );
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/projects`, {
+    cache: "no-store",
+  });
   return await res.json();
 };
 
@@ -86,7 +84,7 @@ export const addProject = async (projectData, token) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  const res = await fetch(
+  let res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/addProject`,
     {
       method: "POST",
@@ -94,6 +92,15 @@ export const addProject = async (projectData, token) => {
       body: formData,
     }
   );
+  res = await res.json();
+  if (res === "success") return "success";
+  else return "error";
+};
 
+export const getUserProjects = async (id) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/user?id=${id}`
+  ).then((res) => res.json());
+  // if (!res.ok) notFound();
   return res;
 };

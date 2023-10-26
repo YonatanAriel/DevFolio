@@ -63,7 +63,7 @@ export default function ProfileCard({
               ))}
             </div>
           </div>
-          <Link href={`/projects/${id}`} className={styles.projectsLink}>
+          <Link href={`/projects/user/${id}`} className={styles.projectsLink}>
             <button className={` font-semibold`}>Projects</button>
           </Link>
           <footer className={`${styles.foot} bg-black py-8 text-[#FF4E00]`}>

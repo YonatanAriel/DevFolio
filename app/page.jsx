@@ -1,6 +1,5 @@
 import ProjectCard from "../components/ui/projectCard";
 import { getAllProjects } from "../functions/frontendFunctions/apiCalls";
-// import data from "../data/fakeProjects.json";
 
 export const metaData = {
   title: "DevFolio",

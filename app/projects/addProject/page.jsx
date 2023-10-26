@@ -3,9 +3,17 @@ import GenericInput from "../../../components/ui/genericInput";
 import { useContext, useEffect, useRef, useState } from "react";
 import { addProject } from "../../../functions/frontendFunctions/apiCalls";
 import { MainContext } from "../../../context/mainContext";
+import Popup from "../../../components/ui/popup";
+import { useRouter } from "next/navigation";
+import LoadingSpinner from "../../../components/ui/loadingSpinner";
 
 function AddProject() {
+  const router = useRouter();
+  const popupTxt = "congratulations! Your project has been successfully added";
   const [newTechnology, setNewTechnology] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -22,6 +30,8 @@ function AddProject() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowLoadingSpinner(true);
+    setErrorMsg("");
     if (!token) return;
     if (
       formData.name.trim().length < 3 ||
@@ -30,7 +40,23 @@ function AddProject() {
       alert("Project name and description must contain at least 3 letters");
       return;
     }
-    addProject(formData, token);
+    addProject(formData, token).then((res) =>
+      res === "success" ? handleSuccess() : handleError()
+    );
+  };
+
+  const handleSuccess = () => {
+    setShowLoadingSpinner(false);
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+      router.back();
+    }, 3000);
+  };
+
+  const handleError = () => {
+    setShowLoadingSpinner(false);
+    setErrorMsg("An error occurred. Please try again");
   };
 
   const addTechnology = () => {
@@ -166,13 +192,21 @@ function AddProject() {
             labelLocation={"last"}
           />{" "}
         </div>
+        {errorMsg && (
+          <span className="block mb-4 text-red-500 text-center  w-full">
+            {errorMsg}
+          </span>
+        )}
+
         <button
           type="submit"
-          className="text-white bg-[#FF4E00] hover:opacity-70 focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="block text-white bg-[#FF4E00]  hover:opacity-70 focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Add project
         </button>
       </form>
+      {showPopup && <Popup text={popupTxt} />}
+      {showLoadingSpinner && <LoadingSpinner />}
     </>
   );
 }
