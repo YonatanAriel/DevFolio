@@ -11,7 +11,7 @@ export default function ProjectCard({
   developerName,
   img,
   developerImg,
-  // developerId,
+  developerId,
 
   websiteLink,
   gitHubLink,
@@ -55,7 +55,8 @@ export default function ProjectCard({
         style={{ marginTop: "42.5vh", height: "57.5vh" }}
         className=" backdrop-blur-lg z-10 bg-white bg-opacity-30"
       >
-        <div
+        <Link
+          href={`/profiles/${developerId}`}
           className={`flex items-center px-6 py-2 ${
             isPortfolio ? "bg-black" : "bg-[#FF4E00]"
           }`}
@@ -87,7 +88,7 @@ export default function ProjectCard({
               {developerName + " | " + developerTitle}
             </h1>
           </a>
-        </div>
+        </Link>
 
         <div className="py-4 px-6  ">
           <h1 className={`text-2xl font-bold  tracking-wide `}>

@@ -16,6 +16,7 @@ export default async function Home() {
           projectName={project.name}
           developerName={project.userId.name}
           developerImg={project.userId.photo}
+          developerId={project.userId._id}
           developerTitle={project.userId.occupation}
           img={project.photo}
           {...project}

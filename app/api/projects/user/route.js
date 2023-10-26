@@ -9,7 +9,7 @@ export async function GET(request) {
   // const { projects } = await User.findById(userId).populate("projects");
   const projects = await Project.find({ userId: userId }).populate(
     "userId",
-    "name occupation photo"
+    "name occupation photo _id"
   );
   console.log(projects);
   return new NextResponse(JSON.stringify(projects), { status: 200 });

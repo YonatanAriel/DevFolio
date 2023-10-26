@@ -6,10 +6,6 @@ import ProjectCard from "../../../../components/ui/projectCard";
 export default function Page({ params }) {
   const [userProjects, setUserProjects] = useState("");
   useEffect(() => {
-    console.log(userProjects);
-  }, [userProjects]);
-
-  useEffect(() => {
     getUserProjects(params.id).then((res) => setUserProjects(res));
   }, []);
   return (

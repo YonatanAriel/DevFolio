@@ -7,7 +7,7 @@ export async function GET(req) {
   await connectToDB();
   const allProjects = await Project.find().populate(
     "userId",
-    "name occupation photo"
+    "name occupation photo _id"
   );
   return new NextResponse(JSON.stringify(allProjects), { status: 200 });
 }
