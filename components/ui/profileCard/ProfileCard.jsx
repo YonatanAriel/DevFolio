@@ -56,7 +56,7 @@ export default function ProfileCard({
           </div>
           <div className={styles.social}>
             <div className="flex justify-evenly w-full font-semibold">
-              {links.map((l, i) => (
+              {links?.map((l, i) => (
                 <Link key={l.href + i} href={l.href}>
                   {l.text}
                 </Link>

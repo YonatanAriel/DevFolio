@@ -2,15 +2,6 @@ import { notFound } from "next/navigation";
 import { createFormData } from "./formData";
 
 export const sendSignUpData = async (data) => {
-  // const formData = new FormData();
-  // for (const name in data) {
-  //   if (!data.hasOwnProperty(name)) return;
-  //   if (Array.isArray(data[name])) {
-  //     formData.append(name, JSON.stringify(data[name]));
-  //   } else {
-  //     formData.append(name, data[name]);
-  //   }
-  // }
   const formData = createFormData(data);
   let response = "";
   await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
@@ -63,6 +54,21 @@ export const getUser = async (id) => {
     }
   );
   if (!res.ok) notFound();
+  return await res.json();
+};
+
+export const getUserByToken = async (token) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/profile`,
+    {
+      next: { revalidate: 0 },
+      headers,
+    }
+  );
   return await res.json();
 };
 

@@ -34,7 +34,6 @@ export async function POST(req) {
     });
   }
 
-  // const token = createToken({ email: user.email }, "25d");
   const token = createToken({ id: user._id }, "25d");
 
   return new NextResponse(JSON.stringify(token), { status: 200 });

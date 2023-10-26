@@ -1,6 +1,7 @@
 import Link from "next/link";
 import MobileMenu from "./mobileMenu/mobileMenu";
 import Search from "./search/search";
+import ProfileLink from "./profileLink";
 export default function HeaderNav() {
   return (
     <nav
@@ -34,9 +35,7 @@ export default function HeaderNav() {
           <Link className="hover:text-[#FF400]" href={"/profiles"}>
             Profiles
           </Link>
-          <Link className="hover:text-[#FF400]" href={"/profiles"}>
-            Your Profile
-          </Link>
+          <ProfileLink />
         </div>
       </div>
 
