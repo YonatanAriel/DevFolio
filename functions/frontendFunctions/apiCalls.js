@@ -104,3 +104,10 @@ export const getUserProjects = async (id) => {
   // if (!res.ok) notFound();
   return res;
 };
+
+export const search = async (text) => {
+  return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/search`, {
+    method: "POST",
+    body: JSON.stringify(text),
+  }).then((res) => res.json());
+};
