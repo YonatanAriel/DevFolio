@@ -111,3 +111,18 @@ export const search = async (text) => {
     body: JSON.stringify(text),
   }).then((res) => res.json());
 };
+
+export const updateDetails = async (details) => {
+  const formData = createFormData(details);
+  return await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/updateDetails`,
+    {
+      method: "POST",
+      body: JSON.stringify(formData),
+    }
+  )
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};

@@ -33,3 +33,15 @@ export const validateSignUpData = (data, setErrorMessage) => {
   }
   return true;
 };
+
+export const validateUpdatedDetails = (details, setErrorMessage) => {
+  for (const key of Object.keys(details)) {
+    if (details[key].length < 3) {
+      setErrorMessage(
+        `The field ${key} must contain at least three characters`
+      );
+      return false;
+    }
+  }
+  return true;
+};

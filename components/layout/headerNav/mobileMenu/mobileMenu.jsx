@@ -43,9 +43,6 @@ export default function MobileMenu() {
             Profiles
           </Link>
           <ProfileLink closeMenu={closeMenu} />
-          {/* <Link href={`/profiles/${userId}`} onClick={closeMenu}>
-            Your Profile
-          </Link> */}
         </div>
         <div
           className={`${

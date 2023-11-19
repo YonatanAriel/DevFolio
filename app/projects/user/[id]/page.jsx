@@ -12,7 +12,8 @@ export default function Page({ params }) {
 
   return (
     <>
-      {userProjects?.length === 0 && (
+      {/* {userProjects?.length === 0 &&  */}
+      {userProjects && userProjects.length === 0 && (
         <Popup
           text={"Sorry, This user has no projects yet"}
           goBackButton={true}
