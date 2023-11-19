@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { MainContext } from "../../../context/mainContext";
 import { useRouter } from "next/navigation";
 
-export default function ProfileLink() {
+export default function ProfileLink({ closeMenu }) {
   const router = useRouter();
   const { token } = useContext(MainContext);
   const handleClick = () => {
@@ -16,7 +16,10 @@ export default function ProfileLink() {
     <>
       <p
         className="hover:text-[#FF400] hover:cursor-pointer"
-        onClick={handleClick}
+        onClick={() => {
+          handleClick();
+          closeMenu();
+        }}
       >
         Your Profile
       </p>

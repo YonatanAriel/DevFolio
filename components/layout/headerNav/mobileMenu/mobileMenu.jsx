@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useContext, useEffect } from "react";
 import { LuMenu } from "react-icons/lu";
 import { MainContext } from "../../../../context/mainContext";
+import ProfileLink from "../profileLink";
 
 export default function MobileMenu() {
   const [showMenu, setShowMenu] = useState(false);
@@ -41,9 +42,10 @@ export default function MobileMenu() {
           <Link href={"/profiles"} onClick={closeMenu}>
             Profiles
           </Link>
-          <Link href={`/profiles/${userId}`} onClick={closeMenu}>
+          <ProfileLink closeMenu={closeMenu} />
+          {/* <Link href={`/profiles/${userId}`} onClick={closeMenu}>
             Your Profile
-          </Link>
+          </Link> */}
         </div>
         <div
           className={`${

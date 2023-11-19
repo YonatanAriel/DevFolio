@@ -22,20 +22,18 @@ export default function Search() {
       const text = inputRef.current.value;
       if (!text.trim()) return;
       setShowAnimation(true);
-      const modelToSearch = pathname === "/profiles" ? "User" : "Project";
+      // const modelToSearch = pathname === "/profiles"  ? "User" : "Project";
+      const modelToSearch = ["/profiles", "/search/users"].includes(pathname)
+        ? "User"
+        : "Project";
       const results = await search({ modelToSearch, text });
       console.log(results.data);
       if (results.data) {
         router.push(
-          `${results.pathname}?
-          data=${JSON.stringify(results.data)}`
+          `${results.pathname}?data=${btoa(JSON.stringify(results.data))}`
         );
-        // encodeURIComponent(JSON.stringify
-        //
         setShowAnimation(false);
       }
-      // { pathname: results.pathname, query: results.data }
-      // `${results.pathname}?data=${results.data}`
     } else setShowInput(true);
   };
 

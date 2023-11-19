@@ -20,7 +20,7 @@ export async function POST(req) {
       modelToSearch === "Project"
         ? await Project.find({
             $or: [...searchFieldsRegex],
-          })
+          }).populate("userId", "name occupation photo _id")
         : await User.find({
             $or: [...searchFieldsRegex],
           });
