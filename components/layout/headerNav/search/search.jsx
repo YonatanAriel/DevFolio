@@ -13,6 +13,9 @@ export default function Search() {
   const [showInput, setShowInput] = useState(false);
   const [showPopup, setShowPopup] = useState(true);
   const [showAnimation, setShowAnimation] = useState(false);
+  const placeholder = ["/profiles", "/search/users"].includes(pathname)
+    ? "Search profiles"
+    : "Search projects";
   useEffect(() => {
     inputRef.current.focus();
   }, [showInput]);
@@ -23,6 +26,7 @@ export default function Search() {
       if (!text.trim()) return;
       setShowAnimation(true);
       // const modelToSearch = pathname === "/profiles"  ? "User" : "Project";
+
       const modelToSearch = ["/profiles", "/search/users"].includes(pathname)
         ? "User"
         : "Project";
@@ -53,7 +57,7 @@ export default function Search() {
           type="text"
           name="text"
           id="search-input"
-          placeholder="Search"
+          placeholder={placeholder}
         />
         <div
           onClick={handleSearch}

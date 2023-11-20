@@ -38,6 +38,7 @@ export default function UpdateDetails() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!token) return;
     // setShowLoadingSpinner(true);
     const filteredDetails = filterObj(updatedDetails);
     if (filteredDetails.length === 0) {
@@ -45,7 +46,8 @@ export default function UpdateDetails() {
       return;
     }
     if (!validateUpdatedDetails(filteredDetails, setErrorMessage)) return;
-    const response = await updateDetails(updatedDetails, token);
+    console.log(filteredDetails);
+    const response = await updateDetails(filteredDetails, token);
     // if (response) setShowLoadingSpinner(false);
   };
 
