@@ -10,7 +10,7 @@ export default async function YourProfile() {
         Add Project
       </Link>
       <UserProfile />
-      <Link href={"/projects/updateDetails"} className={buttonStyle}>
+      <Link href={"/yourProfile/updateDetails"} className={buttonStyle}>
         Update Details
       </Link>
     </div>

@@ -18,7 +18,7 @@ export default function ProfileLink({ closeMenu }) {
         className="hover:text-[#FF400] hover:cursor-pointer"
         onClick={() => {
           handleClick();
-          closeMenu();
+          closeMenu && closeMenu();
         }}
       >
         Your Profile

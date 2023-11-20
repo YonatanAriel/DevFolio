@@ -112,13 +112,17 @@ export const search = async (text) => {
   }).then((res) => res.json());
 };
 
-export const updateDetails = async (details) => {
+export const updateDetails = async (details, token) => {
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
   const formData = createFormData(details);
   return await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}api/users/updateDetails`,
     {
       method: "POST",
-      body: JSON.stringify(formData),
+      body: formData,
+      headers,
     }
   )
     .then((res) => res.json())

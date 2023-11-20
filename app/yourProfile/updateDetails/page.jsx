@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import GenericInput from "../../../components/ui/genericInput";
 import LoadingSpinner from "../../../components/ui/loadingSpinner";
 import Popup from "../../../components/ui/popup";
 import { validateUpdatedDetails } from "../../../functions/frontendFunctions/validation";
 import { updateDetails } from "../../../functions/frontendFunctions/apiCalls";
+import { MainContext } from "../../../context/mainContext";
 
 export default function UpdateDetails() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -17,7 +18,7 @@ export default function UpdateDetails() {
     portfolioLink: "",
     photo: "",
   });
-
+  const { token } = useContext(MainContext);
   const nameRef = useRef();
   const popupText = "Great! Your details have been updated.";
   useEffect(() => nameRef.current.focus(), []);
@@ -26,22 +27,26 @@ export default function UpdateDetails() {
     if (errorMessage) alert(errorMessage);
   }, [errorMessage]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // setShowLoadingSpinner(true);
-    const filteredDetails = Object.keys(updatedDetails).reduce((acc, key) => {
-      if (updatedDetails[key] !== "") {
-        acc[key] = updatedDetails[key];
+  const filterObj = (obj) => {
+    return Object.keys(obj).reduce((acc, key) => {
+      if (obj[key] !== "") {
+        acc[key] = obj[key];
       }
       return acc;
     }, {});
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // setShowLoadingSpinner(true);
+    const filteredDetails = filterObj(updatedDetails);
     if (filteredDetails.length === 0) {
       setErrorMessage("You have not updated any fields");
       return;
     }
     if (!validateUpdatedDetails(filteredDetails, setErrorMessage)) return;
-    const response = await updateDetails(updatedDetails);
-    if (response) setShowLoadingSpinner(false);
+    const response = await updateDetails(updatedDetails, token);
+    // if (response) setShowLoadingSpinner(false);
   };
 
   return (
