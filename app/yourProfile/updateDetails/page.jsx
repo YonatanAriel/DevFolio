@@ -7,10 +7,12 @@ import Popup from "../../../components/ui/popup";
 import { validateUpdatedDetails } from "../../../functions/frontendFunctions/validation";
 import { updateDetails } from "../../../functions/frontendFunctions/apiCalls";
 import { MainContext } from "../../../context/mainContext";
+import { useRouter } from "next/navigation";
 
 export default function UpdateDetails() {
   const [errorMessage, setErrorMessage] = useState("");
   const [showLoadingSpinner, setShowLoadingSpinner] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [updatedDetails, setUpdatedDetails] = useState({
     name: "",
     occupation: "",
@@ -19,12 +21,17 @@ export default function UpdateDetails() {
     photo: "",
   });
   const { token } = useContext(MainContext);
+  const router = useRouter();
   const nameRef = useRef();
   const popupText = "Great! Your details have been updated.";
   useEffect(() => nameRef.current.focus(), []);
 
   useEffect(() => {
-    if (errorMessage) alert(errorMessage);
+    if (errorMessage) {
+      setTimeout(() => {
+        setErrorMessage("");
+      }, [3000]);
+    }
   }, [errorMessage]);
 
   const filterObj = (obj) => {
@@ -36,19 +43,31 @@ export default function UpdateDetails() {
     }, {});
   };
 
+  const handleResponse = () => {
+    setShowLoadingSpinner(false);
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+      router.back();
+    }, [1500]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!token) return;
-    // setShowLoadingSpinner(true);
+    setShowLoadingSpinner(true);
     const filteredDetails = filterObj(updatedDetails);
     if (filteredDetails.length === 0) {
       setErrorMessage("You have not updated any fields");
+      setShowLoadingSpinner(false);
       return;
     }
-    if (!validateUpdatedDetails(filteredDetails, setErrorMessage)) return;
-    console.log(filteredDetails);
+    if (!validateUpdatedDetails(filteredDetails, setErrorMessage)) {
+      setShowLoadingSpinner(false);
+      return;
+    }
     const response = await updateDetails(filteredDetails, token);
-    // if (response) setShowLoadingSpinner(false);
+    if (response) handleResponse();
   };
 
   return (
@@ -57,7 +76,7 @@ export default function UpdateDetails() {
       className="w-5/6 lg:w-96 mx-auto py-20 overflow-hidden"
     >
       {showLoadingSpinner && <LoadingSpinner />}
-      {/* <Popup key={popupText} text={popupText} goBackButton={true} /> */}
+      {showPopup && <Popup key={popupText} text={popupText} />}
       <h1 className="font-bold text-3xl mb-6">Update Details</h1>{" "}
       <GenericInput
         ref={nameRef}
@@ -84,7 +103,6 @@ export default function UpdateDetails() {
           setUpdatedDetails((prev) => ({ ...prev, about: e.target.value }))
         }
       />
-      {errorMessage && <p>{errorMessage}</p>}
       <GenericInput
         name={"Portfolio link"}
         type={"text"}
@@ -111,6 +129,7 @@ export default function UpdateDetails() {
         }
       />
       {/* {serverError && <p className="text-red-500 my-5">{serverError}</p>} */}
+      {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
       <button
         type="submit"
         className="text-white bg-[#FF4E00] hover:opacity-70 focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
