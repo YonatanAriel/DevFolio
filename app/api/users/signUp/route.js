@@ -5,12 +5,6 @@ import { User } from "../../../../DL/models/User.model";
 import { verifyEmail } from "../../../../functions/backendFunctions/auth";
 import { uploadPhoto } from "../../../../functions/backendFunctions/uploadPhoto";
 
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-// };
-
 export async function POST(req) {
   try {
     const formData = await req.formData();
