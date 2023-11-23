@@ -1,6 +1,6 @@
 "use client";
 // import GenericInput from "../../../components/ui/genericInput";
-import GenericInput from "../../../components/ui/genericInput";
+import GenericInput from "@/components/ui/genericInput";
 import { useContext, useEffect, useRef, useState } from "react";
 import { addProject } from "../../../functions/frontendFunctions/apiCalls";
 import { MainContext } from "../../../context/mainContext";
