@@ -76,7 +76,7 @@ function AddProject() {
   return (
     <>
       <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
-        <h1 className="font-bold text-3xl mb-6">Add new project</h1>
+        <h1 className="font-bold text-3xl mb-6">Add a new project</h1>
         <GenericInput
           ref={nameRef}
           name={"Project name"}
