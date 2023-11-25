@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import ProfileCard from "../../../components/ui/profileCard/ProfileCard";
-import Popup from "../../../components/ui/1popup";
+import Popup from "../../../components/ui/popup";
 
 export default function Users() {
   const searchParams = useSearchParams();

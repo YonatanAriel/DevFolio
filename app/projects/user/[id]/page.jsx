@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getUserProjects } from "../../../../functions/frontendFunctions/apiCalls";
 import ProjectCard from "../../../../components/ui/projectCard";
-import Popup from "../../../../components/ui/1popup";
+import Popup from "../../../../components/ui/popup";
 
 export default function Page({ params }) {
   const [userProjects, setUserProjects] = useState("");

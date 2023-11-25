@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 import { User } from "../../../../DL/models/User.model";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request) {
   try {
     const token = request.nextUrl.searchParams.get("token");

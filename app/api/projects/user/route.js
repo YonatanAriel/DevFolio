@@ -3,6 +3,8 @@ import { Project } from "../../../../DL/models/Project.model";
 import connectToDB from "../../../../DL/connectToDB";
 import { User } from "../../../../DL/models/User.model";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request) {
   // const { projects } = await User.findById(userId).populate("projects");
   try {
@@ -16,5 +18,6 @@ export async function GET(request) {
     return new NextResponse(JSON.stringify(projects), { status: 200 });
   } catch (err) {
     console.log(err);
+    return new NextResponse(JSON.stringify(err), { status: 400 });
   }
 }

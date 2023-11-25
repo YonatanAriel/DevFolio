@@ -4,7 +4,7 @@ import { BiSearch } from "react-icons/bi";
 import { search } from "../../../../functions/frontendFunctions/apiCalls";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import Popup from "../../../ui/1popup";
+import Popup from "../../../ui/popup";
 
 export default function Search() {
   const pathname = usePathname();

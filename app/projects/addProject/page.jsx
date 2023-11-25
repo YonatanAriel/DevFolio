@@ -1,10 +1,9 @@
 "use client";
-import GenericInput from "../../../components/ui/1genericInput";
-// import GenericInput from "@/components/ui/genericInput";
+import GenericInput from "../../../components/ui/genericInput";
 import { useContext, useEffect, useRef, useState } from "react";
 import { addProject } from "../../../functions/frontendFunctions/apiCalls";
 import { MainContext } from "../../../context/mainContext";
-import Popup from "../../../components/ui/1popup";
+import Popup from "../../../components/ui/popup";
 import { useRouter } from "next/navigation";
 import LoadingSpinner from "../../../components/ui/loadingSpinner";
 

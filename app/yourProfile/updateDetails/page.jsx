@@ -1,9 +1,9 @@
 "use client";
 
 import { useContext, useEffect, useRef, useState } from "react";
-import GenericInput from "../../../components/ui/1genericInput";
+import GenericInput from "../../../components/ui/genericInput";
 import LoadingSpinner from "../../../components/ui/loadingSpinner";
-import Popup from "../../../components/ui/1popup";
+import Popup from "../../../components/ui/popup";
 import { validateUpdatedDetails } from "../../../functions/frontendFunctions/validation";
 import { updateDetails } from "../../../functions/frontendFunctions/apiCalls";
 import { MainContext } from "../../../context/mainContext";
