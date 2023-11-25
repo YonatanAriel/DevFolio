@@ -4,7 +4,8 @@ import { createFormData } from "./formData";
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
   let response = "";
-  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  await fetch(`/api/users/signUp`, {
     method: "POST",
     body: formData,
   })
@@ -21,7 +22,8 @@ export const sendSignUpData = async (data) => {
 };
 
 export const sendSignInData = async (data) => {
-  return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signIn`, {
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  return await fetch(`/api/users/signIn`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -40,19 +42,18 @@ export const sendSignInData = async (data) => {
 };
 
 export const getAllUsers = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users`, {
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  const res = await fetch(`/api/users`, {
     next: { revalidate: 20 },
   });
   return await res.json();
 };
 
 export const getUser = async (id) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/?id=${id}`,
-    {
-      next: { revalidate: 20 },
-    }
-  );
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  const res = await fetch(`/api/users/?id=${id}`, {
+    next: { revalidate: 20 },
+  });
   if (!res.ok) notFound();
   return await res.json();
 };
@@ -61,19 +62,17 @@ export const getUserByToken = async (token) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/profile`,
-    {
-      next: { revalidate: 0 },
-      headers,
-    }
-  );
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  const res = await fetch(`/api/users/profile`, {
+    next: { revalidate: 0 },
+    headers,
+  });
   return await res.json();
 };
 
 export const getAllProjects = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/projects`, {
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  const res = await fetch(`/api/projects`, {
     cache: "no-store",
   });
   return await res.json();
@@ -84,29 +83,29 @@ export const addProject = async (projectData, token) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  let res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/addProject`,
-    {
-      method: "POST",
-      headers,
-      body: formData,
-    }
-  );
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  let res = await fetch(`/api/projects/addProject`, {
+    method: "POST",
+    headers,
+    body: formData,
+  });
   res = await res.json();
   if (res === "success") return "success";
   else return "error";
 };
 
 export const getUserProjects = async (id) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/user?id=${id}`
-  ).then((res) => res.json());
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  const res = await fetch(`/api/projects/user?id=${id}`).then((res) =>
+    res.json()
+  );
   // if (!res.ok) notFound();
   return res;
 };
 
 export const search = async (text) => {
-  return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/search`, {
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  return await fetch(`/api/search`, {
     method: "POST",
     body: JSON.stringify(text),
   }).then((res) => res.json());
@@ -117,14 +116,12 @@ export const updateDetails = async (details, token) => {
     Authorization: `Bearer ${token}`,
   };
   const formData = createFormData(details);
-  return await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/updateDetails`,
-    {
-      method: "POST",
-      body: formData,
-      headers,
-    }
-  )
+  // ${process.env.NEXT_PUBLIC_BASE_URL}
+  return await fetch(`/api/users/updateDetails`, {
+    method: "POST",
+    body: formData,
+    headers,
+  })
     .then((res) => res.json())
     .catch((error) => {
       console.error("Error:", error);
