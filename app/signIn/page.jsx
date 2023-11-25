@@ -1,11 +1,11 @@
 "use client";
 import { useState, useRef, useEffect, useContext } from "react";
-import GenericInput from "../../components/ui/genericInput";
+import GenericInput from "../../components/ui/1genericInput";
 import { sendSignInData } from "../../functions/frontendFunctions/apiCalls";
 import { validateSignInData } from "../../functions/frontendFunctions/validation";
 import LoadingSpinner from "../../components/ui/loadingSpinner";
 import { useRouter } from "next/navigation";
-import Popup from "../../components/ui/popup";
+import Popup from "../../components/ui/1popup";
 import { MainContext } from "../../context/mainContext";
 export const metaData = {
   title: "Sign In",

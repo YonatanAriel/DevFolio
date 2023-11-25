@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import GenericInput from "../../components/ui/genericInput";
+import GenericInput from "../../components/ui/1genericInput";
 import { sendSignUpData } from "../../functions/frontendFunctions/apiCalls";
 import LoadingSpinner from "../../components/ui/loadingSpinner";
 import { validateSignUpData } from "../../functions/frontendFunctions/validation";
-import Popup from "../../components/ui/popup";
+import Popup from "../../components/ui/1popup";
 
 export const metaData = {
   title: "Sign Up",

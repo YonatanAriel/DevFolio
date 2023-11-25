@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import ProjectCard from "../../../components/ui/projectCard";
-import Popup from "../../../components/ui/popup";
+import Popup from "../../../components/ui/1popup";
 
 export default function Projects() {
   const searchParams = useSearchParams();
