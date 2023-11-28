@@ -4,8 +4,8 @@ import { createFormData } from "./formData";
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
   let response = "";
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
-  await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
+  // await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
+  await fetch(`https://${process.env.VERCEL_URL}/api/users/signUp`, {
     method: "POST",
     body: formData,
   })
@@ -22,8 +22,8 @@ export const sendSignUpData = async (data) => {
 };
 
 export const sendSignInData = async (data) => {
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
-  return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signIn`, {
+  // return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signIn`, {
+  return await fetch(`https://${process.env.VERCEL_URL}/api/users/signIn`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -42,17 +42,17 @@ export const sendSignInData = async (data) => {
 };
 
 export const getAllUsers = async () => {
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users`, {
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users`, {
+  const res = await fetch(`https://${process.env.VERCEL_URL}/api/users`, {
     next: { revalidate: 20 },
   });
   return await res.json();
 };
 
 export const getUser = async (id) => {
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/?id=${id}`,
+    // `${process.env.NEXT_PUBLIC_BASE_URL}api/users/?id=${id}`,
+    `https://${process.env.VERCEL_URL}/api/users/?id=${id}`,
     {
       next: { revalidate: 20 },
     }
@@ -65,9 +65,9 @@ export const getUserByToken = async (token) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/profile`,
+    // `${process.env.NEXT_PUBLIC_BASE_URL}api/users/profile`,
+    `https://${process.env.VERCEL_URL}/api/users/profile`,
     {
       next: { revalidate: 0 },
       headers,
@@ -77,8 +77,8 @@ export const getUserByToken = async (token) => {
 };
 
 export const getAllProjects = async () => {
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/projects`, {
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/projects`, {
+  const res = await fetch(`https://${process.env.VERCEL_URL}/api/projects`, {
     cache: "no-store",
   });
   return await res.json();
@@ -89,9 +89,9 @@ export const addProject = async (projectData, token) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
   let res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/addProject`,
+    // `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/addProject`,
+    `https://${process.env.VERCEL_URL}/api/projects/addProject`,
     {
       method: "POST",
       headers,
@@ -104,17 +104,17 @@ export const addProject = async (projectData, token) => {
 };
 
 export const getUserProjects = async (id) => {
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/user?id=${id}`
+    // `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/user?id=${id}`
+    `https://${process.env.VERCEL_URL}/api/projects/user?id=${id}`
   ).then((res) => res.json());
   // if (!res.ok) notFound();
   return res;
 };
 
 export const search = async (text) => {
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
-  return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/search`, {
+  // return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/search`, {
+  return await fetch(`https://${process.env.VERCEL_URL}/api/search`, {
     method: "POST",
     body: JSON.stringify(text),
   }).then((res) => res.json());
@@ -125,9 +125,9 @@ export const updateDetails = async (details, token) => {
     Authorization: `Bearer ${token}`,
   };
   const formData = createFormData(details);
-  // ${process.env.NEXT_PUBLIC_BASE_URL}
   return await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}api/users/updateDetails`,
+    // `${process.env.NEXT_PUBLIC_BASE_URL}api/users/updateDetails`,
+    `https://${process.env.VERCEL_URL}/api/users/updateDetails`,
     {
       method: "POST",
       body: formData,
