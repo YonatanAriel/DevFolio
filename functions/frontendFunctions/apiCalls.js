@@ -87,7 +87,7 @@ export const getAllProjects = async () => {
     return await res.json();
   } else {
     console.error(`Expected JSON but received ${contentType}`);
-    return null;
+    return [];
   }
 };
 
