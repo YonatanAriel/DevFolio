@@ -81,14 +81,14 @@ export const getAllProjects = async () => {
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/projects`, {
     cache: "no-store",
   });
-  // return await res.json();
-  const contentType = res.headers.get("content-type");
-  if (contentType && contentType.includes("application/json")) {
-    return await res.json();
-  } else {
-    console.error(`Expected JSON but received ${contentType}`);
-    return [];
-  }
+  return await res.json();
+  // const contentType = res.headers.get("content-type");
+  // if (contentType && contentType.includes("application/json")) {
+  //   return await res.json();
+  // } else {
+  //   console.error(`Expected JSON but received ${contentType}`);
+  //   return [];
+  // }
 };
 
 export const addProject = async (projectData, token) => {
