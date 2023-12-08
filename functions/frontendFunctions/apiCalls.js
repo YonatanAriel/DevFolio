@@ -46,7 +46,14 @@ export const getAllUsers = async () => {
   const res = await fetch(`https://${process.env.VERCEL_URL}/api/users`, {
     next: { revalidate: 20 },
   });
-  return await res.json();
+  // return await res.json();
+  const contentType = res.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return await res.json();
+  } else {
+    console.error(`Expected JSON but received ${contentType}`);
+    return [];
+  }
 };
 
 export const getUser = async (id) => {
