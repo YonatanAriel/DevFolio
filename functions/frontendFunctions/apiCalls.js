@@ -3,11 +3,9 @@ import { createFormData } from "./formData";
 
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
-  let response = "";
-  // await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signUp`, {
   const URL = getUrl();
 
-  // await fetch(`https://${process.env.VERCEL_URL}/api/users/signUp`, {
+  let response = "";
   await fetch(`${URL}/api/users/signUp`, {
     method: "POST",
     body: formData,
@@ -27,8 +25,6 @@ export const sendSignUpData = async (data) => {
 export const sendSignInData = async (data) => {
   const URL = getUrl();
 
-  // return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/signIn`, {
-  // return await fetch(`https://${process.env.VERCEL_URL}/api/users/signIn`, {
   return await fetch(`${URL}/api/users/signIn`, {
     method: "POST",
     headers: {
@@ -50,8 +46,6 @@ export const sendSignInData = async (data) => {
 export const getAllUsers = async () => {
   const URL = getUrl();
 
-  // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/users`, {
-  // const res = await fetch(`https://${process.env.VERCEL_URL}/api/users`, {
   const res = await fetch(`${URL}/api/users`, {
     next: { revalidate: 20 },
   });
@@ -68,14 +62,9 @@ export const getAllUsers = async () => {
 export const getUser = async (id) => {
   const URL = getUrl();
 
-  const res = await fetch(
-    // `${process.env.NEXT_PUBLIC_BASE_URL}api/users/?id=${id}`,
-    // `https://${process.env.VERCEL_URL}/api/users/?id=${id}`,
-    `${URL}/api/users/?id=${id}`,
-    {
-      next: { revalidate: 20 },
-    }
-  );
+  const res = await fetch(`${URL}/api/users/?id=${id}`, {
+    next: { revalidate: 20 },
+  });
   if (!res.ok) notFound();
   return await res.json();
 };
@@ -86,23 +75,16 @@ export const getUserByToken = async (token) => {
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  const res = await fetch(
-    // `${process.env.NEXT_PUBLIC_BASE_URL}api/users/profile`,
-    // `https://${process.env.VERCEL_URL}/api/users/profile`,
-    `${URL}/api/users/profile`,
-    {
-      next: { revalidate: 0 },
-      headers,
-    }
-  );
+  const res = await fetch(`${URL}/api/users/profile`, {
+    next: { revalidate: 0 },
+    headers,
+  });
   return await res.json();
 };
 
 export const getAllProjects = async () => {
   const URL = getUrl();
 
-  // const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/projects`, {
-  // const res = await fetch(`https://${process.env.VERCEL_URL}/api/projects`, {
   const res = await fetch(`${URL}/api/projects`, {
     cache: "no-store",
   });
@@ -118,21 +100,16 @@ export const getAllProjects = async () => {
 
 export const addProject = async (projectData, token) => {
   const URL = getUrl();
-
   const formData = createFormData(projectData);
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  let res = await fetch(
-    // `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/addProject`,
-    // `https://${process.env.VERCEL_URL}/api/projects/addProject`,
-    `${URL}/api/projects/addProject`,
-    {
-      method: "POST",
-      headers,
-      body: formData,
-    }
-  );
+
+  let res = await fetch(`${URL}/api/projects/addProject`, {
+    method: "POST",
+    headers,
+    body: formData,
+  });
   res = await res.json();
   if (res === "success") return "success";
   else return "error";
@@ -141,11 +118,9 @@ export const addProject = async (projectData, token) => {
 export const getUserProjects = async (id) => {
   const URL = getUrl();
 
-  const res = await fetch(
-    // `${process.env.NEXT_PUBLIC_BASE_URL}api/projects/user?id=${id}`
-    // `https://${process.env.VERCEL_URL}/api/projects/user?id=${id}`
-    `${URL}/api/projects/user?id=${id}`
-  ).then((res) => res.json());
+  const res = await fetch(`${URL}/api/projects/user?id=${id}`).then((res) =>
+    res.json()
+  );
   // if (!res.ok) notFound();
   return res;
 };
@@ -153,8 +128,6 @@ export const getUserProjects = async (id) => {
 export const search = async (text) => {
   const URL = getUrl();
 
-  // return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/search`, {
-  // return await fetch(`https://${process.env.VERCEL_URL}/api/search`, {
   return await fetch(`${URL}/api/search`, {
     method: "POST",
     body: JSON.stringify(text),
@@ -163,21 +136,16 @@ export const search = async (text) => {
 
 export const updateDetails = async (details, token) => {
   const URL = getUrl();
-
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const formData = createFormData(details);
-  return await fetch(
-    // `${process.env.NEXT_PUBLIC_BASE_URL}api/users/updateDetails`,
-    // `https://${process.env.VERCEL_URL}/api/users/updateDetails`,
-    `${URL}/api/users/updateDetails`,
-    {
-      method: "POST",
-      body: formData,
-      headers,
-    }
-  )
+
+  return await fetch(`${URL}/api/users/updateDetails`, {
+    method: "POST",
+    body: formData,
+    headers,
+  })
     .then((res) => res.json())
     .catch((error) => {
       console.error("Error:", error);
