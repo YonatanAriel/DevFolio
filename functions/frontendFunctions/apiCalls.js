@@ -88,7 +88,7 @@ export const getAllProjects = async () => {
   const res = await fetch(`${URL}/api/projects`, {
     cache: "no-store",
   });
-  // return await res.json();
+  return await res.json();
   const contentType = res.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
     return await res.json();
@@ -154,6 +154,7 @@ export const updateDetails = async (details, token) => {
 
 function getUrl() {
   return process.env.NODE_ENV === "production"
-    ? `https://${process.env.VERCEL_URL}`
+    ? `https://api.vercel.app`
     : process.env.NEXT_PUBLIC_BASE_URL;
 }
+// ? `https://${process.env.VERCEL_URL}`
