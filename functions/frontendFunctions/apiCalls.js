@@ -88,13 +88,13 @@ export const getAllProjects = async () => {
   const res = await fetch(`${URL}/api/projects`, {
     cache: "no-store",
   });
-  return await res.json();
+  // return await res.json();
   const contentType = res.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
     return await res.json();
   } else {
     console.error(`Expected JSON but received ${contentType}`);
-    return [];
+    return null;
   }
 };
 
