@@ -12,7 +12,7 @@ export async function POST(req) {
       modelToSearch === "Project"
         ? ["name", "description", "technologies"]
         : ["name", "occupation", "about"];
-    const searchFieldsRegex = searchFields.map((field) => ({
+    const searchFieldsRegex = searchFields?.map((field) => ({
       [field]: searchRegex,
     }));
 
