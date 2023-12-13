@@ -155,7 +155,6 @@ export const updateDetails = async (details, token) => {
 function getUrl() {
   console.log(process.env.VERCEL_URL);
   return process.env.NODE_ENV === "production"
-    ? ``
+    ? `https://${process.env.VERCEL_URL}`
     : process.env.NEXT_PUBLIC_BASE_URL;
 }
-// ? `https://${process.env.VERCEL_URL}`
