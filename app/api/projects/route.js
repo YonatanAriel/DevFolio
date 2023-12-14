@@ -11,7 +11,8 @@ export async function GET(req) {
       "name occupation photo _id"
     );
     console.log("allProjects - ", JSON.stringify(allProjects));
-    return new NextResponse(JSON.stringify(allProjects), { status: 200 });
+    return NextResponse.json(allProjects, { status: 200 });
+    // return new NextResponse(JSON.stringify(allProjects), { status: 200 });
   } catch (err) {
     console.log(err);
   }
