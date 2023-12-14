@@ -84,11 +84,12 @@ export const getUserByToken = async (token) => {
 
 export const getAllProjects = async () => {
   const URL = getUrl();
-
+  console.log("URL = " + URL);
   const res = await fetch(`${URL}/api/projects`, {
     cache: "no-store",
   });
-  return res;
+  console.log("res = " + res);
+  console.log("res.json = " + res.json);
   return await res.json();
   const contentType = res.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
@@ -154,8 +155,10 @@ export const updateDetails = async (details, token) => {
 };
 
 function getUrl() {
-  console.log(process.env.VERCEL_URL);
+  console.log("NEXT_PUBLIC_VERCEL_URL - " + process.env.NEXT_PUBLIC_VERCEL_URL);
+  console.log("NODE_ENV - " + process.env.NODE_ENV);
   return process.env.NODE_ENV === "production"
-    ? `https://${process.env.VERCEL_URL}`
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : process.env.NEXT_PUBLIC_BASE_URL;
 }
+// ? `https://${process.env.VERCEL_URL}`
