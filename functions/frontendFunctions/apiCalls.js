@@ -93,7 +93,7 @@ export const getAllProjects = async () => {
     cache: "no-store",
   });
   console.log("res = " + res);
-  console.log("res.json = " + res.json());
+  console.log("res.json = " + (await res.json()));
   // return await res.json();
   const contentType = res.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
