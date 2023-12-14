@@ -46,10 +46,14 @@ export const sendSignInData = async (data) => {
 export const getAllUsers = async () => {
   const URL = getUrl();
 
-  const res = await fetch(`${URL}/api/users`, {
-    next: { revalidate: 20 },
-  });
-  // return await res.json();
+  const res = await fetch(
+    `${URL}/api/users`
+    // ,
+    // {
+    //   next: { revalidate: 20 },
+    // }
+  );
+  return await res.json();
   const contentType = res.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
     return await res.json();
