@@ -53,7 +53,7 @@ export const getAllUsers = async () => {
     //   next: { revalidate: 20 },
     // }
   );
-  return await res.json();
+  // return await res.json();
   const contentType = res.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
     return await res.json();
@@ -89,11 +89,13 @@ export const getUserByToken = async (token) => {
 export const getAllProjects = async () => {
   const URL = getUrl();
   console.log("URL = " + URL);
-  const res = await fetch(`${URL}/api/projects`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${URL}/api/projects`
+    // , {
+    //   cache: "no-store",
+    // }
+  );
   console.log("res = " + res);
-  console.log("res.json = " + (await res.json()));
   // return await res.json();
   const contentType = res.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
