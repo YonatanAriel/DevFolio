@@ -10,7 +10,7 @@ export async function GET(req) {
       "userId",
       "name occupation photo _id"
     );
-    console.log(2222);
+    console.log("allProjects - ", allProjects);
     return new NextResponse(JSON.stringify(allProjects), { status: 200 });
   } catch (err) {
     console.log(err);
