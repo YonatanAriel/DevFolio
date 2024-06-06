@@ -64,16 +64,7 @@ export const getAllUsers = async () => {
   // const URL = getUrl();
   const res = await fetch(`${URL}/api/users`, {
     next: { revalidate: 20 },
-  })
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(res);
-      }
-      return res.json();
-    })
-    .then((data) => {
-      return data;
-    });
+  });
   console.log(`projects res - ${res}`);
   return res;
   // const usersResInClient = res;
@@ -129,19 +120,19 @@ export const getUserByToken = async (token) => {
 //   }
 // };
 export const getAllProjects = async () => {
-  const URL = getUrl();
-  const res = await fetch(`${URL}/api/projects`, {
-    cache: "no-store",
-  })
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(res);
-      }
-      return res.json();
-    })
-    .then((data) => {
-      return data;
-    });
+  // const URL = getUrl();
+  // const res = await fetch(`${URL}/api/projects`, {
+  //   cache: "no-store",
+  // })
+  //   .then((res) => {
+  //     if (!res.ok) {
+  //       return Promise.reject(res);
+  //     }
+  //     return res.json();
+  //   })
+  //   .then((data) => {
+  //     return data;
+  //   });
   // console.log("URL = " + URL);
   // console.log("res = " + res);
   // const contentType = res.headers.get("content-type");
