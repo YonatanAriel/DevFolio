@@ -43,41 +43,24 @@ export const sendSignInData = async (data) => {
     });
 };
 
-// export const getAllUsers = async () => {
-//   const URL = getUrl();
-//   const res = await fetch(`${URL}/api/users`, {
-//     next: { revalidate: 20 },
-//   });
-//   const usersResInClient = res;
-//   const usersResInClientJson = res.json();
-//   console.log(`usersResInClientJson - ${usersResInClientJson}`);
-//   return await res.json();
-//   const contentType = res.headers.get("content-type");
-//   if (contentType && contentType.includes("application/json")) {
-//     return await res.json();
-//   } else {
-//     console.error(`Expected JSON but received ${contentType}`);
-//     return [];
-//   }
-// };
 export const getAllUsers = async () => {
-  // const URL = getUrl();
+  const URL = getUrl();
   const res = await fetch(`${URL}/api/users`, {
     next: { revalidate: 20 },
   });
-  console.log(`projects res - ${res}`);
-  return res;
-  // const usersResInClient = res;
-  // const usersResInClientJson = res.json();
-  // console.log(`usersResInClientJson - ${usersResInClientJson}`);
-  // return await res.json();
-  // const contentType = res.headers.get("content-type");
-  // if (contentType && contentType.includes("application/json")) {
-  //   return await res.json();
-  // } else {
-  //   console.error(`Expected JSON but received ${contentType}`);
-  //   return [];
-  // }
+  const usersResInClient = res;
+  const usersResInClientJson = res.json();
+  console.log(
+    `usersResInClientJson - ${usersResInClientJson} ,usersResInClient - ${usersResInClient}`
+  );
+  return await res.json();
+  const contentType = res.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return await res.json();
+  } else {
+    console.error(`Expected JSON but received ${contentType}`);
+    return [];
+  }
 };
 
 export const getUser = async (id) => {
@@ -103,45 +86,21 @@ export const getUserByToken = async (token) => {
   return await res.json();
 };
 
-// export const getAllProjects = async () => {
-//   const URL = getUrl();
-//   const res = await fetch(`${URL}/api/projects`, {
-//     cache: "no-store",
-//   });
-//   return await res.json();
-//   console.log("URL = " + URL);
-//   console.log("res = " + res);
-//   const contentType = res.headers.get("content-type");
-//   if (contentType && contentType.includes("application/json")) {
-//     return await res.json();
-//   } else {
-//     console.error(`Expected JSON but received ${contentType}`);
-//     return null;
-//   }
-// };
 export const getAllProjects = async () => {
-  // const URL = getUrl();
-  // const res = await fetch(`${URL}/api/projects`, {
-  //   cache: "no-store",
-  // })
-  //   .then((res) => {
-  //     if (!res.ok) {
-  //       return Promise.reject(res);
-  //     }
-  //     return res.json();
-  //   })
-  //   .then((data) => {
-  //     return data;
-  //   });
-  // console.log("URL = " + URL);
-  // console.log("res = " + res);
-  // const contentType = res.headers.get("content-type");
-  // if (contentType && contentType.includes("application/json")) {
-  //   return await res.json();
-  // } else {
-  //   console.error(`Expected JSON but received ${contentType}`);
-  //   return null;
-  // }
+  const URL = getUrl();
+  const res = await fetch(`${URL}/api/projects`, {
+    cache: "no-store",
+  });
+  return await res.json();
+  console.log("URL = " + URL);
+  console.log("res = " + res);
+  const contentType = res.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return await res.json();
+  } else {
+    console.error(`Expected JSON but received ${contentType}`);
+    return null;
+  }
 };
 
 export const addProject = async (projectData, token) => {
@@ -203,13 +162,5 @@ function getUrl() {
     console.log(`production, VERCEL_URL - ${process.env.NEXT_PUBLIC_BASE_URL}`);
   return process.env.NODE_ENV === "production"
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : process.env.NEXT_PUBLIC_BASE_URL;
+    : `https://${process.env.NEXT_PUBLIC_BASE_URL}`;
 }
-// function getUrl() {
-//   if (process.env.NODE_ENV === "production")
-//     console.log(`production, VERCEL_URL - ${process.env.NEXT_PUBLIC_BASE_URL}`);
-//   return process.env.NODE_ENV === "production"
-//     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-//     : "";
-// }
-// ? `https://${process.env.VERCEL_URL}`
