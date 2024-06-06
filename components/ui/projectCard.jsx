@@ -72,22 +72,23 @@ export default function ProjectCard({
               objectPosition: "center",
             }}
           />
-          <a href="">
-            {" "}
-            <h1
-              style={{
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                width: "100%",
-              }}
-              className={`mx-3 ${
-                isPortfolio ? "text-[#FF4E00]" : "text-black"
-              } font-semibold text-lg`}
-            >
-              {developerName + " | " + developerTitle}
-            </h1>
-          </a>
+          {/* <a href=""> */}
+          {/*need to change the css so it match the style of the <a>
+           (i need to remove the <a */}
+          <h1
+            style={{
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              width: "100%",
+            }}
+            className={`mx-3 ${
+              isPortfolio ? "text-[#FF4E00]" : "text-black"
+            } font-semibold text-lg`}
+          >
+            {developerName + " | " + developerTitle}
+          </h1>
+          {/* </a> */}
         </Link>
 
         <div className="py-4 px-6  ">

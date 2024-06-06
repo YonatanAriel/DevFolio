@@ -45,7 +45,7 @@ export const sendSignInData = async (data) => {
 
 export const getAllUsers = async () => {
   const URL = getUrl();
-
+  console.log("uuududududududu");
   const res = await fetch(`${URL}/api/users`, {
     next: { revalidate: 20 },
   });
@@ -84,12 +84,12 @@ export const getUserByToken = async (token) => {
 
 export const getAllProjects = async () => {
   const URL = getUrl();
-  console.log("URL = " + URL);
   const res = await fetch(`${URL}/api/projects`, {
     cache: "no-store",
   });
+  return await res.json();
+  console.log("URL = " + URL);
   console.log("res = " + res);
-  // return await res.json();
   const contentType = res.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
     return await res.json();
@@ -154,6 +154,8 @@ export const updateDetails = async (details, token) => {
 };
 
 function getUrl() {
+  if (process.env.NODE_ENV === "production")
+    console.log(`production, VERCEL_URL - ${process.env.NEXT_PUBLIC_BASE_URL}`);
   return process.env.NODE_ENV === "production"
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : process.env.NEXT_PUBLIC_BASE_URL;
