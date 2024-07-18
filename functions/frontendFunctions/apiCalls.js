@@ -168,8 +168,8 @@ function getUrl() {
   //   : // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   //     `${process.env.NEXT_PUBLIC_BASE_URL}`;
   return process.env.NODE_ENV === "production"
-    ? "https://devfolio-gilt.vercel.app"
-    : // ? `https://devfolio-4kx542pku-yonatanariels-projects.vercel.app`
-      // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    ? // ? "https://devfolio-gilt.vercel.app":
+      `${process.env.PRODACTION_URL}`
+    : // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
       `${process.env.NEXT_PUBLIC_BASE_URL}`;
 }
