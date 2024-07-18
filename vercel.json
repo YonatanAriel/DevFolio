@@ -1,10 +1,7 @@
 {
   "headers": [
     {
-      "source": [
-        "/api/(.*)",
-        "https://devfolio-ojwuhp29h-yonatanariels-projects.vercel.app"
-      ],
+      "source": "https://devfolio-ojwuhp29h-yonatanariels-projects.vercel.app",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
