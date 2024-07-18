@@ -7,7 +7,8 @@ export const sendSignUpData = async (data) => {
   const URL = getUrl();
 
   let response = "";
-  await fetch(`${URL}/api/users/signUp`, {
+  // await fetch(`${URL}/api/users/signUp`, {
+  await fetch(`/api/users/signUp`, {
     method: "POST",
     body: formData,
   })
