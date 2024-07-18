@@ -50,19 +50,19 @@ export const sendSignInData = async (data) => {
 //     next: { revalidate: 20 },
 //   });
 //   return await res.json();
-  // const usersResInClient = res;
-  // const usersResInClientJson = res.json();
-  // console.log(
-  //   `usersResInClientJson - ${usersResInClientJson} ,usersResInClient - ${usersResInClient}`
-  // );
-  const contentType = res.headers.get("content-type");
-  if (contentType && contentType.includes("application/json")) {
-    return await res.json();
-  } else {
-    console.error(`Expected JSON but received ${contentType}`);
-    return [];
-  }
-};
+// const usersResInClient = res;
+// const usersResInClientJson = res.json();
+// console.log(
+//   `usersResInClientJson - ${usersResInClientJson} ,usersResInClient - ${usersResInClient}`
+// );
+//   const contentType = res.headers.get("content-type");
+//   if (contentType && contentType.includes("application/json")) {
+//     return await res.json();
+//   } else {
+//     console.error(`Expected JSON but received ${contentType}`);
+//     return [];
+//   }
+// };
 
 export const getUser = async (id) => {
   const URL = getUrl();
