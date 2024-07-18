@@ -1,15 +1,13 @@
 import { notFound } from "next/navigation";
 import { createFormData } from "./formData";
+import getUrl from "./getUrl";
 
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
   const URL = getUrl();
 
   let response = "";
-  // await fetch(
-  // `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/users/signUp`,
   await fetch(`${URL}/api/users/signUp`, {
-    // {
     method: "POST",
     body: formData,
   })
@@ -48,23 +46,10 @@ export const sendSignInData = async (data) => {
 
 export const getAllUsers = async () => {
   const URL = getUrl();
-  console.log(`${URL}/api/users`, "kk");
   const res = await fetch(`${URL}/api/users`, {
     next: { revalidate: 20 },
   });
   return await res.json();
-  // const usersResInClient = res;
-  // const usersResInClientJson = res.json();
-  // console.log(
-  //   `usersResInClientJson - ${usersResInClientJson} ,usersResInClient - ${usersResInClient}`
-  // );
-  //   const contentType = res.headers.get("content-type");
-  //   if (contentType && contentType.includes("application/json")) {
-  //     return await res.json();
-  //   } else {
-  //     console.error(`Expected JSON but received ${contentType}`);
-  //     return [];
-  //   }
 };
 
 export const getUser = async (id) => {
@@ -97,15 +82,6 @@ export const getAllProjects = async () => {
     cache: "no-store",
   });
   return await res.json();
-  // console.log("URL = " + URL);
-  // console.log("res = " + res);
-  // const contentType = res.headers.get("content-type");
-  // if (contentType && contentType.includes("application/json")) {
-  //   return await res.json();
-  // } else {
-  //   console.error(`Expected JSON but received ${contentType}`);
-  //   return null;
-  // }
 };
 
 export const addProject = async (projectData, token) => {
@@ -131,7 +107,6 @@ export const getUserProjects = async (id) => {
   const res = await fetch(`${URL}/api/projects/user?id=${id}`).then((res) =>
     res.json()
   );
-  // if (!res.ok) notFound();
   return res;
 };
 
@@ -161,15 +136,3 @@ export const updateDetails = async (details, token) => {
       console.error("Error:", error);
     });
 };
-
-function getUrl() {
-  // return process.env.NODE_ENV === "production"
-  //   ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  //   : // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-  //     `${process.env.NEXT_PUBLIC_BASE_URL}`;
-  return process.env.NODE_ENV === "production"
-    ? // ? "https://devfolio-gilt.vercel.app":
-      `${process.env.PRODACTION_URL}`
-    : // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      `${process.env.NEXT_PUBLIC_BASE_URL}`;
-}

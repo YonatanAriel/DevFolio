@@ -12,7 +12,6 @@ export async function GET(req) {
     );
     console.log("allProjects in server- ", JSON.stringify(allProjects));
     return NextResponse.json(allProjects, { status: 200 });
-    // return new NextResponse(JSON.stringify(allProjects), { status: 200 });
   } catch (err) {
     console.log(err);
   }

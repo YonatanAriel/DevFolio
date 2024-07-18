@@ -1,3 +1,4 @@
+import getUrl from "functions/frontendFunctions/getUrl";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
@@ -21,7 +22,7 @@ export const verifyEmail = async (user) => {
   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
     expiresIn: "3h",
   });
-
+  const URL = getUrl();
   let mailOptions = {
     from: process.env.NODEMAILER_EMAIL,
     to: user.email,
@@ -34,7 +35,7 @@ export const verifyEmail = async (user) => {
                 <p>Dear ${user.name},</p>
                 <p>Thank you for signing up! Please verify your email address to activate your account.</p>
                 <div style="margin:40px 0;">
-                  <a href="${process.env.NEXT_PUBLIC_BASE_URL}/api/users/verifyEmail?token=${token}" style="background-color:#FF4E00;color:#ffffff;padding:10px 20px;border-radius:4px;text-decoration:none">Verify Email</a>
+                  <a href="${URL}/api/users/verifyEmail?token=${token}" style="background-color:#FF4E00;color:#ffffff;padding:10px 20px;border-radius:4px;text-decoration:none">Verify Email</a>
                 </div>
                 <p>If you did not sign up for this account, you can ignore this email and the account will not be activated.</p>
                 <p>Best regards,<br>DevFolio</p>
