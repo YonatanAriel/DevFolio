@@ -6,11 +6,11 @@ export const metaData = {
 };
 
 export default async function Profiles() {
-  const profiles = await getAllUsers();
+  // const profiles = await getAllUsers();
 
   return (
-    <div className="flex  flex-wrap lg:justify-start justify-evenly gap-10 py-20 px-10 lg:p-20">
-      {profiles?.map((p) => (
+    <div className="flex flex-wrap gap-10 px-10 py-20 lg:justify-start justify-evenly lg:p-20">
+      {/* {profiles?.map((p) => (
         <ProfileCard
           key={p._id}
           id={p._id}
@@ -22,7 +22,7 @@ export default async function Profiles() {
           portfolioLink={p.portfolioLink}
           occupation={p.occupation}
         />
-      ))}
+      ))} */}
     </div>
   );
 }
