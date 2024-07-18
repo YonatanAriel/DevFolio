@@ -4,6 +4,7 @@ import { getAllUsers } from "../../functions/frontendFunctions/apiCalls";
 export const metaData = {
   title: "profiles",
 };
+// "/api/(.*)",
 
 export default async function Profiles() {
   // const profiles = await getAllUsers();
