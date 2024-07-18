@@ -29,7 +29,6 @@ export const sendSignInData = async (data) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      mode: "no-cors",
     },
     body: JSON.stringify(data),
   })
@@ -44,26 +43,26 @@ export const sendSignInData = async (data) => {
     });
 };
 
-// export const getAllUsers = async () => {
-//   const URL = getUrl();
-//   console.log(`${URL}/api/users`, "kk");
-//   const res = await fetch(`${URL}/api/users`, {
-//     next: { revalidate: 20 },
-//   });
-//   return await res.json();
-// const usersResInClient = res;
-// const usersResInClientJson = res.json();
-// console.log(
-//   `usersResInClientJson - ${usersResInClientJson} ,usersResInClient - ${usersResInClient}`
-// );
-//   const contentType = res.headers.get("content-type");
-//   if (contentType && contentType.includes("application/json")) {
-//     return await res.json();
-//   } else {
-//     console.error(`Expected JSON but received ${contentType}`);
-//     return [];
-//   }
-// };
+export const getAllUsers = async () => {
+  const URL = getUrl();
+  console.log(`${URL}/api/users`, "kk");
+  const res = await fetch(`${URL}/api/users`, {
+    next: { revalidate: 20 },
+  });
+  return await res.json();
+  // const usersResInClient = res;
+  // const usersResInClientJson = res.json();
+  // console.log(
+  //   `usersResInClientJson - ${usersResInClientJson} ,usersResInClient - ${usersResInClient}`
+  // );
+  //   const contentType = res.headers.get("content-type");
+  //   if (contentType && contentType.includes("application/json")) {
+  //     return await res.json();
+  //   } else {
+  //     console.error(`Expected JSON but received ${contentType}`);
+  //     return [];
+  //   }
+};
 
 export const getUser = async (id) => {
   const URL = getUrl();
@@ -166,7 +165,8 @@ function getUrl() {
   //   : // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   //     `${process.env.NEXT_PUBLIC_BASE_URL}`;
   return process.env.NODE_ENV === "production"
-    ? `https://devfolio-4kx542pku-yonatanariels-projects.vercel.app`
-    : // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    ? "https://devfolio-gilt.vercel.app"
+    : // ? `https://devfolio-4kx542pku-yonatanariels-projects.vercel.app`
+      // ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
       `${process.env.NEXT_PUBLIC_BASE_URL}`;
 }
