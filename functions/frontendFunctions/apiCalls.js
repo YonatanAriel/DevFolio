@@ -6,10 +6,14 @@ export const sendSignUpData = async (data) => {
   const URL = getUrl();
 
   let response = "";
-  await fetch(`${URL}/api/users/signUp`, {
-    method: "POST",
-    body: formData,
-  })
+  // await fetch(`${URL}/api/users/signUp`, {
+  await fetch(
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/users/signUp`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  )
     .then((res) => res.json())
     .then((data) => {
       response = data;
