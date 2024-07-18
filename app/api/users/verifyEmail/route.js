@@ -5,6 +5,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET(request) {
   try {
+    console.log("email!!");
     const token = request.nextUrl.searchParams.get("token");
     const { userId } = jwt.verify(token, process.env.JWT_SECRET);
     let user = await User.findById(userId);
