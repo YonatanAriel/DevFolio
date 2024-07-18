@@ -4,14 +4,13 @@ import { getAllUsers } from "../../functions/frontendFunctions/apiCalls";
 export const metaData = {
   title: "profiles",
 };
-// "/api/(.*)",
 
 export default async function Profiles() {
-  // const profiles = await getAllUsers();
+  const profiles = await getAllUsers();
 
   return (
     <div className="flex flex-wrap gap-10 px-10 py-20 lg:justify-start justify-evenly lg:p-20">
-      {/* {profiles?.map((p) => (
+      {profiles?.map((p) => (
         <ProfileCard
           key={p._id}
           id={p._id}
@@ -23,7 +22,7 @@ export default async function Profiles() {
           portfolioLink={p.portfolioLink}
           occupation={p.occupation}
         />
-      ))} */}
+      ))}
     </div>
   );
 }
