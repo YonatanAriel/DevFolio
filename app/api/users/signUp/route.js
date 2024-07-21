@@ -35,7 +35,7 @@ export async function POST(req) {
   } catch (err) {
     console.log("error msg - ", err?.message);
     console.log("error - ", err);
-    return new NextResponse(JSON.stringify("Unexpected error"), {
+    return new NextResponse(JSON.stringify({ error: "Unexpected error" }), {
       status: 400,
     });
   }
