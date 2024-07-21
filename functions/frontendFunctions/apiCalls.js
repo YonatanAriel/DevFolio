@@ -25,9 +25,10 @@ export const sendSignUpData = async (data) => {
 };
 
 export const sendSignInData = async (data) => {
-  const URL = getUrl();
+  // const URL = getUrl();
 
-  return await fetch(`${URL}/api/users/signIn`, {
+  // return await fetch(`${URL}/api/users/signIn`, {
+  return await fetch(`/api/users/signIn`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
