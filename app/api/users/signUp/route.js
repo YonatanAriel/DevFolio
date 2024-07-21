@@ -12,7 +12,9 @@ export async function POST(req) {
     const file = await formData.get("photo");
     let photoUrl = "";
     if (file) {
+      console.log("file - true");
       photoUrl = await uploadPhoto(file);
+      if (photoUrl) console.log("photoUrl - ", photoUrl);
     }
 
     await connectToDB();
@@ -27,11 +29,13 @@ export async function POST(req) {
     }
 
     const newUser = await storeUserInDB(formData, photoUrl);
+    newUser && console.log("new user - ", newUser);
     await verifyEmail(newUser);
 
     return new NextResponse(JSON.stringify("Email sent"), { status: 200 });
   } catch (err) {
-    console.log(err);
+    console.log("error msg - ", err?.message);
+    console.log("error - ", err);
     return new NextResponse(JSON.stringify("Unexpected error"), {
       status: 400,
     });
