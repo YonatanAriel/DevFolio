@@ -82,8 +82,8 @@ export const getUserByToken = async (token) => {
 
 export const getAllProjects = async () => {
   const URL = getUrl();
-  // const res = await fetch(`${URL}/api/projects`, {
-  const res = await fetch(`/api/projects`, {
+  // const res = await fetch(`/api/projects`, {
+  const res = await fetch(`${URL}/api/projects`, {
     cache: "no-store",
   });
   return await res.json();
