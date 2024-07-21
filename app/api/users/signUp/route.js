@@ -13,7 +13,7 @@ export async function POST(req) {
     let photoUrl = "";
     if (file) {
       photoUrl = await uploadPhoto(file);
-      if (photoUrl) console.log("photoUrl - ", photoUrl);
+      console.log("photoUrl - ", photoUrl);
     }
 
     await connectToDB();
