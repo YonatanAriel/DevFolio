@@ -10,6 +10,8 @@ cloudinary.config({
 });
 
 export const uploadPhoto = async (file) => {
+  const fileBuffer = await file.arrayBuffer();
+
   let mime = file.type;
   let encoding = "base64";
   let base64Data = Buffer.from(fileBuffer).toString("base64");
