@@ -30,9 +30,11 @@ function AddProject() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setShowLoadingSpinner(true);
-    setErrorMsg("");
     if (!token) return;
+    if (!formData.photo) {
+      alert("Photo is required");
+      return;
+    }
     if (
       formData.name.trim().length < 3 ||
       formData.description.trim().length < 3
@@ -40,6 +42,8 @@ function AddProject() {
       alert("Project name and description must contain at least 3 letters");
       return;
     }
+    setShowLoadingSpinner(true);
+    setErrorMsg("");
     addProject(formData, token).then((res) =>
       res === "success" ? handleSuccess() : handleError()
     );
@@ -75,8 +79,8 @@ function AddProject() {
   };
   return (
     <>
-      <form onSubmit={handleSubmit} className="w-5/6 lg:w-96 mx-auto py-20">
-        <h1 className="font-bold text-3xl mb-6">Add a new project</h1>
+      <form onSubmit={handleSubmit} className="w-5/6 py-20 mx-auto lg:w-96">
+        <h1 className="mb-6 text-3xl font-bold">Add a new project</h1>
         <GenericInput
           ref={nameRef}
           name={"Project name"}
@@ -193,7 +197,7 @@ function AddProject() {
           />{" "}
         </div>
         {errorMsg && (
-          <span className="block mb-4 text-red-500 text-center  w-full">
+          <span className="block w-full mb-4 text-center text-red-500">
             {errorMsg}
           </span>
         )}

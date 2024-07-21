@@ -8,6 +8,7 @@ import { User } from "../../../../DL/models/User.model";
 export async function POST(req) {
   try {
     const formData = await req.formData();
+    console.log(formData);
     if (!formData.get("name") || !formData.get("description"))
       throw new Error("missing name or description");
     const photoUrl = await uploadPhoto(formData.get("photo"));
