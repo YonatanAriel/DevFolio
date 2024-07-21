@@ -12,7 +12,6 @@ export async function POST(req) {
     const file = await formData.get("photo");
     let photoUrl = "";
     if (file) {
-      console.log("file - true");
       photoUrl = await uploadPhoto(file);
       if (photoUrl) console.log("photoUrl - ", photoUrl);
     }
