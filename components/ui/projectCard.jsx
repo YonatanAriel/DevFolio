@@ -25,7 +25,7 @@ export default function ProjectCard({
   return (
     <div
       className=" max-w-sm text-black font-semibold shadow-lg rounded-lg overflow-hidden backdrop-blur-lg
-     h-[100vh] relative shadow-lg shadow-gray-500 "
+     h-[100vh] relative  shadow-gray-500 "
     >
       <div
         style={{ zIndex: -1 }}
@@ -53,25 +53,42 @@ export default function ProjectCard({
       </div>
       <div
         style={{ marginTop: "42.5vh", height: "57.5vh" }}
-        className=" backdrop-blur-lg z-10 bg-white bg-opacity-30"
+        className="z-10 bg-white backdrop-blur-lg bg-opacity-30"
       >
         <Link
           href={`/profiles/${developerId}`}
-          className={`flex items-center px-6 py-2 ${
+          className={`flex items-center px-6 py-2  ${
             isPortfolio ? "bg-black" : "bg-[#FF4E00]"
           }`}
         >
-          <img
-            src={developerImg}
-            alt=""
-            style={{
-              width: "9vh",
-              height: "9vh",
-              borderRadius: "50%",
-              objectFit: "cover",
-              objectPosition: "center",
-            }}
-          />
+          {developerImg ? (
+            <img
+              src={developerImg}
+              alt=""
+              style={{
+                // width: "9vh",
+                // height: "9vh",
+                width: "30px",
+                height: "30px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          ) : (
+            <div
+              className={` text-primary-color flex items-center justify-center font-semibold text-5xl text-center  bg-white`}
+              style={{
+                width: "9vh",
+                height: "9vh",
+                borderRadius: "50%",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            >
+              D
+            </div>
+          )}
           {/* <a href=""> */}
           {/*need to change the css so it match the style of the <a>
            (i need to remove the <a */}
@@ -91,19 +108,19 @@ export default function ProjectCard({
           {/* </a> */}
         </Link>
 
-        <div className="py-4 px-6  ">
+        <div className="px-6 py-4 ">
           <h1 className={`text-2xl font-bold  tracking-wide `}>
             {isPortfolio ? "Portfolio" : projectName}
           </h1>
           <p className="py-2 text-lg ">{`${description?.slice(0, 60)}...`}</p>
           <div className="flex mt-1">
             {technologies?.map((tech) => (
-              <div className="flex items-center  ">
+              <div className="flex items-center ">
                 <h1 className="pr-2 text-sm">{tech}</h1>
               </div>
             ))}
           </div>
-          <div className="flex gap-3 text-white items-center mt-5">
+          <div className="flex items-center gap-3 mt-5 text-white">
             {gitHubLink && (
               <a href={gitHubLink}>
                 <BsGithub size={33} />

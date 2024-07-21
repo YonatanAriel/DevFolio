@@ -9,11 +9,25 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
+// export const uploadPhoto = async (file) => {
+//   const tmpFilePath = path.join(os.tmpdir(), file.name);
+//   const arrayBuffer = await file.arrayBuffer();
+//   const buffer = Buffer.from(arrayBuffer);
+//   await fs.promises.writeFile(tmpFilePath, buffer);
+//   const result = await cloudinary.uploader.upload(tmpFilePath);
+//   const photoUrl = result.secure_url;
+//   await fs.promises.unlink(tmpFilePath);
+//   return photoUrl;
+// };
+
 export const uploadPhoto = async (file) => {
   const tmpFilePath = path.join(os.tmpdir(), file.name);
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-  await fs.promises.writeFile(tmpFilePath, buffer);
+  const stream = fs.createWriteStream(tmpFilePath);
+
+  await new Promise((resolve, reject) => {
+    file.stream().pipe(stream).on("finish", resolve).on("error", reject);
+  });
+
   const result = await cloudinary.uploader.upload(tmpFilePath);
   const photoUrl = result.secure_url;
   await fs.promises.unlink(tmpFilePath);
