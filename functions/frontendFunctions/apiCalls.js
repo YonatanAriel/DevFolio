@@ -90,21 +90,26 @@ export const getAllProjects = async () => {
 };
 
 export const addProject = async (projectData, token) => {
-  const URL = getUrl();
-  const formData = createFormData(projectData);
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
+  try {
+    const URL = getUrl();
+    const formData = createFormData(projectData);
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
 
-  // let res = await fetch(`${URL}/api/projects/addProject`, {
-  let res = await fetch(`/api/projects/addProject`, {
-    method: "POST",
-    headers,
-    body: formData,
-  });
-  res = await res.json();
-  if (res === "success") return "success";
-  else return "error";
+    // let res = await fetch(`${URL}/api/projects/addProject`, {
+
+    let res = await fetch(`/api/projects/addProject`, {
+      method: "POST",
+      headers,
+      body: formData,
+    });
+    res = await res.json();
+    if (res === "success") return "success";
+    else return "error";
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const getUserProjects = async (id) => {
