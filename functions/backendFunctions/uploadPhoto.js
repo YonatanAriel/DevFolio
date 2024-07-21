@@ -27,7 +27,7 @@ export const uploadPhoto = async (file) => {
   await new Promise((resolve, reject) => {
     file.stream().pipe(stream).on("finish", resolve).on("error", reject);
   });
-
+  //comment
   const result = await cloudinary.uploader.upload(tmpFilePath);
   const photoUrl = result.secure_url;
   await fs.promises.unlink(tmpFilePath);
