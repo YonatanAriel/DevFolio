@@ -96,8 +96,8 @@ export const addProject = async (projectData, token) => {
     Authorization: `Bearer ${token}`,
   };
 
-  let res = await fetch(`${URL}/api/projects/addProject`, {
-    // let res = await fetch(`/api/projects/addProject`, {
+  // let res = await fetch(`${URL}/api/projects/addProject`, {
+  let res = await fetch(`/api/projects/addProject`, {
     method: "POST",
     headers,
     body: formData,
