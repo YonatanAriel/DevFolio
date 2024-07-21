@@ -8,6 +8,7 @@ export const metaData = {
 
 export default async function Home() {
   const projects = await getAllProjects();
+  projects && console.log("jjjjjj", projects);
   return (
     <main className="flex flex-wrap gap-4 p-1 py-20 lg:justify-start justify-evenly lg:p-20">
       {projects?.map((project) => (

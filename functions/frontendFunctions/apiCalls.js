@@ -65,12 +65,13 @@ export const getUser = async (id) => {
 };
 
 export const getUserByToken = async (token) => {
-  const URL = getUrl();
+  // const URL = getUrl();
 
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  const res = await fetch(`${URL}/api/users/profile`, {
+  const res = await fetch(`/api/users/profile`, {
+    // const res = await fetch(`${URL}/api/users/profile`, {
     next: { revalidate: 0 },
     headers,
   });
@@ -79,7 +80,6 @@ export const getUserByToken = async (token) => {
 
 export const getAllProjects = async () => {
   const URL = getUrl();
-  console.log(URL, "lll");
   const res = await fetch(`${URL}/api/projects`, {
     cache: "no-store",
   });
