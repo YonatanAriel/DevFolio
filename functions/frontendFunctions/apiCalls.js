@@ -48,8 +48,8 @@ export const sendSignInData = async (data) => {
 
 export const getAllUsers = async () => {
   const URL = getUrl();
-  // const res = await fetch(`${URL}/api/users`, {
-  const res = await fetch(`/api/users`, {
+  const res = await fetch(`${URL}/api/users`, {
+    // const res = await fetch(`/api/users`, {
     next: { revalidate: 20 },
   });
   return await res.json();
