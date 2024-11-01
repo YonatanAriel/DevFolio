@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { getUserProjects } from "../../../../functions/frontendFunctions/apiCalls";
 import ProjectCard from "../../../../components/ui/projectCard";
 import Popup from "../../../../components/ui/popup";
 
-export default function Page({ params }) {
+export default function Page(props) {
+  const params = use(props.params);
   const [userProjects, setUserProjects] = useState("");
   useEffect(() => {
     getUserProjects(params.id).then((res) => setUserProjects(res));

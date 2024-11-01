@@ -4,7 +4,7 @@ import getUrl from "./getUrl";
 
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
-  const URL = getUrl();
+  // const URL = getUrl();
 
   let response = "";
   // await fetch(`${URL}/api/users/signUp`, {
@@ -47,16 +47,16 @@ export const sendSignInData = async (data) => {
 };
 
 export const getAllUsers = async () => {
-  const URL = getUrl();
-  const res = await fetch(`${URL}/api/users`, {
-    // const res = await fetch(`/api/users`, {
+  // const URL = getUrl();
+  // const res = await fetch(`${URL}/api/users`, {
+  const res = await fetch(`/api/users`, {
     next: { revalidate: 20 },
   });
   return await res.json();
 };
 
 export const getUser = async (id) => {
-  const URL = getUrl();
+  // const URL = getUrl();
 
   // const res = await fetch(`${URL}/api/users/?id=${id}`, {
   const res = await fetch(`/api/users/?id=${id}`, {
@@ -81,9 +81,9 @@ export const getUserByToken = async (token) => {
 };
 
 export const getAllProjects = async () => {
-  const URL = getUrl();
-  // const res = await fetch(`/api/projects`, {
-  const res = await fetch(`${URL}/api/projects`, {
+  // const URL = getUrl();
+  const res = await fetch(`/api/projects`, {
+    // const res = await fetch(`${URL}/api/projects`, {
     cache: "no-store",
   });
   return await res.json();
@@ -91,7 +91,7 @@ export const getAllProjects = async () => {
 
 export const addProject = async (projectData, token) => {
   try {
-    const URL = getUrl();
+    // const URL = getUrl();
     const formData = createFormData(projectData);
     const headers = {
       Authorization: `Bearer ${token}`,
@@ -113,7 +113,7 @@ export const addProject = async (projectData, token) => {
 };
 
 export const getUserProjects = async (id) => {
-  const URL = getUrl();
+  // const URL = getUrl();
 
   // const res = await fetch(`${URL}/api/projects/user?id=${id}`).then((res) =>
   const res = await fetch(`/api/projects/user?id=${id}`).then((res) =>
@@ -133,7 +133,7 @@ export const search = async (text) => {
 };
 
 export const updateDetails = async (details, token) => {
-  const URL = getUrl();
+  // const URL = getUrl();
   const headers = {
     Authorization: `Bearer ${token}`,
   };

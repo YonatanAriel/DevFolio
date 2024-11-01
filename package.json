@@ -3,23 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run open-browser && next dev --turbopack",
+    "open-browser": "start http://localhost:3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "autoprefixer": "10.4.15",
+    "autoprefixer": "^10.4.20",
     "bcrypt": "^5.1.1",
     "cloudinary": "^1.41.0",
+    "glob": "^11.0.0",
     "jsonwebtoken": "^9.0.2",
+    "lru-cache": "^11.0.2",
     "mongoose": "^7.5.3",
-    "next": "^14.0.4",
+    "next": "15.0.2",
     "nodemailer": "^6.9.5",
-    "postcss": "8.4.29",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "postcss": "^8.4.47",
+    "react": "19.0.0-rc-02c0e824-20241028",
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-icons": "^4.10.1",
-    "tailwindcss": "3.3.3"
+    "rimraf": "^6.0.1",
+    "tailwindcss": "^3.4.14"
   }
 }

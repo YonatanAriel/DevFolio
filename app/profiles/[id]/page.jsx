@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import ProfileCard from "../../../components/ui/profileCard/ProfileCard";
 import { getUser } from "../../../functions/frontendFunctions/apiCalls";
 
@@ -10,7 +10,8 @@ import { getUser } from "../../../functions/frontendFunctions/apiCalls";
 //   return profiles?.map((profile) => ({ id: profile._id }));
 // }
 
-export default function Profile({ params }) {
+export default function Profile(props) {
+  const params = use(props.params);
   const [profileData, setProfileData] = useState("");
 
   useEffect(() => {
