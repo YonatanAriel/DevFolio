@@ -5,7 +5,7 @@
 // }
 
 export default function getUrl() {
-  // For browser/client-side requests - relative URLs
+  // For browser/client-side requests - use just the relative URL
   if (typeof window !== "undefined") {
     return "";
   }

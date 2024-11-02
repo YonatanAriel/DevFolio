@@ -18,7 +18,7 @@ export default function ProfileCard({
       <div className={`${styles.imgContainer} `}>
         <div
           style={{ zIndex: -1 }}
-          className="w-full absolute top-0 left-0 bottom-0 right-0 border-r-4  "
+          className="absolute top-0 bottom-0 left-0 right-0 w-full border-r-4 "
         >
           <Image
             alt=""
@@ -48,16 +48,16 @@ export default function ProfileCard({
               D
             </div>
           )}
-          <h1 className="font-bold text-xl">{name}</h1>
+          <h1 className="text-xl font-bold">{name}</h1>
           <div className={`${styles.description} font-semibold`}>
             <span className="font-bold">{occupation}</span>
             <br />
             {about}
           </div>
           <div className={styles.social}>
-            <div className="flex justify-evenly w-full font-semibold">
+            <div className="flex w-full font-semibold justify-evenly">
               {links?.map((l, i) => (
-                <Link key={l.href + i} href={l.href}>
+                <Link key={`${i}${l.href}`} href={l.href}>
                   {l.text}
                 </Link>
               ))}

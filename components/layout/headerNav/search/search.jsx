@@ -31,10 +31,9 @@ export default function Search() {
         ? "User"
         : "Project";
       const results = await search({ modelToSearch, text });
-      console.log(results.data);
       if (results.data) {
         router.push(
-          `${results.pathname}?data=${btoa(JSON.stringify(results.data))}`
+          `${results?.pathname}?data=${btoa(JSON.stringify(results.data))}`
         );
         setShowAnimation(false);
       }
@@ -44,7 +43,7 @@ export default function Search() {
   return (
     <>
       {/* {showPopup && <Popup text={"Sorry, nothing found"} />} */}
-      <div className="flex py-auto relative h-9 ml-auto ">
+      <div className="relative flex ml-auto py-auto h-9 ">
         <input
           className={`rounded-full  outline-none shadow-lg
           ${

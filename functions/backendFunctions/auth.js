@@ -3,8 +3,12 @@ import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
 export const createToken = (data, expiresIn) => {
+  // const JWT_SECRET = process.env.JWT_SECRET;
+  // const token = jwt.sign(data, JWT_SECRET, { expiresIn });
+  // return token;
   const JWT_SECRET = process.env.JWT_SECRET;
-  const token = jwt.sign(data, JWT_SECRET, { expiresIn });
+  const shouldExpireIn = expiresIn ? { expiresIn } : {};
+  const token = jwt.sign(data, JWT_SECRET, shouldExpireIn);
   return token;
 };
 

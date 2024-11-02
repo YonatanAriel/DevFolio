@@ -20,11 +20,11 @@ export default function Page(props) {
           goBackButton={true}
         />
       )}
-      <div className=" flex gap-4 lg:justify-start justify-evenly flex-wrap py-20 p-1 lg:p-20">
+      <div className="flex flex-wrap gap-4 p-1 py-20  lg:justify-start justify-evenly lg:p-20">
         {userProjects &&
-          userProjects?.map((p) => (
+          userProjects?.map((p, i) => (
             <ProjectCard
-              key={p.id}
+              key={`${p.id}${i}`}
               projectName={p.name}
               developerName={p.userId.name}
               developerImg={p.userId.photo}

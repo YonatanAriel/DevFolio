@@ -134,7 +134,7 @@ function AddProject() {
         </button>
         <ul className="mb-4">
           {formData?.technologies?.map((tech, i) => (
-            <li key={i}>
+            <li key={`${tech}${i}`}>
               {tech}
               <button
                 type="button"

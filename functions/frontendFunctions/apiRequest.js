@@ -1,6 +1,6 @@
 import getUrl from "./getUrl";
 
-export const ApiRequest = async (relativeUrl, options = {}) => {
+export const apiRequest = async (relativeUrl, options = {}) => {
   try {
     const baseUrl = getUrl();
     const URL = `${baseUrl}${relativeUrl}`;

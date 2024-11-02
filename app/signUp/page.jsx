@@ -76,11 +76,11 @@ export default function SignUp() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-5/6 lg:w-96 mx-auto py-20 overflow-hidden"
+      className="w-5/6 py-20 mx-auto overflow-hidden lg:w-96"
     >
       {showLoadingSpinner && <LoadingSpinner />}
       {isEmailSent && <Popup key={popupText} text={popupText} />}
-      <h1 className="font-bold text-3xl mb-6">Sign Up</h1>{" "}
+      <h1 className="mb-6 text-3xl font-bold">Sign Up</h1>{" "}
       <GenericInput
         ref={nameRef}
         name={"What is your name?"}
@@ -182,7 +182,7 @@ export default function SignUp() {
       </button>
       <ul className="mb-4">
         {userData?.links?.map((link, i) => (
-          <li key={i}>
+          <li key={`${link.href}${i}`}>
             <span>text : {link.text}</span>
             <span> | link : {link.href}</span>
             <button
@@ -210,7 +210,7 @@ export default function SignUp() {
           "block w-full  text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
         }
       />
-      {signUpError && <p className="text-red-500 my-5">{signUpError}</p>}
+      {signUpError && <p className="my-5 text-red-500">{signUpError}</p>}
       <button
         type="submit"
         className="text-white bg-[#FF4E00] hover:opacity-70 focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

@@ -10,9 +10,9 @@ export default async function Profiles() {
 
   return (
     <div className="flex flex-wrap gap-10 py-20 sm:px-10 lg:justify-start justify-evenly lg:p-20">
-      {profiles?.map((p) => (
+      {profiles?.map((p, i) => (
         <ProfileCard
-          key={p._id}
+          key={`${p._id}${i}`}
           id={p._id}
           img={p.photo}
           name={p.name}

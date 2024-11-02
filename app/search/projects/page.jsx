@@ -13,10 +13,10 @@ export default function Projects() {
       {projects?.length === 0 && (
         <Popup text={"Sorry, nothing was found"} goBackButton={true} />
       )}
-      <div className=" flex gap-4 lg:justify-start justify-evenly  flex-wrap py-20 p-1 lg:p-20">
-        {projects?.map((p) => (
+      <div className="flex flex-wrap gap-4 p-1 py-20  lg:justify-start justify-evenly lg:p-20">
+        {projects?.map((p, i) => (
           <ProjectCard
-            key={p.id}
+            key={`${p.id}${i}`}
             projectName={p.name}
             developerName={p.userId.name}
             developerImg={p.userId.photo}

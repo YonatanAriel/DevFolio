@@ -114,8 +114,8 @@ export default function ProjectCard({
           </h1>
           <p className="py-2 text-lg ">{`${description?.slice(0, 60)}...`}</p>
           <div className="flex mt-1">
-            {technologies?.map((tech) => (
-              <div className="flex items-center ">
+            {technologies?.map((tech, i) => (
+              <div key={`${i}${tech}`} className="flex items-center ">
                 <h1 className="pr-2 text-sm">{tech}</h1>
               </div>
             ))}

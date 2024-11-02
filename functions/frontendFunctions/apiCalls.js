@@ -1,93 +1,95 @@
 import { notFound } from "next/navigation";
 import { createFormData } from "./formData";
 import getUrl from "./getUrl";
-import { ApiRequest } from "./apiRequest";
+import { apiRequest } from "./apiRequest";
 
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
-  const baseUrl = getUrl();
 
-  console.log("Fetching from URL:", baseUrl);
-
-  let response = "";
-  // await fetch(`${URL}/api/users/signUp`, {
-  await fetch(`${baseUrl}/api/users/signUp`, {
+  // let response = "";
+  // await fetch(`${baseUrl}/api/users/signUp`, {
+  //   method: "POST",
+  //   body: formData,
+  // })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     response = data;
+  //     console.error(data);
+  //   })
+  //   .catch((error) => {
+  //     response = data;
+  //     console.error("Error:", error);
+  //   });
+  // return response;
+  const options = {
     method: "POST",
     body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      response = data;
-      console.error(data);
-    })
-    .catch((error) => {
-      response = data;
-      console.error("Error:", error);
-    });
+  };
+  const response = await apiRequest("/api/users/signUp", options);
+
   return response;
 };
 
 export const sendSignInData = async (data) => {
-  // const URL = getUrl();
-
-  // return await fetch(`${URL}/api/users/signIn`, {
-  return await fetch(`/api/users/signIn`, {
+  // return await fetch(`/api/users/signIn`, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify(data),
+  // })
+  //   .then((res) => {
+  //     if (!res.ok) {
+  //       return Promise.reject(res);
+  //     }
+  //     return res.json();
+  //   })
+  //   .then((data) => {
+  //     return data;
+  //   });
+  const options = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        return Promise.reject(res);
-      }
-      return res.json();
-    })
-    .then((data) => {
-      return data;
-    });
+  };
+  const response = await apiRequest(`/api/users/signIn`, options);
+  return response;
 };
 
 export const getAllUsers = async () => {
-  // const URL = getUrl();
-  // const res = await fetch(`${URL}/api/users`, {
-  const res = await fetch(`/api/users`, {
+  const response = await apiRequest(`/api/users`, {
     next: { revalidate: 20 },
   });
-  return await res.json();
+  return response;
 };
 
 export const getUser = async (id) => {
-  // const URL = getUrl();
-
-  // const res = await fetch(`${URL}/api/users/?id=${id}`, {
-  const res = await fetch(`/api/users/?id=${id}`, {
+  // const res = await fetch(`/api/users/?id=${id}`, {
+  //   next: { revalidate: 20 },
+  // });
+  // if (!res.ok) notFound();
+  // return await res.json();
+  const response = await apiRequest(`/api/users/?id=${id}`, {
     next: { revalidate: 20 },
   });
-  if (!res.ok) notFound();
-  return await res.json();
+  if (!response) notFound();
+  return response;
 };
 
 export const getUserByToken = async (token) => {
-  // const URL = getUrl();
-
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-  const res = await fetch(`/api/users/profile`, {
-    // const res = await fetch(`${URL}/api/users/profile`, {
+
+  const response = await apiRequest(`/api/users/profile`, {
     next: { revalidate: 0 },
     headers,
   });
-  return await res.json();
+
+  return response;
 };
-
-/*async function getData() {
-  const res = await import("../api/top-rated/route");  <---- this is the location of my api file
-
-  return await (await res.GET()).json();
-}*/
 
 // export const getAllProjects = async () => {
 // const URL = getUrl();
@@ -112,70 +114,85 @@ export const getUserByToken = async (token) => {
 // };
 
 export const getAllProjects = async () => {
-  const response = await ApiRequest("/api/projects", {
+  const response = await apiRequest("/api/projects", {
     cache: "no-store",
   });
   return response;
 };
 
 export const addProject = async (projectData, token) => {
-  try {
-    // const URL = getUrl();
-    const formData = createFormData(projectData);
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
+  // try {
+  //   const formData = createFormData(projectData);
+  //   const headers = {
+  //     Authorization: `Bearer ${token}`,
+  //   };
 
-    // let res = await fetch(`${URL}/api/projects/addProject`, {
+  //   let res = await fetch(`/api/projects/addProject`, {
+  //     method: "POST",
+  //     headers,
+  //     body: formData,
+  //   });
+  //   res = await res.json();
+  //   if (res === "success") return "success";
+  //   else return "error";
+  // } catch (err) {
+  //   console.log(err);
+  // }
 
-    let res = await fetch(`/api/projects/addProject`, {
-      method: "POST",
-      headers,
-      body: formData,
-    });
-    res = await res.json();
-    if (res === "success") return "success";
-    else return "error";
-  } catch (err) {
-    console.log(err);
-  }
+  const formData = createFormData(projectData);
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  const options = {
+    method: "POST",
+    headers,
+    body: formData,
+  };
+
+  const response = await apiRequest(`/api/projects/addProject`, options);
+  if (response === null) return "error";
+  else return "success";
 };
 
 export const getUserProjects = async (id) => {
-  // const URL = getUrl();
-
-  // const res = await fetch(`${URL}/api/projects/user?id=${id}`).then((res) =>
-  const res = await fetch(`/api/projects/user?id=${id}`).then((res) =>
-    res.json()
-  );
-  return res;
+  // const res = await fetch(`/api/projects/user?id=${id}`).then((res) =>
+  //   res.json()
+  // );
+  // return res;
+  const response = await apiRequest(`/api/projects/user?id=${id}`);
+  return response;
 };
 
 export const search = async (text) => {
-  const URL = getUrl();
-
-  // return await fetch(`${URL}/api/search`, {
-  return await fetch(`/api/search`, {
+  // return await fetch(`/api/search`, {
+  //   method: "POST",
+  //   body: JSON.stringify(text),
+  // }).then((res) => res.json());
+  const options = {
     method: "POST",
     body: JSON.stringify(text),
-  }).then((res) => res.json());
+  };
+  const response = apiRequest(`/api/search`, options);
+  return response;
 };
 
 export const updateDetails = async (details, token) => {
-  // const URL = getUrl();
   const headers = {
     Authorization: `Bearer ${token}`,
   };
   const formData = createFormData(details);
-
-  // return await fetch(`${URL}/api/users/updateDetails`, {
-  return await fetch(`/api/users/updateDetails`, {
+  const options = {
     method: "POST",
     body: formData,
     headers,
-  })
-    .then((res) => res.json())
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  };
+  const response = await apiRequest(`/api/users/updateDetails`, options);
+  return response;
 };
+
+//possible solution for unable to pars url
+/*async function getData() {
+  const res = await import("../api/top-rated/route");  <---- this is the location of my api file
+
+  return await (await res.GET()).json();
+}*/
