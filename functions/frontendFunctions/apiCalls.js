@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { createFormData } from "./formData";
 import getUrl from "./getUrl";
+import { ApiRequest } from "./apiRequest";
 
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
@@ -88,26 +89,33 @@ export const getUserByToken = async (token) => {
   return await (await res.GET()).json();
 }*/
 
+// export const getAllProjects = async () => {
+// const URL = getUrl();
+// const res = await fetch(`${URL}/api/projects`, {
+
+//   try {
+//     const baseUrl = getUrl();
+
+//     console.log("Fetching from URL:", baseUrl);
+
+//     const res = await fetch(`${baseUrl}/api/projects`, {
+//       cache: "no-store",
+//     });
+
+//     if (!res.ok) throw new Error(`Http error: status - ${res.status}`);
+
+//     return await res.json();
+//   } catch (error) {
+//     console.error("Error fetching projects:", error);
+//     throw error;
+//   }
+// };
+
 export const getAllProjects = async () => {
-  // const URL = getUrl();
-  // const res = await fetch(`${URL}/api/projects`, {
-
-  try {
-    const baseUrl = getUrl();
-
-    console.log("Fetching from URL:", baseUrl);
-
-    const res = await fetch(`${baseUrl}/api/projects`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) throw new Error(`Http error: status - ${res.status}`);
-
-    return await res.json();
-  } catch (error) {
-    console.error("Error fetching projects:", error);
-    throw error;
-  }
+  const response = await ApiRequest("/api/projects", {
+    cache: "no-store",
+  });
+  return response;
 };
 
 export const addProject = async (projectData, token) => {
