@@ -4,11 +4,13 @@ import getUrl from "./getUrl";
 
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
-  // const URL = getUrl();
+  const baseUrl = getUrl();
+
+  console.log("Fetching from URL:", baseUrl);
 
   let response = "";
   // await fetch(`${URL}/api/users/signUp`, {
-  await fetch(`/api/users/signUp`, {
+  await fetch(`${baseUrl}/api/users/signUp`, {
     method: "POST",
     body: formData,
   })
@@ -80,13 +82,32 @@ export const getUserByToken = async (token) => {
   return await res.json();
 };
 
+/*async function getData() {
+  const res = await import("../api/top-rated/route");  <---- this is the location of my api file
+
+  return await (await res.GET()).json();
+}*/
+
 export const getAllProjects = async () => {
   // const URL = getUrl();
-  const res = await fetch(`/api/projects`, {
-    // const res = await fetch(`${URL}/api/projects`, {
-    cache: "no-store",
-  });
-  return await res.json();
+  // const res = await fetch(`${URL}/api/projects`, {
+
+  try {
+    const baseUrl = getUrl();
+
+    console.log("Fetching from URL:", baseUrl);
+
+    const res = await fetch(`${baseUrl}/api/projects`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) throw new Error(`Http error: status - ${res.status}`);
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    throw error;
+  }
 };
 
 export const addProject = async (projectData, token) => {

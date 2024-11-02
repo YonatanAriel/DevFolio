@@ -11,9 +11,9 @@ export default async function Home() {
   projects && console.log("jjjjjj", projects);
   return (
     <main className="flex flex-wrap gap-4 p-1 py-20 lg:justify-start justify-evenly lg:p-20">
-      {projects?.map((project) => (
+      {projects?.map((project, i) => (
         <ProjectCard
-          key={project.id}
+          key={`${project.id}${i}`}
           projectName={project.name}
           developerName={project.userId.name}
           developerImg={project.userId.photo}

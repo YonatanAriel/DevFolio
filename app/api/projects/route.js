@@ -13,5 +13,9 @@ export async function GET(req) {
     return NextResponse.json(allProjects, { status: 200 });
   } catch (err) {
     console.log(err);
+    return NextResponse.json(
+      { error: "Failed to fetch all projects" },
+      { status: 500 }
+    );
   }
 }
