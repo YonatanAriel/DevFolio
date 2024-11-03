@@ -3,8 +3,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 export default function ProjectLike({ projectLikes }) {
   return (
-    <div className=" py-4 inline-flex items-center  text-black">
-      -
+    <div className="inline-flex items-center py-4 text-black ">
       <div className="mr-2 text-[#FF4E00] cursor-pointer">
         <AiFillHeart size={23} />
       </div>

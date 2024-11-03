@@ -5,22 +5,21 @@ export default function Comment() {
     <>
       <div className="relative text-black">
         <input
-          className="pt-2 pb-2 pl-3 w-full h-11 bg-slate-100 dark:bg-slate-600 rounded-lg placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20"
+          className="w-full pt-2 pb-2 pl-3 pr-20 font-medium rounded-lg h-11 bg-slate-100 dark:bg-slate-600 placeholder:text-slate-600 dark:placeholder:text-slate-300"
           type="text"
           placeholder="What do you think?"
         />
-
-        <div className="flex absolute right-3 top-2/4 -mt-3 items-center cursor-pointer text-black">
+        <div className="absolute flex items-center -mt-3 text-black cursor-pointer right-3 top-2/4">
           <MdSend size={25} />
         </div>
       </div>
 
       {/* Comments content */}
       {/* <div className="pt-6">
-        <div className="media flex pb-4">
+        <div className="flex pb-4 media">
           <a className="mr-4" href="#">
             <img
-              className="rounded-full max-w-none w-12 h-12"
+              className="w-12 h-12 rounded-full max-w-none"
               src="https://randomuser.me/api/portraits/men/82.jpg"
               alt="User"
             />
@@ -28,7 +27,7 @@ export default function Comment() {
 
           <div className="media-body">
             <div>
-              <a className="inline-block text-base font-bold mr-2" href="#">
+              <a className="inline-block mr-2 text-base font-bold" href="#">
                 Leslie Alexander
               </a>
               <span className="text-slate-500 dark:text-slate-300">
@@ -37,19 +36,18 @@ export default function Comment() {
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur.</p>
 
-            <div className="mt-2 flex items-center">
+            <div className="flex items-center mt-2">
               <a className="inline-flex items-center py-2 mr-3" href="#">
-                <span className="text-base font-bold">12</span>
-                * svg *
+                <span className="text-base font-bold">12</span>* svg *
               </a>
 
-              <button className="py-2 px-4 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg">
+              <button className="px-4 py-2 font-medium rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700">
                 Reply
               </button>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>   */}
       {/* End comments row */}
     </>
   );

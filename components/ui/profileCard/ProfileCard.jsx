@@ -23,6 +23,7 @@ export default function ProfileCard({
           <Image
             alt=""
             src={"/fire-1680605.jpg"}
+            priority={true}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 920px) 50vw, 50vw"
             className="object-cover object-center "

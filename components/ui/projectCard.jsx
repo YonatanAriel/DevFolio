@@ -12,7 +12,6 @@ export default function ProjectCard({
   img,
   developerImg,
   developerId,
-
   websiteLink,
   gitHubLink,
   developerTitle,
@@ -33,6 +32,7 @@ export default function ProjectCard({
       >
         <Image
           src={"/fire-1680605.jpg"}
+          priority={true}
           alt=""
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 920px) 50vw, 50vw"
@@ -66,8 +66,6 @@ export default function ProjectCard({
               src={developerImg}
               alt=""
               style={{
-                // width: "9vh",
-                // height: "9vh",
                 width: "30px",
                 height: "30px",
                 borderRadius: "50%",
@@ -107,12 +105,14 @@ export default function ProjectCard({
           </h1>
           {/* </a> */}
         </Link>
-
         <div className="px-6 py-4 ">
           <h1 className={`text-2xl font-bold  tracking-wide `}>
             {isPortfolio ? "Portfolio" : projectName}
           </h1>
-          <p className="py-2 text-lg ">{`${description?.slice(0, 60)}...`}</p>
+          <p className="py-2 text-lg line-clamp-2 hover:line-clamp-none">
+            {/* {`${description?.slice(0, 60)}...`} */}
+            {description}
+          </p>
           <div className="flex mt-1">
             {technologies?.map((tech, i) => (
               <div key={`${i}${tech}`} className="flex items-center ">
@@ -140,7 +140,7 @@ export default function ProjectCard({
             </Link>
           </div>
         </div>
-        <div className="flex items-center gap-2 px-6">
+        <div className="flex items-center gap-2 px-6 ">
           <ProjectLike projectLikes={projectLikes} />
           <Comment />
         </div>
