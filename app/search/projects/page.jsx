@@ -1,6 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import ProjectCard from "../../../components/ui/projectCard";
+import ProjectCard from "../../../components/ui/projectCard/projectCard";
 import Popup from "../../../components/ui/popup";
 
 export default function Projects() {
@@ -13,7 +13,7 @@ export default function Projects() {
       {projects?.length === 0 && (
         <Popup text={"Sorry, nothing was found"} goBackButton={true} />
       )}
-      <div className="flex flex-wrap gap-4 p-1 py-20  lg:justify-start justify-evenly lg:p-20">
+      <div className="flex flex-wrap gap-4 p-1 py-20 lg:justify-start justify-evenly lg:p-20">
         {projects?.map((p, i) => (
           <ProjectCard
             key={`${p.id}${i}`}

@@ -1,5 +1,5 @@
 import React from "react";
-import ProjectCard from "../../../components/ui/projectCard";
+import ProjectCard from "../../../components/ui/projectCard/projectCard";
 import projects from "../../../data/fakeProjects.json";
 
 export const metaData = {
