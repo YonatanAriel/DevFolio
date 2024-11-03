@@ -1,4 +1,4 @@
-import ProjectCard from "../components/ui/projectCard";
+import ProjectCard from "../components/ui/projectCard/projectCard";
 import { getAllProjects } from "../functions/frontendFunctions/apiCalls";
 
 export const metaData = {

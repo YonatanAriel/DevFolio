@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, use } from "react";
 import { getUserProjects } from "../../../../functions/frontendFunctions/apiCalls";
-import ProjectCard from "../../../../components/ui/projectCard";
+import ProjectCard from "../../../../components/ui/projectCard/projectCard";
 import Popup from "../../../../components/ui/popup";
 
 export default function Page(props) {
