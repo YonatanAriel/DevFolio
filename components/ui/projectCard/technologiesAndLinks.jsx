@@ -6,7 +6,7 @@ function TechnologiesAndLinks({ technologies, gitHubLink, websiteLink, id }) {
   return (
     <>
       <Technologies technologies={technologies} />
-      <Links gitHubLink={gitHubLink} websiteLink={websiteLink} id={id} />{" "}
+      <Links gitHubLink={gitHubLink} websiteLink={websiteLink} id={id} />
     </>
   );
 }

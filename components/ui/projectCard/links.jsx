@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
+import { BsGithub } from "react-icons/bs";
 
 function Links({ gitHubLink, websiteLink, id }) {
   return (
