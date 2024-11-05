@@ -13,13 +13,13 @@ export default async function YourProfile() {
       >
         <Link
           href={"/projects/addProject"}
-          className={`${buttonStyle}  text-center  flex-grow `}
+          className={`${buttonStyle} transition-all duration-300 text-center hover:scale-95  flex-grow `}
         >
           Add Project
         </Link>
         <Link
           href={"/yourProfile/updateDetails"}
-          className={`${buttonStyle}  text-center  flex-grow `}
+          className={`${buttonStyle}  text-center transition-all duration-300 hover:scale-95 flex-grow `}
         >
           Update Details
         </Link>
