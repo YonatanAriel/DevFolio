@@ -58,7 +58,11 @@ export default function ProfileCard({
           <div className={styles.social}>
             <div className="flex w-full font-semibold justify-evenly">
               {links?.map((l, i) => (
-                <Link key={`${i}${l.href}`} href={l.href}>
+                <Link
+                  key={`${i}${l.href}`}
+                  className="transition-all duration-200 ease-in hover:scale-[102%] "
+                  href={l.href}
+                >
                   {l.text}
                 </Link>
               ))}
