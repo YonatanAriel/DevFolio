@@ -6,6 +6,7 @@
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   padding: 30px 20px;
 }
+
 .imgContainer {
   height: 400px;
   width: min(350px, 95vw);
