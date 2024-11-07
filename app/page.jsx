@@ -19,6 +19,7 @@ export default async function Home() {
           developerId={project.userId._id}
           developerTitle={project.userId.occupation}
           img={project.photo}
+          id={project._id}
           {...project}
         />
       ))}

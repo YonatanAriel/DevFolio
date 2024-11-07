@@ -4,7 +4,6 @@ export const apiRequest = async (relativeUrl, options = {}) => {
   try {
     const baseUrl = getUrl();
     const URL = `${baseUrl}${relativeUrl}`;
-    console.log("Fetching from URL:", URL);
 
     const response = await fetch(URL, options);
 

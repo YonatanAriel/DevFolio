@@ -11,7 +11,6 @@ export default function UserProfile() {
   const [userData, setUserData] = useState("");
   useEffect(() => {
     if (token) {
-      console.log(token);
       getUserByToken(token).then((data) => setUserData(data));
     }
   }, []);

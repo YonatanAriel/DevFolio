@@ -12,6 +12,7 @@ function Body({
   websiteLink,
   id,
   isPortfolio,
+  projectName,
 }) {
   return (
     <>
@@ -24,7 +25,7 @@ function Body({
       />
       <div className="px-6 py-4 ">
         <h1 className={`text-2xl font-bold  tracking-wide `}>
-          {isPortfolio ? "Portfolio" : developerTitle}
+          {isPortfolio ? "Portfolio" : projectName}
         </h1>
         <p className="py-2 text-lg line-clamp-2 hover:line-clamp-none">
           {description}

@@ -18,7 +18,6 @@ export default function ProjectCard({
   id,
   comments,
 }) {
-  console.log(id, 5555);
   return (
     <div
       className=" max-w-sm text-black font-semibold shadow-lg flex-grow rounded-lg overflow-hidden backdrop-blur-lg
@@ -30,6 +29,7 @@ export default function ProjectCard({
         className="z-10 bg-white backdrop-blur-lg bg-opacity-30"
       >
         <Body
+          projectName={projectName}
           developerTitle={developerTitle}
           developerId={developerId}
           developerImg={developerImg}

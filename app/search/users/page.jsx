@@ -6,7 +6,6 @@ import Popup from "../../../components/ui/popup";
 export default function Users() {
   const searchParams = useSearchParams();
   const profiles = JSON.parse(atob(searchParams.get("data")));
-  console.log(profiles + 11);
   return (
     <>
       {profiles?.length === 0 && (

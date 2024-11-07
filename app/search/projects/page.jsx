@@ -6,7 +6,6 @@ import Popup from "../../../components/ui/popup";
 export default function Projects() {
   const searchParams = useSearchParams();
   const projects = JSON.parse(atob(searchParams.get("data")));
-  console.log(projects);
 
   return (
     <>
