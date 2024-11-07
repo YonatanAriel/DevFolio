@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-function Tooltip({ text, children }) {
+function Tooltip({ text, children, className }) {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ function Tooltip({ text, children }) {
           {text}
         </div>
       )}
-      {children}
+      <div className={`${className && className}`}>{children}</div>
     </div>
   );
 }

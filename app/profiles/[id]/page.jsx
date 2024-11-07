@@ -19,8 +19,8 @@ export default function Profile(props) {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-wrap py-20 gap-x-10 gap-y-10 sm:px-10 lg:justify-normal justify-evenly lg:p-20">
       {profileData && <ProfileCard {...profileData} img={profileData.photo} />}
-    </>
+    </div>
   );
 }

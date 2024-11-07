@@ -11,7 +11,7 @@ function DeveloperDetails({
   return (
     <Link
       href={`/profiles/${developerId}`}
-      className={`flex items-center px-6 py-2  ${
+      className={`flex items-center px-6 py-[0.7rem] ${
         isPortfolio ? "bg-black" : "bg-[#FF4E00]"
       }`}
     >

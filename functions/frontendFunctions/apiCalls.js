@@ -5,22 +5,6 @@ import { apiRequest } from "./apiRequest";
 
 export const sendSignUpData = async (data) => {
   const formData = createFormData(data);
-
-  // let response = "";
-  // await fetch(`${baseUrl}/api/users/signUp`, {
-  //   method: "POST",
-  //   body: formData,
-  // })
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     response = data;
-  //     console.error(data);
-  //   })
-  //   .catch((error) => {
-  //     response = data;
-  //     console.error("Error:", error);
-  //   });
-  // return response;
   const options = {
     method: "POST",
     body: formData,
@@ -31,22 +15,6 @@ export const sendSignUpData = async (data) => {
 };
 
 export const sendSignInData = async (data) => {
-  // return await fetch(`/api/users/signIn`, {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(data),
-  // })
-  //   .then((res) => {
-  //     if (!res.ok) {
-  //       return Promise.reject(res);
-  //     }
-  //     return res.json();
-  //   })
-  //   .then((data) => {
-  //     return data;
-  //   });
   const options = {
     method: "POST",
     headers: {
@@ -66,11 +34,6 @@ export const getAllUsers = async () => {
 };
 
 export const getUser = async (id) => {
-  // const res = await fetch(`/api/users/?id=${id}`, {
-  //   next: { revalidate: 20 },
-  // });
-  // if (!res.ok) notFound();
-  // return await res.json();
   const response = await apiRequest(`/api/users/?id=${id}`, {
     next: { revalidate: 20 },
   });
@@ -91,28 +54,6 @@ export const getUserByToken = async (token) => {
   return response;
 };
 
-// export const getAllProjects = async () => {
-// const URL = getUrl();
-// const res = await fetch(`${URL}/api/projects`, {
-
-//   try {
-//     const baseUrl = getUrl();
-
-//     console.log("Fetching from URL:", baseUrl);
-
-//     const res = await fetch(`${baseUrl}/api/projects`, {
-//       cache: "no-store",
-//     });
-
-//     if (!res.ok) throw new Error(`Http error: status - ${res.status}`);
-
-//     return await res.json();
-//   } catch (error) {
-//     console.error("Error fetching projects:", error);
-//     throw error;
-//   }
-// };
-
 export const getAllProjects = async () => {
   const response = await apiRequest("/api/projects", {
     cache: "no-store",
@@ -121,24 +62,6 @@ export const getAllProjects = async () => {
 };
 
 export const addProject = async (projectData, token) => {
-  // try {
-  //   const formData = createFormData(projectData);
-  //   const headers = {
-  //     Authorization: `Bearer ${token}`,
-  //   };
-
-  //   let res = await fetch(`/api/projects/addProject`, {
-  //     method: "POST",
-  //     headers,
-  //     body: formData,
-  //   });
-  //   res = await res.json();
-  //   if (res === "success") return "success";
-  //   else return "error";
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
   const formData = createFormData(projectData);
   const headers = {
     Authorization: `Bearer ${token}`,
@@ -155,19 +78,11 @@ export const addProject = async (projectData, token) => {
 };
 
 export const getUserProjects = async (id) => {
-  // const res = await fetch(`/api/projects/user?id=${id}`).then((res) =>
-  //   res.json()
-  // );
-  // return res;
   const response = await apiRequest(`/api/projects/user?id=${id}`);
   return response;
 };
 
 export const search = async (text) => {
-  // return await fetch(`/api/search`, {
-  //   method: "POST",
-  //   body: JSON.stringify(text),
-  // }).then((res) => res.json());
   const options = {
     method: "POST",
     body: JSON.stringify(text),

@@ -18,6 +18,7 @@ export default function ProjectCard({
   id,
   comments,
 }) {
+  console.log(id, 5555);
   return (
     <div
       className=" max-w-sm text-black font-semibold shadow-lg flex-grow rounded-lg overflow-hidden backdrop-blur-lg
