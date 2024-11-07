@@ -9,7 +9,7 @@ export const metaData = {
 export default async function Home() {
   const projects = await getAllProjects();
   return (
-    <main className="flex flex-wrap gap-4 p-1 py-20 lg:justify-start justify-evenly lg:p-20">
+    <main className="flex flex-wrap gap-4 px-2 py-20 lg:px-20 sm:justify-center lg:justify-normal justify-evenly lg:p-20">
       {projects?.map((project, i) => (
         <ProjectCard
           key={`${project.id}${i}`}

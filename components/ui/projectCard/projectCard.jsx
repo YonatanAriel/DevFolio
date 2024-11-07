@@ -20,7 +20,7 @@ export default function ProjectCard({
 }) {
   return (
     <div
-      className=" max-w-sm text-black font-semibold shadow-lg rounded-lg overflow-hidden backdrop-blur-lg
+      className=" max-w-sm text-black font-semibold shadow-lg flex-grow rounded-lg overflow-hidden backdrop-blur-lg
      h-[100vh] relative  shadow-gray-500 "
     >
       <HeaderAndBackground img={img} />

@@ -12,7 +12,7 @@ export default function Users() {
       {profiles?.length === 0 && (
         <Popup text={"Sorry, nothing was found"} goBackButton={true} />
       )}
-      <div className="flex flex-wrap gap-10 px-10 py-20 lg:justify-start justify-evenly lg:p-20">
+      <div className="flex flex-wrap gap-10 py-20 sm:px-10 lg:justify-start justify-evenly lg:p-20">
         {profiles?.map((p, i) => (
           <ProfileCard key={`${p._id}${i}`} id={p._id} img={p.photo} {...p} />
         ))}
