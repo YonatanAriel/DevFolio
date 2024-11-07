@@ -1,19 +1,21 @@
 "use client";
 import { useState } from "react";
 
-function Tooltip({ text }) {
+function Tooltip({ text, children }) {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   return (
     <div
+      className="relative"
       onMouseEnter={() => setIsTooltipVisible(true)}
       onMouseLeave={() => setIsTooltipVisible(false)}
     >
       {isTooltipVisible && (
-        <div className="sticky -left-52 top-10 text-primary-color p-2 rounded-2xl border-2 border-white text-sm  z-10 backdrop-blur-50 bg-black">
+        <div className="absolute z-10 p-2 text-sm bg-black text-primary-color -top-11 -left-3 rounded-2xl backdrop-blur-50">
           {text}
         </div>
       )}
+      {children}
     </div>
   );
 }
