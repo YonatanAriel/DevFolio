@@ -9,7 +9,7 @@ function HeaderAndBackground({ img }) {
         {img && (
           <Image
             src={img}
-            alt="ojni"
+            alt="project image"
             quality={100}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 920px) 50vw, 50vw"
