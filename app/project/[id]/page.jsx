@@ -1,26 +1,42 @@
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
-import { Project } from "DL/models/Project.model";
-import ProjectCard from "../../../components/ui/projectCard/projectCard";
-import connectToDB from "../../../DL/connectToDB";
+"use client";
+// import { Project } from "DL/models/Project.model";
+// import ProjectCard from "../../../components/ui/projectCard/projectCard";
+// import connectToDB from "../../../DL/connectToDB";
+// import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const metaData = {
   title: "Project",
 };
 
-export default async function Page({ params }) {
-  const { id } = await params;
+// export default async function Page({ params }) {
+export default function Page() {
+  // const { id } = await params;
 
-  await connectToDB();
+  // await connectToDB();
 
-  const project = await Project.findOne({ _id: id }).populate(
-    "userId",
-    "name occupation photo _id"
-  );
+  // const project = await Project.findOne({ _id: id }).populate(
+  //   "userId",
+  //   "name occupation photo _id"
+  // );
+
+  const router = useRouter();
 
   return (
     <div className="flex flex-wrap gap-4 px-2 py-20 lg:px-20 sm:justify-center lg:justify-normal justify-evenly lg:p-20">
-      <ProjectCard
+      <h3 className="m-auto font-semibold text-md">
+        {" This feature is not stable yet "}
+        <br />
+        <button
+          className="text-lg text-center text-bold text-primary-color"
+          onClick={() => router.back()}
+        >
+          Go Back
+        </button>
+      </h3>
+      {/* <ProjectCard
         key={`${project.id}`}
         projectName={project.name}
         developerName={project.userId.name}
@@ -35,7 +51,7 @@ export default async function Page({ params }) {
         description={project.description}
         isPortfolio={project.isPortfolio}
         {...project}
-      />
+      /> */}
     </div>
   );
 }

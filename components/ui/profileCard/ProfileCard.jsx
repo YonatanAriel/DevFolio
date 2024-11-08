@@ -21,8 +21,8 @@ export default function ProfileCard({
           className="absolute top-0 bottom-0 left-0 right-0 w-full border-r-4 "
         >
           <Image
-            alt=""
-            src={"/fire-1680605.jpg"}
+            alt="alt background"
+            src={"/fire-bg.jpg"}
             priority={true}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 920px) 50vw, 50vw"
