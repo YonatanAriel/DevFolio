@@ -7,6 +7,12 @@ const assistant = Assistant({
   weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
+export const metadata = {
+  title: "DevFolio",
+  description:
+    "A place for developers to showcase their portfolios and projects",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

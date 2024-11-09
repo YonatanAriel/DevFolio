@@ -25,6 +25,7 @@ function Links({ gitHubLink, websiteLink, id }) {
         >
           <a href={websiteLink}>
             <img
+              alt="Website icon"
               className="transition-all duration-150 ease-linear hover:invert"
               style={{ width: "6vh", height: "6vh" }}
               src="/icons8-website-96.png"

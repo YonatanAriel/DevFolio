@@ -2,7 +2,7 @@ function DeveloperImg({ developerImg }) {
   return developerImg ? (
     <img
       src={developerImg}
-      alt=""
+      alt="developer image"
       style={{
         width: "30px",
         height: "30px",

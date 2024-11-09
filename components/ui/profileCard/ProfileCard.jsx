@@ -21,7 +21,7 @@ export default function ProfileCard({
           className="absolute top-0 bottom-0 left-0 right-0 w-full border-r-4 "
         >
           <Image
-            alt="alt background"
+            alt="background"
             src={"/fire-bg.jpg"}
             priority={true}
             fill
