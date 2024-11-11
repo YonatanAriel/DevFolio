@@ -10,9 +10,6 @@ const nextConfig = {
     ],
   },
 };
-//  {
-//   domains: ["res.cloudinary.com"],
-// },
 
 module.exports = {
   async headers() {
