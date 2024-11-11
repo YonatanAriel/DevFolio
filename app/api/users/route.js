@@ -7,11 +7,3 @@ export async function GET(req) {
   const allUsers = await User.find();
   return NextResponse.json(allUsers, { status: 200 });
 }
-// return new NextResponse(JSON.stringify(allUsers), {
-//   status: 200,
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// });
-
-// return new NextResponse(JSON.stringify(allUsers), { status: 200 });

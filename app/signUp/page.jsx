@@ -207,7 +207,7 @@ export default function SignUp() {
           "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         }
         fullInputStyle={
-          "block w-full text-sm text-gray-500 border border-gray-300 rounded-lg  bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 [&::-webkit-file-upload-button]:border-0 [&::-webkit-file-upload-button]:border-r [&::file-selector-button]:cursor-pointer [&::-webkit-file-upload-button]:border-gray-300 [&::file-selector-button]:border-0 [&::file-selector-button]:border-r [&::file-selector-button]:border-green-300" // "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 [&::-webkit-file-upload-button]:border-0 [&::file-selector-button]:border-0"
+          "block w-full text-sm text-gray-500 border border-gray-300 rounded-lg  bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 [&::-webkit-file-upload-button]:border-0 [&::-webkit-file-upload-button]:border-r [&::file-selector-button]:cursor-pointer [&::-webkit-file-upload-button]:border-gray-300 [&::file-selector-button]:border-0 [&::file-selector-button]:border-r [&::file-selector-button]:border-green-300"
         }
       />
       {signUpError && <p className="my-5 text-red-500">{signUpError}</p>}

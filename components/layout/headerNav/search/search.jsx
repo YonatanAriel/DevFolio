@@ -25,7 +25,6 @@ export default function Search() {
       const text = inputRef.current.value;
       if (!text.trim()) return;
       setShowAnimation(true);
-      // const modelToSearch = pathname === "/profiles"  ? "User" : "Project";
 
       const modelToSearch = ["/profiles", "/search/users"].includes(pathname)
         ? "User"

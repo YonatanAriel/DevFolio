@@ -6,7 +6,6 @@ import { User } from "../../../../DL/models/User.model";
 export const dynamic = "force-dynamic";
 
 export async function GET(request) {
-  // const { projects } = await User.findById(userId).populate("projects");
   try {
     await connectToDB();
     const userId = request.nextUrl.searchParams.get("id");

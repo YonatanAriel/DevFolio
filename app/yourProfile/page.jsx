@@ -9,7 +9,6 @@ export default async function YourProfile() {
       <UserProfile />
       <div
         className={`flex flex-col md:h-[400px] -mt-6 md:mt-0 md:gap-4  md:ml-4 md:w-fit  gap-4 border-solid  w-[350px] max-w-[95vw]`}
-        // className={`flex flex-col md:-ml-36 -mt-6 md:mt-0 md:gap-2 md:w-[400px] md:h-fit md:-rotate-90 md:flex-row  gap-4 border-solid  w-[350px] max-w-[95vw]`}
       >
         <Link
           href={"/projects/addProject"}
