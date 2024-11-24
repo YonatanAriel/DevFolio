@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-function Tooltip({ text, children, className }) {
+function Tooltip({ text, children, className, tooltipStyle }) {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   return (
@@ -11,7 +12,12 @@ function Tooltip({ text, children, className }) {
       onMouseLeave={() => setIsTooltipVisible(false)}
     >
       {isTooltipVisible && (
-        <div className="absolute z-10 p-2 text-sm bg-black text-primary-color -top-11 -left-3 rounded-2xl backdrop-blur-50">
+        <div
+          className={twMerge(
+            "absolute z-10 p-2 text-sm bg-black text-primary-color -top-11 -left-3 rounded-2xl backdrop-blur-50",
+            tooltipStyle
+          )}
+        >
           {text}
         </div>
       )}

@@ -28,7 +28,7 @@ export const sendSignInData = async (data) => {
 
 export const getAllUsers = async () => {
   const response = await apiRequest(`/api/users`, {
-    next: { revalidate: 20 },
+    next: { revalidate: 0 },
   });
   return response;
 };
