@@ -17,7 +17,7 @@
     "jsonwebtoken": "^9.0.2",
     "lru-cache": "^11.0.2",
     "mongoose": "^7.5.3",
-    "next": "15.0.2",
+    "next": "15.0.7",
     "nodemailer": "^6.9.5",
     "postcss": "^8.4.47",
     "react": "19.0.0-rc-02c0e824-20241028",
