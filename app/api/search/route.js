@@ -23,7 +23,7 @@ export async function POST(req) {
           }).populate("userId", "name occupation photo _id")
         : await User.find({
             $or: [...searchFieldsRegex],
-          });
+          }).select("-email");
 
     console.log(results);
     return new NextResponse(
