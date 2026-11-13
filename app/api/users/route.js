@@ -4,6 +4,6 @@ import { User } from "../../../DL/models/User.model";
 
 export async function GET(req) {
   await connectToDB();
-  const allUsers = await User.find();
+  const allUsers = await User.find().select("-email");
   return NextResponse.json(allUsers, { status: 200 });
 }
